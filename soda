@@ -20,7 +20,6 @@ function usage {
   echo """Usage: $0 [OPTIONS] FUNCTION
     OPTIONS:
     -o | --options FILE          Sets the file to parse as options
-    -n | --namespace NAMESPACE   Uses the given namespace
     --verbose                    Prints debug messages
     -h | --help                  Prints this help message
 """
@@ -40,11 +39,6 @@ for arg in "${@}"; do
       ;;
     -o | --options)
       options=$2
-      shift
-      shift
-      ;;
-    -n | --namespace)
-      require "$2"
       shift
       shift
       ;;
