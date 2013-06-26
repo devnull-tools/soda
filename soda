@@ -25,13 +25,13 @@ function usage {
 """
   printf "$PUBLIC_FUNCTIONS_USAGE"
   echo ""
+  exit 0
 }
 
 for arg in "${@}"; do
   case $arg in
     -h | --help)
       usage
-      exit 0
       ;;
     --verbose)
       DEBUG=true
@@ -49,6 +49,8 @@ done
   message "Loading options: $options"
   . "$options"
 }
+
+[[ "$#" = "0" ]] && usage
 
 function="$1"
 shift
