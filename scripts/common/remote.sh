@@ -52,12 +52,11 @@ function remote {
   execute_soda_package $@
 }
 
-public "install_ssh_keys" "Installs the configured ssh keys for login without password"
+public "install_ssh_keys" "Installs the ssh keys in $SODA_USER_DIR for login without password"
 
 function install_ssh_keys {
-  ssh_dir=/root/.ssh
-  [ -d "$ssh_dir" ] || execute "Creating ssh dir" mkdir $ssh_dir
-  cat ./config/authorized_keys >> $ssh_dir/authorized_keys
+  ssh_dir=$HOME/.ssh
+  [[ -d "$ssh_dir" ]] || execute "Creating ssh dir" mkdir $ssh_dir
+  cat $SODA_USER_DIR/resources/authorized_keys >> $ssh_dir/authorized_keys
   check "Installing SSH Authorized Keys"
 }
-
