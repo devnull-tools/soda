@@ -12,19 +12,32 @@ function build {
   rm -rf $temp
   mkdir $temp
 
-  cp soda $temp
-  cp soda.conf $temp
-  cp -r scripts $temp
-  cp -r $SODA_USER_DIR $temp
+  cd $SODA_DIR
+
+  execute "Copying main program" cp soda $temp
+  execute "Copying configuration files" cp soda.conf $temp
+  execute "Copying scripts" cp -r scripts $temp
+  execute "Copying user files" cp -r $SODA_USER_DIR $temp
 
   echo "SODA_USER_DIR=.soda" >> $temp/soda.conf
+
+  check "Creating custom configuration"
 
   rm -rf build
   mkdir build
   
   cd /tmp
 
-  zip -r $SODA_DIR/build/soda.zip soda
+  local package=$SODA_DIR/build/soda.zip
+
+  execute "Creating soda package" zip -r $package soda
+  execute "Removing temporary files" rm -rf $temp
+
+  [[ -f "$package" ]] && {
+    message "Soda package created at $package"
+  } || {
+    error "Soda package not build"
+  }
 }
 
 function send_soda_package {
