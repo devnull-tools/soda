@@ -264,10 +264,21 @@ function log {
 
 # Aborts the script
 function abort {
+  debug "Aborted with exit code $1"
   exit $1
 }
 
 # Checks if the user exists
 function exist_user {
   cut -d: -f1 /etc/passwd | grep "^$1$" > /dev/null
+}
+
+# Loads all scripts inside a directory
+function load_scripts {
+  if [[ -d "$1" ]]; then
+    for script in $(find $1 -type f -name "*.sh"); do
+      debug "Loading $script"
+      . $script
+    done
+  fi
 }
