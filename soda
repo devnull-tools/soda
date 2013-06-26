@@ -1,0 +1,57 @@
+#!/bin/sh
+
+[[ -z "$SODA_DIR" ]] && SODA_DIR=$(pwd)
+[[ -z "$SODA_USER_DIR" ]] && SODA_USER_DIR=$HOME/.soda
+
+. $SODA_DIR/soda.conf
+. $SODA_DIR/scripts/core.sh
+. $SODA_DIR/scripts/soda.sh
+
+if [[ -f "$SODA_USER_DIR/soda.conf" ]]; then
+  . $SODA_USER_DIR/soda.conf
+fi
+
+# loads the common scripts
+load_scripts "$SODA_DIR/scripts/common"
+# loads user scripts
+load_scripts "$SODA_USER_DIR/scripts/common"
+
+function usage {
+  echo """Usage: $0 [OPTIONS] FUNCTION
+    OPTIONS:
+    -o | --options FILE          Sets the file to parse as options
+    --verbose                    Prints debug messages
+    -h | --help                  Prints this help message
+"""
+  printf "$PUBLIC_FUNCTIONS_USAGE"
+  echo ""
+}
+
+for arg in "${@}"; do
+  case $arg in
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    --verbose)
+      DEBUG=true
+      shift
+      ;;
+    -o | --options)
+      options=$2
+      shift
+      shift
+      ;;
+  esac
+done
+
+[ -n "$options" ] && {
+  message "Loading options: $options"
+  . "$options"
+}
+
+function="$1"
+shift
+if [[ -n "$function" ]]; then
+  "${function//-/_}" "$@"
+fi
