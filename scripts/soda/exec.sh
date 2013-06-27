@@ -12,7 +12,7 @@
 # If there is a variable named exactly like the function, its
 # value will be used instead of asking user.
 #
-# The value will be stored in the $OPTIONS_FILE file
+# The value of the user choice will be stored in the $OPTIONS_FILE file.
 #
 function invoke {
   [ -n "$(type -t $2)" ] && {
@@ -38,10 +38,10 @@ function invoke {
 }
 
 #
-# Asks user about something and returns true if the answer is 'yes'
+# Asks user about something and indicates if the answer is 'yes' or 'no'
 #
 function ask {
-  echo "$(bold_white "$1? (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
+  echo "$(bold_white "$1 (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
   read option
   echo "$option" | grep -qi "^Y$"
 }
@@ -129,7 +129,7 @@ function require_reboot {
 function finish {
   [ "$REBOOT_REQUIRED" == true ] && {
     warn "A reboot is required to complete process!"
-    invoke "Reboot system" "reboot"
+    invoke "Reboot system" reboot
   }
 }
 

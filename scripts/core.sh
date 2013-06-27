@@ -10,26 +10,33 @@ PUBLIC_FUNCTIONS_USAGE="Public functions:"
 #
 #   1- function name
 #   2- function description
+#   3- function params
 #
 # Note that all functions are exposed, this only documents
 # the function in the program help message.
 #
 function public {
   PUBLIC_FUNCTIONS_USAGE="$PUBLIC_FUNCTIONS_USAGE
-    $(printf "%-30s" "${1//_/-}") $2"
+    $(printf "%-${SODA_PROGRAM_NAME_LENGTH}s %-${SODA_PROGRAM_ARGS_LENGTH}s" "${1//_/-}" "$3") $2"
 }
 
+SODA_IMPORTS=""
+
 #
-# Imports a set of scripts in the scripts directory. The scripts
-# may be in $SODA_USER_DIR/scripts or $SODA_DIR/scripts. If the
-# scripts are present in the first directory, the second will not
-# be used.
+# Loads all scripts in the *scripts/namespace* directory. The scripts may be in
+# $SODA_USER_DIR or $SODA_DIR. If the scripts are present in the first directory,
+# the second one will not be used.
+# 
+# If a namespace was already imported, then it will not be imported again.
 #
-# Example: to import scripts in $SODA_USER_DIR/scripts/install
+# Example: to import the namespace denoted by $SODA_USER_DIR/scripts/install
 # use `import install`.
 #
 function import {
-  load_scripts "$SODA_USER_DIR/scripts/$1" || load_scripts "$SODA_DIR/scripts/$1"
+  if [[ ! $(echo "$SODA_IMPORTS" | grep -ie ":$1:") ]]; then
+    SODA_IMPORTS="$SODA_IMPORTS:$1:"
+    load_scripts "$SODA_USER_DIR/scripts/$1" || load_scripts "$SODA_DIR/scripts/$1"
+  fi
 }
 
 #

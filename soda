@@ -37,19 +37,20 @@ for arg in "${@}"; do
       shift
       ;;
     -o | --options)
-      options=$2
+      debug "Loading options: $2"
+      . "$2"
       shift
       shift
       ;;
   esac
 done
 
-[ -n "$options" ] && {
-  message "Loading options: $options"
-  . "$options"
-}
-
 [[ "$#" = "0" ]] && usage
+
+[[ -n "$LOG_FILE" ]]              > $LOG_FILE
+[[ -n "$OPTIONS_FILE" ]]          > $OPTIONS_FILE
+[[ -n "$COMMAND_LOG_FILE" ]]      > $COMMAND_LOG_FILE
+[[ -n "$LAST_COMMAND_LOG_FILE" ]] > $LAST_COMMAND_LOG_FILE
 
 call $@
 
