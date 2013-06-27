@@ -5,23 +5,22 @@
 
 . $SODA_DIR/soda.conf
 . $SODA_DIR/scripts/core.sh
-. $SODA_DIR/scripts/soda.sh
 
 if [[ -f "$SODA_USER_DIR/soda.conf" ]]; then
   . $SODA_USER_DIR/soda.conf
 fi
 
-# loads the common scripts
-load_scripts "$SODA_DIR/scripts/common"
-# loads user scripts
-load_scripts "$SODA_USER_DIR/scripts/common"
+SODA_RESOURCES=$SODA_USER_DIR/resources
+
+# Conventionally import common namespace
+import common
 
 function usage {
   echo """Usage: $0 [OPTIONS] FUNCTION
     OPTIONS:
-    -o | --options FILE          Sets the file to parse as options
-    --verbose                    Prints debug messages
-    -h | --help                  Prints this help message
+    -o | --options FILE            Sets the file to parse as options
+    -v | --verbose                 Prints debug messages
+    -h | --help                    Prints this help message
 """
   printf "$PUBLIC_FUNCTIONS_USAGE"
   echo ""
@@ -33,7 +32,7 @@ for arg in "${@}"; do
     -h | --help)
       usage
       ;;
-    --verbose)
+    -v | --verbose)
       DEBUG=true
       shift
       ;;
@@ -52,8 +51,6 @@ done
 
 [[ "$#" = "0" ]] && usage
 
-function="$1"
-shift
-if [[ -n "$function" ]]; then
-  "${function//-/_}" "$@"
-fi
+call $@
+
+finish

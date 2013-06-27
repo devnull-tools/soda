@@ -1,14 +1,16 @@
 #/bin/sh
 
-function remove_soda_package {
+function remove_remote_package {
+  input "server" "SSH_SERVER"
+  input "user" "SSH_USER" "root"
+  input "directory" "DEST_DIR" "/tmp/."
+
   ssh $SSH_USER@$SSH_SERVER "cd $DEST_DIR; rm -rf soda soda.zip"
   check "Removing soda package"
 }
 
-public "build" "Builds the soda package"
-
-function build {
-  temp=/tmp/soda
+function build_remote_package {
+  local temp=/tmp/soda
   rm -rf $temp
   mkdir $temp
 
@@ -41,35 +43,34 @@ function build {
 }
 
 function send_soda_package {
-  scp build/soda.zip $SSH_USER@$SSH_SERVER:$DEST_DIR
-  check "Sending package"
-}
-
-function execute_soda_package {
-  message "Executing soda"
-  ssh $SSH_USER@$SSH_SERVER "cd $DEST_DIR; rm -rf soda; unzip soda.zip ; cd soda ; ./soda $@ ;"
-  
-  check "Executing package"
-  invoke "Remove soda package from server" remove_soda_package
-}
-
-public "remote" "Invokes the function in a remote server"
-function remote {
   input "server" "SSH_SERVER"
   input "user" "SSH_USER" "root"
   input "directory" "DEST_DIR" "/tmp/."
 
-  ask "Build package" && build
-  ask "Send package" && send_soda_package
-
-  execute_soda_package $@
+  scp $SODA_DIR/build/soda.zip $SSH_USER@$SSH_SERVER:$DEST_DIR
+  check "Sending package"
 }
 
-public "install_ssh_keys" "Installs the ssh keys in $SODA_USER_DIR for login without password"
+function execute_soda_package {
+  input "server" "SSH_SERVER"
+  input "user" "SSH_USER" "root"
+  input "directory" "DEST_DIR" "/tmp/."
 
-function install_ssh_keys {
-  ssh_dir=$HOME/.ssh
-  [[ -d "$ssh_dir" ]] || execute "Creating ssh dir" mkdir $ssh_dir
-  cat $SODA_USER_DIR/resources/authorized_keys >> $ssh_dir/authorized_keys
-  check "Installing SSH Authorized Keys"
+  message "Executing soda"
+  ssh $SSH_USER@$SSH_SERVER "cd $DEST_DIR; rm -rf soda; unzip soda.zip ; cd soda ; ./soda $@ ;"
+  
+  invoke "Remove soda package from server" remove_remote_package
+}
+
+public "remote" "Invokes the function in a remote server using ssh"
+
+function remote {
+  ask "Build package" && {
+    build_remote_package
+    send_soda_package
+  } || {
+    ask "Send package" && send_soda_package
+  }
+
+  execute_soda_package $@
 }
