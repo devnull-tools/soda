@@ -8,6 +8,12 @@ SODA works by loading any scripts in a specific directory and calling a
 function passed by the command line. Every function can be exposed to
 the program help using the builtin **public** function.
 
+## How To Install
+
+Just clone the git repo and place the *soda* file in your path (a symlinks works well to).
+After that, ensure you have a **$SODA_DIR** pointing to the place you clone the repo and you're
+done.
+
 ## How To Use
 
 Create a *~/.soda* directory with the following structure:
