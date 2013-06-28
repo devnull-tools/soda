@@ -21,6 +21,8 @@ Create a *~/.soda* directory with the following structure:
 * _scripts_ - directory to put the scripts organized by namespaces
 * _resources_ - directory to put resources (available through the 
 **$SODA_RESOURCES** variable)
+* _options_ - directory to put custom options using the pattern ${option_name}.conf
+(you can load the option using the **--options** parameter)
 
 Inside *scripts*, any function in any script present in *scripts/common* will be
 loaded and may be called through `soda`:
