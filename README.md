@@ -89,7 +89,7 @@ Alternatively, you can call an install function directly without using the *impo
     
     $ soda something::install
     
-The **::** indicates that the namespace is the fi-rst part of the string and the function is the
+The **::** indicates that the namespace is the first part of the string and the function is the
 second part.
 
 ## Script Parameters
