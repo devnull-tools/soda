@@ -17,7 +17,7 @@ PUBLIC_FUNCTIONS_USAGE="Public functions:"
 #
 function public {
   PUBLIC_FUNCTIONS_USAGE="$PUBLIC_FUNCTIONS_USAGE
-    $(printf "%-${SODA_PROGRAM_NAME_LENGTH}s %-${SODA_PROGRAM_ARGS_LENGTH}s" "${1//_/-}" "$3") $2"
+    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s %-${SODA_FUNCTION_ARGS_LENGTH}s" "${1//_/-}" "$3") $2"
 }
 
 SODA_IMPORTS=""

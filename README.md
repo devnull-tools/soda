@@ -10,7 +10,7 @@ the program help using the builtin **public** function.
 
 # How To Use
 
-Create a ~/.soda directory with the following structure:
+Create a *~/.soda* directory with the following structure:
 
 * _scripts_ - directory to put the scripts organized by namespaces
 * _resources_ - directory to put resources (available through the 
@@ -57,11 +57,11 @@ only on specific cases.
     function install {
       import "install/$1" # loads the namespace that contains installation scripts
       shift
-      begin_install $@
-      finish_install $@
+      begin_install "$@"
+      finish_install "$@"
     }
     
-    # script inside ~/.soda/scripts/install/something.sh
+    # script inside ~/.soda/scripts/install/something/install.sh
     
     function begin_install {
       # code here
@@ -71,7 +71,33 @@ only on specific cases.
       # code here
     }
 
+Alternatively, you can call an install function directly without using the *import* function:
+
+    # script inside ~/.soda/scripts/something/install.sh
+    
+    function install {
+      # code here
+    }
+    
+    $ soda something::install
+    
+The **::** indicates that the namespace is the first part of the string and the function is the
+second part.
+
 # Configuration
+
+You can configure SODA through a **~/.soda/soda.conf** file. The supported properties are:
+
+* **SODA_LOG_DIR** - Directory for writing the log files (defaults to soda *directory/log*)
+* **LOG_FILE** - The main log file  (defaults to *$SODA_LOG_DIR/soda.log*)
+* **OPTIONS_FILE** - The file to write the options for some builting functions
+(defaults to *$SODA_LOG_DIR/soda.options.conf*)
+* **COMMAND_LOG_FILE** - The file to write the command log when using some builting functions
+(defaults to *$SODA_LOG_DIR/soda.command.log*)
+* **LAST_COMMAND_LOG_FILE** - The file to write the log for the last command executed when using
+some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
+* **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
+* **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
 
 # Builtin functions
 
