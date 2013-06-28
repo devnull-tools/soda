@@ -44,8 +44,8 @@ function import {
 #
 function load_scripts {
   if [[ -d "$1" ]]; then
-    for script in $(ls "*.sh" | sort); do
-      . $script
+    for script in $(ls "$1" | grep .sh | sort); do
+      . "$1/$script"
     done
     return 0
   else
@@ -58,4 +58,3 @@ function load_scripts {
 [ -z "$COMMAND_LOG_FILE" ] && COMMAND_LOG_FILE=/dev/null
 [ -z "$LAST_COMMAND_LOG_FILE" ] && LAST_COMMAND_LOG_FILE=/dev/null
 
-import soda
