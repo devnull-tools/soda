@@ -12,15 +12,12 @@ fi
 
 SODA_RESOURCES=$SODA_USER_DIR/resources
 
-# Conventionally import common namespace
-import common
-
 function usage {
   echo """Usage: $0 [OPTIONS] FUNCTION
     OPTIONS:
     -o | --options FILE            Sets the file to parse as options
     -v | --verbose                 Prints debug messages
-    -h | --help                    Prints this help message
+         --no-colors               Do not use colors
 """
   printf "$PUBLIC_FUNCTIONS_USAGE"
   echo ""
@@ -29,11 +26,12 @@ function usage {
 
 for arg in "${@}"; do
   case $arg in
-    -h | --help)
-      usage
-      ;;
     -v | --verbose)
       DEBUG=true
+      shift
+      ;;
+    --no-colors)
+      NO_COLORS=true
       shift
       ;;
     -o | --options)
@@ -45,13 +43,11 @@ for arg in "${@}"; do
   esac
 done
 
-[[ "$#" = "0" ]] && usage
+# Conventionally import common and soda namespace
+import soda
+import common
 
-# Clears the output files
-[[ -n "$LOG_FILE" ]]              > $LOG_FILE
-[[ -n "$OPTIONS_FILE" ]]          > $OPTIONS_FILE
-[[ -n "$COMMAND_LOG_FILE" ]]      > $COMMAND_LOG_FILE
-[[ -n "$LAST_COMMAND_LOG_FILE" ]] > $LAST_COMMAND_LOG_FILE
+[[ "$#" = "0" ]] && usage
 
 call "$@"
 

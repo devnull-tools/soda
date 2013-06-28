@@ -158,23 +158,23 @@ Indicates that a reboot is required. SODA will ask to reboot before terminate.
 
 ### message (message)
 
-Displays an information message and logs it in the $LOG_FILE
+Displays an information message and logs it in the *$LOG_FILE*
 
 ### debug (message)
 
-Displays a debug message and logs it in the $LOG_FILE
+Displays a debug message and logs it in the *$LOG_FILE*
 
 ### warn (message)
 
-Displays a warn message and logs it in the $LOG_FILE
+Displays a warn message and logs it in the *$LOG_FILE*
 
 ### error (message)
 
-Displays en error message and logs it in the $LOG_FILE
+Displays en error message and logs it in the *$LOG_FILE*
 
 ### success (message)
 
-Displays a successfull operation message and logs it in the $LOG_FILE
+Displays a successfull operation message and logs it in the *$LOG_FILE*
 
 ### fail (message)
 
@@ -183,7 +183,7 @@ Displays a failed operation message and logs it in the $LOG_FILE
 ### input (description, variable, [default_value])
 
 Asks the user to input a value. The value will be stored in the indicated
-variable. If there is a variable named as $variable, the input asking will
+variable. If there is a variable named as *$variable*, the input asking will
 be skipped.
 
     input "Server address" "SERVER" "localhost"
@@ -194,4 +194,4 @@ be skipped.
 ### choose (description, variable, *options)
         
 Asks user to choose a value from a list of options and stores the 0-based index
-of the selected value. If there is a variable named as $2, the choice will be skipped.
+of the selected value. If there is a variable named as *$variable*, the choice will be skipped.

@@ -45,3 +45,9 @@ function fail {
 function log {
   printf "%s | %-6s | %s\n" $(date +%H:%M:%S) "$1" "$2" >> $LOG_FILE
 }
+
+# Clears the output files
+[[ -n "$LOG_FILE" ]]              > $LOG_FILE
+[[ -n "$OPTIONS_FILE" ]]          > $OPTIONS_FILE
+[[ -n "$COMMAND_LOG_FILE" ]]      > $COMMAND_LOG_FILE
+[[ -n "$LAST_COMMAND_LOG_FILE" ]] > $LAST_COMMAND_LOG_FILE

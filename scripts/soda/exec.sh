@@ -105,7 +105,7 @@ function build_function_name {
 # the sintax namespace::function as the function name.
 #
 function call {
-  function=$(build_function_name $1)
+  function="$1"
   shift
   if [[ -n "$function" ]]; then
     if [[ $(echo "$function" | grep -ie "::") ]]; then
@@ -114,7 +114,7 @@ function call {
 
       import $namespace
     fi
-    "${function}" "$@"
+    "${build_function_name function}" "$@"
   fi
 }
 

@@ -64,3 +64,4 @@ function bold_white {
   printf "\e[1;37m$1\e[0;0m"
 }
 
+[[ "$NO_COLORS" == true ]] && import "soda/no-colors"
