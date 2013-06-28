@@ -114,7 +114,7 @@ function call {
 
       import $namespace
     fi
-    "${build_function_name function}" "$@"
+    "$(build_function_name $function)" "$@"
   fi
 }
 

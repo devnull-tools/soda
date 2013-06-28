@@ -50,8 +50,8 @@ ships with SODA and will be explained later.
 
 ## Namespaces
 
-The namespaces are single directories in _scripts_. By default, the *common* namespace
-is always included. You can include other namespaces using the **import** function.
+The namespaces are single directories in _scripts_. By default, the *common* and *soda* namespaces
+are always imported. You can include other namespaces using the **import** function.
 
 Namespaces are useful if you have a set of scripts that you should use
 only on specific cases.
@@ -87,7 +87,7 @@ Alternatively, you can call an install function directly without using the *impo
     
     $ soda something::install
     
-The **::** indicates that the namespace is the first part of the string and the function is the
+The **::** indicates that the namespace is the fi-rst part of the string and the function is the
 second part.
 
 ## Configuration

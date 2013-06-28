@@ -22,8 +22,7 @@ function build_remote_package {
   execute "Copying user files" cp -r $SODA_USER_DIR $temp
 
   echo "SODA_USER_DIR=.soda" >> $temp/soda.conf
-
-  check "Creating custom configuration"
+  [[ "$NO_COLORS" == true ]] && echo "NO_COLORS=true" >> $temp/soda.conf
 
   rm -rf build
   mkdir build
