@@ -2,70 +2,76 @@
 
 parameter "no_colors" "Do not use colors"
 
+function _color_escape {
+  printf "\e[$1;3$2m$3\e[0;0m"
+}
+
 function red {
-  printf "\e[0;31m$1\e[0;0m"
+  _color_escape 0 1 "$1"
 }
 
 function green {
-  printf "\e[0;32m$1\e[0;0m"
+  _color_escape 0 2 "$1"
 }
 
 function yellow {
-  printf "\e[0;33m$1\e[0;0m"
+  _color_escape 0 3 "$1"
 }
 
 function blue {
-  printf "\e[0;34m$1\e[0;0m"
+  _color_escape 0 4 "$1"
 }
 
 function magenta {
-  printf "\e[0;35m$1\e[0;0m"
+  _color_escape 0 5 "$1"
 }
 
 function cyan {
-  printf "\e[0;36m$1\e[0;0m"
+  _color_escape 0 6 "$1"
 }
 
 function gray {
-  printf "\e[0;37m$1\e[0;0m"
+  _color_escape 0 7 "$1"
 }
 
 function white {
-  printf "\e[0;37m$1\e[0;0m"
+  _color_escape 0 7 "$1"
 }
 
 function bold_gray {
-  printf "\e[1;30m$1\e[0;0m"
+  _color_escape 1 0 "$1"
 }
 
 function bold_red {
-  printf "\e[1;31m$1\e[0;0m"
+  _color_escape 1 1 "$1"
 }
 
 function bold_green {
-  printf "\e[1;32m$1\e[0;0m"
+  _color_escape 1 2 "$1"
 }
 
 function bold_yellow {
-  printf "\e[1;33m$1\e[0;0m"
+  _color_escape 1 3 "$1"
 }
 
 function bold_blue {
-  printf "\e[1;34m$1\e[0;0m"
+  _color_escape 1 4 "$1"
 }
 
 function bold_magenta {
-  printf "\e[1;35m$1\e[0;0m"
+  _color_escape 1 5 "$1"
 }
 
 function bold_cyan {
-  printf "\e[1;36m$1\e[0;0m"
+  _color_escape 1 6 "$1"
 }
 
 function bold_white {
-  printf "\e[1;37m$1\e[0;0m"
+  _color_escape 1 7 "$1"
 }
 
 if [[ "$no_colors" ]]; then
-  import "soda/no-colors"
+  function _color_escape {
+    printf "$3"
+  }
 fi
