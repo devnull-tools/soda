@@ -22,8 +22,7 @@ function build_remote_package {
   execute "Copying user files" cp -r $SODA_USER_DIR $temp
 
   echo "SODA_USER_DIR=.soda" >> $temp/soda.conf
-  [[ "$NO_COLORS" == true ]] && echo "NO_COLORS=true" >> $temp/soda.conf
-
+  
   rm -rf build
   mkdir build
   
@@ -56,7 +55,7 @@ function execute_soda_package {
   input "directory" "DEST_DIR" "/tmp/."
 
   message "Executing soda"
-  ssh $SSH_USER@$SSH_SERVER "cd $DEST_DIR; rm -rf soda; unzip soda.zip ; cd soda ; ./soda $@ ;"
+  ssh $SSH_USER@$SSH_SERVER "cd $DEST_DIR; rm -rf soda; unzip soda.zip ; cd soda ; ./soda $SODA_PARAMETERS $@ ;"
   
   invoke "Remove soda package from server" remove_remote_package
 }

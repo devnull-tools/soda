@@ -91,7 +91,7 @@ function execute {
 # Parse the function name. By convention, '-' will be replaced
 # by '_' to build the function name.
 #
-function build_function_name {
+function build_name {
   echo "${1//-/_}"
 }
 
@@ -99,7 +99,7 @@ function build_function_name {
 # Calls the given function with the given args.
 #
 # Before the call, the function name will be normalized using
-# the conventions in #build_function_name.
+# the conventions in #build_name.
 #
 # To call a function in a namespace without import it implicit, use
 # the sintax namespace::function as the function name.
@@ -114,7 +114,7 @@ function call {
 
       import $namespace
     fi
-    "$(build_function_name $function)" "$@"
+    "$(build_name $function)" "$@"
   fi
 }
 

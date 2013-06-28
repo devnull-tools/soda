@@ -90,6 +90,22 @@ Alternatively, you can call an install function directly without using the *impo
 The **::** indicates that the namespace is the fi-rst part of the string and the function is the
 second part.
 
+## Script Parameters
+
+If you need to pass a set of parameters, you can use --OPTION_NAME in case of a boolean option or
+--OPTION_NAME=OPTION_VALUE. The parameterss will be translated replacing hyphens with underscores
+(but ignoring the prefix **--**).
+
+      $ soda --my-option=test
+      
+      # script
+      if [[ -n "$my_option" ]]; then
+        # some code
+      fi
+      
+To register a parameter in the program usage, use the *parameter* function (for more details, see the
+documentation bellow).
+
 ## Configuration
 
 You can configure SODA through a **~/.soda/soda.conf** file. The supported properties are:
@@ -104,15 +120,21 @@ You can configure SODA through a **~/.soda/soda.conf** file. The supported prope
 some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
 * **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
 * **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
+* **SODA_PARAMETER_LENGTH** - The max length to format the function name in the help usage
 
 ## Builtin functions
 
 The builtin functions are present in *scripts/soda* dir and the *scripts/core.sh*, the
 most significant are listed below:
 
-### public (function_name, description, [*args])
+### public (function_name, description)
 
 Adds the given function to the help message. This is only a documentation feature and
+does not affect anything. You may pass the function args in $function_name.
+
+### parameter (parameter_name, description)
+
+Adds the given parameter to the help message. This is only a documentation feature and
 does not affect anything.
 
 ### import (namespace)

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+parameter "no_colors" "Do not use colors"
+
 function red {
   printf "\e[0;31m$1\e[0;0m"
 }
@@ -64,4 +66,6 @@ function bold_white {
   printf "\e[1;37m$1\e[0;0m"
 }
 
-[[ "$NO_COLORS" == true ]] && import "soda/no-colors"
+if [[ "$no_colors" ]]; then
+  import "soda/no-colors"
+fi

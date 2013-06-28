@@ -1,5 +1,7 @@
 #!/bin/sh
 
+parameter "log_level=N" "Sets the log level (DEBUG=0 INFO=1 WARN=2 ERROR=3)"
+
 # Puts a colorized text in the console
 function puts {
   echo "$($1 "$2")"
@@ -8,25 +10,25 @@ function puts {
 # Displays an information message and logs it in the $LOG_FILE
 function message {
   log "INFO" "$1"
-  puts blue "$1"
+  puts blue "INFO: $1"
 }
 
 # Displays a debug message and logs it in the $LOG_FILE
 function debug {
   log "DEBUG" "$1"
-  [ "$DEBUG" == true ] && puts gray "$1"
+  puts gray "DEBUG: $1"
 }
 
 # Displays a warn message and logs it in the $LOG_FILE
 function warn {
   log "WARN" "$1"
-  puts yellow "$1"
+  puts yellow "WARN: $1"
 }
 
 # Displays en error message and logs it in the $LOG_FILE
 function error {
   log "ERROR" "$1"
-  puts red "$1"
+  puts red "ERROR: $1"
 }
 
 # Logs a successfull operation
@@ -51,3 +53,21 @@ function log {
 [[ -n "$OPTIONS_FILE" ]]          > $OPTIONS_FILE
 [[ -n "$COMMAND_LOG_FILE" ]]      > $COMMAND_LOG_FILE
 [[ -n "$LAST_COMMAND_LOG_FILE" ]] > $LAST_COMMAND_LOG_FILE
+
+# Sets the log level
+if [[ -n "$log_level" ]]; then
+  case $log_level in
+    1)
+      function debug { :; }
+      ;;
+    2)
+      function debug { :; }
+      function message { :; }
+      ;;
+    3)
+      function debug { :; }
+      function message { :; }
+      function warn { :; }
+      ;;
+  esac
+fi

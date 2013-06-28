@@ -13,31 +13,19 @@ fi
 SODA_RESOURCES=$SODA_USER_DIR/resources
 
 function usage {
-  echo """Usage: $0 [OPTIONS] FUNCTION
-    OPTIONS:
-    -o | --options FILE            Sets the file to parse as options
-    -v | --verbose                 Prints debug messages
-         --no-colors               Do not use colors
-"""
-  printf "$PUBLIC_FUNCTIONS_USAGE"
-  echo ""
-  exit 0
+  echo "Usage: $(basename $0) [*PARAMETERS] FUNCTION [*ARGS]"
+  printf "$OPTIONS_USAGE\n\n"
+  printf "$PUBLIC_FUNCTIONS_USAGE\n"
+  exit 1
 }
+
+SODA_PARAMETERS=""
 
 for arg in "${@}"; do
   case $arg in
-    -v | --verbose)
-      DEBUG=true
-      shift
-      ;;
-    --no-colors)
-      NO_COLORS=true
-      shift
-      ;;
-    -o | --options)
-      debug "Loading options: $2"
-      . "$2"
-      shift
+    --*)
+      SODA_PARAMETERS="$SODA_PARAMETERS $arg"
+      set_parameter "$arg"
       shift
       ;;
   esac
@@ -47,7 +35,10 @@ done
 import soda
 import common
 
+parameter "help" "Prints this help message"
+
 [[ "$#" = "0" ]] && usage
+[[ "$help" ]] && usage
 
 call "$@"
 
