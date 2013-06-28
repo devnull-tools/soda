@@ -44,7 +44,7 @@ function import {
 #
 function load_scripts {
   if [[ -d "$1" ]]; then
-    for script in $(find $1 -type f -name "*.sh"); do
+    for script in $(find $1 -type f -name "*.sh" | sort); do
       . $script
     done
     return 0

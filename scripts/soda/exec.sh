@@ -101,10 +101,19 @@ function build_function_name {
 # Before the call, the function name will be normalized using
 # the conventions in #build_function_name.
 #
+# To call a function in a namespace without import it implicit, use
+# the sintax namespace::function as the function name.
+#
 function call {
   function=$(build_function_name $1)
   shift
   if [[ -n "$function" ]]; then
+    if [[ $(echo "$function" | grep -ie "::") ]]; then
+      namespace="${function%%::*}"
+      function="${function#*::}"
+
+      import $namespace
+    fi
     "${function}" "$@"
   fi
 }

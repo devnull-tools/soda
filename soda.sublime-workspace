@@ -1,0 +1,1172 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"SODA",
+				"SODA_IMPORTS"
+			],
+			[
+				"SODA_",
+				"SODA_IMPORTS"
+			],
+			[
+				"for",
+				"forin	for … in … done"
+			],
+			[
+				"on",
+				"on_box"
+			],
+			[
+				"no",
+				"no_colors"
+			],
+			[
+				"max",
+				"max_width"
+			],
+			[
+				"inc",
+				"include_numbers"
+			],
+			[
+				"inclu",
+				"include"
+			],
+			[
+				"use",
+				"use_color_numbers"
+			],
+			[
+				"COLOR",
+				"COLOR_NAMES"
+			],
+			[
+				"function",
+				"function_name"
+			],
+			[
+				"color",
+				"color_format"
+			],
+			[
+				"end",
+				"end_script"
+			],
+			[
+				"las",
+				"last_color"
+			],
+			[
+				"MOUNT",
+				"MOUNT_PATH"
+			],
+			[
+				"overr",
+				"override_dir"
+			],
+			[
+				"lo",
+				"load_resource"
+			],
+			[
+				"ove",
+				"override_dir"
+			],
+			[
+				"ex",
+				"expand_path"
+			],
+			[
+				"colori",
+				"colorize"
+			],
+			[
+				"requir",
+				"require_relative"
+			],
+			[
+				"each",
+				"each_line"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"bo",
+				"bottom_left"
+			],
+			[
+				"Te",
+				"TextBoxStyle"
+			],
+			[
+				"top",
+				"top_right"
+			],
+			[
+				"al",
+				"align"
+			],
+			[
+				"thre",
+				"threshold_params"
+			],
+			[
+				"row",
+				"row_contexts"
+			],
+			[
+				"row_",
+				"row_based"
+			],
+			[
+				"full",
+				"full_colors"
+			],
+			[
+				"zebra",
+				"zebra_colors"
+			],
+			[
+				"is",
+				"is_a"
+			],
+			[
+				"column",
+				"column"
+			],
+			[
+				"Table",
+				"TableContext"
+			],
+			[
+				"col",
+				"column_index"
+			],
+			[
+				"colum",
+				"column_index"
+			],
+			[
+				"attr_",
+				"attr_reader"
+			],
+			[
+				"Server",
+				"ServerStatus"
+			],
+			[
+				"ins",
+				"in_use_threads"
+			],
+			[
+				"free",
+				"free_memory"
+			],
+			[
+				"fre",
+				"free_memory"
+			],
+			[
+				"fr",
+				"free_memory"
+			],
+			[
+				"context",
+				"context_rows"
+			],
+			[
+				"con",
+				"context_rows"
+			],
+			[
+				"curren",
+				"current_context"
+			],
+			[
+				"com",
+				"com_email"
+			],
+			[
+				"apro",
+				"aproveitamento_email"
+			],
+			[
+				"colorize",
+				"colorize_row"
+			],
+			[
+				"footer",
+				"footer_config"
+			],
+			[
+				"aprov",
+				"aproveitamento_total"
+			],
+			[
+				"parse",
+				"parse_index"
+			],
+			[
+				"foo",
+				"footer_start"
+			],
+			[
+				"fi",
+				"fixix2"
+			],
+			[
+				"xi",
+				"xix2"
+			],
+			[
+				"xix",
+				"xix"
+			],
+			[
+				"F",
+				"FMW_DOMAIN"
+			],
+			[
+				"FM",
+				"FMW_DOMAIN"
+			],
+			[
+				"data",
+				"data_type"
+			],
+			[
+				"in_use",
+				"in_use_threads"
+			],
+			[
+				"reposi",
+				"repositories"
+			],
+			[
+				"table",
+				"table_builder"
+			],
+			[
+				"comp",
+				"component_name"
+			],
+			[
+				"using",
+				"using_row"
+			],
+			[
+				"component",
+				"component_config"
+			],
+			[
+				"rowba",
+				"row_based_colorizers"
+			],
+			[
+				"aut",
+				"authentication_code"
+			],
+			[
+				"health",
+				"health_checkers"
+			],
+			[
+				"res",
+				"respond_to"
+			],
+			[
+				"reposit",
+				"repository"
+			],
+			[
+				"load",
+				"load_file  (function)"
+			],
+			[
+				"ARGS",
+				"args"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/User/Pandoc-PDF.sublime-build",
+	"command_palette":
+	{
+		"height": 54.0,
+		"selected_items":
+		[
+			[
+				"quic",
+				"Git: Quick Commit"
+			],
+			[
+				"add",
+				"Git: Add..."
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"commi",
+				"Git: Commit"
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"qui",
+				"Git: Quick Commit"
+			],
+			[
+				"git ad",
+				"Git: Add..."
+			],
+			[
+				"chec",
+				"Git: Change Branch"
+			],
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
+				"ident",
+				"Indent XML"
+			],
+			[
+				"iden",
+				"Indent XML"
+			],
+			[
+				"",
+				"Auto indent"
+			],
+			[
+				"ssxml",
+				"Set Syntax: XML"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"wra",
+				"Word Wrap: Toggle"
+			],
+			[
+				"wor",
+				"Word Wrap: Toggle"
+			],
+			[
+				"word",
+				"Word Wrap: Toggle"
+			],
+			[
+				"ssjava",
+				"Set Syntax: Java"
+			],
+			[
+				"ssja",
+				"Set Syntax: Java"
+			],
+			[
+				"ssjsp",
+				"Set Syntax: Java Server Page (JSP)"
+			],
+			[
+				"sssql",
+				"Set Syntax: SQL"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"gcb",
+				"Git: Change Branch"
+			],
+			[
+				"git",
+				"Git: Custom Command"
+			],
+			[
+				"q",
+				"Git: Quick Commit"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"qi",
+				"Git: Quick Commit"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"sssh",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"case",
+				"Convert Case: Lower Case"
+			],
+			[
+				"ssshel",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"ssshe",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"quick",
+				"Git: Quick Commit"
+			],
+			[
+				"commit",
+				"Git: Quick Commit"
+			],
+			[
+				"uppre",
+				"Convert Case: Upper Case"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"ssbash",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"reset",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"sssq",
+				"Set Syntax: SQL"
+			],
+			[
+				"git statu",
+				"Git: Status"
+			],
+			[
+				"dif",
+				"Git: Diff Current File"
+			],
+			[
+				"diff",
+				"Git: Diff Current File"
+			],
+			[
+				"stat",
+				"Git: Status"
+			],
+			[
+				"git s",
+				"Git: Status"
+			],
+			[
+				"gis",
+				"Git: Status"
+			],
+			[
+				"ssh",
+				"Set Syntax: HTML"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"gadd",
+				"Git: Add Current File"
+			],
+			[
+				"qick",
+				"Git: Quick Commit"
+			],
+			[
+				"git commi",
+				"Git: Quick Commit"
+			],
+			[
+				"g",
+				"Git: Commit"
+			],
+			[
+				"git sta",
+				"Git: Stash Apply"
+			],
+			[
+				"gqc",
+				"Git: Quick Commit"
+			],
+			[
+				"giad",
+				"Git: Add..."
+			],
+			[
+				"git amm",
+				"Git: Amend Commit"
+			],
+			[
+				"git re",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git hi",
+				"Git: Commit history"
+			],
+			[
+				"gq",
+				"Git: Quick Commit"
+			],
+			[
+				"gad",
+				"Git: Add..."
+			],
+			[
+				"git com",
+				"Git: Quick Commit"
+			],
+			[
+				"settings",
+				"Preferences: Settings - Default"
+			],
+			[
+				"sss",
+				"Set Syntax: SQL"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"gpsuh",
+				"Git: Push Current Branch"
+			],
+			[
+				"gc",
+				"Git: Commit"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			]
+		],
+		"width": 561.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/ataxexe/scripts/init.d/oracle",
+		"/home/ataxexe/workspace/soda/README.md",
+		"/home/ataxexe/workspace/soda/scripts/core.sh",
+		"/home/ataxexe/workspace/soda/scripts/soda/exec.sh",
+		"/home/ataxexe/workspace/soda/scripts/soda/input.sh",
+		"/home/ataxexe/workspace/soda/log/soda.options.conf",
+		"/home/ataxexe/workspace/soda/scripts/soda/log.sh",
+		"/home/ataxexe/workspace/soda/soda",
+		"/home/ataxexe/workspace/soda/soda.conf",
+		"/home/ataxexe/workspace/soda/log/soda.conf",
+		"/home/ataxexe/workspace/soda/scripts/soda/remote.sh",
+		"/home/ataxexe/workspace/soda/scripts/soda/colors.sh",
+		"/home/ataxexe/workspace/soda/scripts/common/remote.sh",
+		"/home/ataxexe/workspace/soda/scripts/soda/util.sh",
+		"/home/ataxexe/workspace/soda/scripts/common/helper.sh",
+		"/home/ataxexe/workspace/soda/scripts/soda.sh",
+		"/home/ataxexe/workspace/soda/scripts/common/core.sh",
+		"/home/ataxexe/workspace/soda/scripts/common/structure.sh",
+		"/home/ataxexe/workspace/soda/scripts/common/colors.sh",
+		"/home/ataxexe/workspace/soda/scripts/common/admin.sh",
+		"/home/ataxexe/workspace/soda/log/soda.log",
+		"/home/ataxexe/.soda/resources/authorized_keys",
+		"/home/ataxexe/scripts/soda/soda",
+		"/home/ataxexe/scripts/soda/scripts/soda.sh",
+		"/home/ataxexe/scripts/soda/scripts/common/remote.sh",
+		"/home/ataxexe/scripts/soda/scripts/common/admin.sh",
+		"/home/ataxexe/scripts/soda/soda.conf",
+		"/home/ataxexe/scripts/soda/todo",
+		"/home/ataxexe/scripts/soda/config/soda.conf",
+		"/home/ataxexe/scripts/soda/config/config.conf",
+		"/home/ataxexe/scripts/soda/scripts/common/structure.sh",
+		"/home/ataxexe/workspace/funasa/scripts/linux-admin/scripts/common/admin.sh",
+		"/home/ataxexe/scripts/soda/scripts/common/soda.sh",
+		"/home/ataxexe/scripts/soda/scripts/core.sh",
+		"/home/ataxexe/scripts/soda/admin",
+		"/home/ataxexe/.config/sublime-text-2/Packages/User/Side Bar.sublime-settings",
+		"/home/ataxexe/.config/sublime-text-2/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/home/ataxexe/scripts/admin/admin",
+		"/home/ataxexe/scripts/admin/scripts/common/remote.sh",
+		"/home/ataxexe/scripts/admin/config/config.conf",
+		"/home/ataxexe/scripts/admin/build.sh",
+		"/home/ataxexe/scripts/admin/scripts/common/structure.sh",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ipva-teste-1.txt",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/readme.md",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ipva-teste-2.txt",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ProcessoPAT-E/xsd/ipva-origem.xsd",
+		"/home/ataxexe/.config/sublime-text-2/Packages/User/Pandoc-PDF.sublime-build",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/pom-parents/parent/pom.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ProcessoPAT-E/PoolingRetornoLeitura-properties.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ProcessoPAT-E/PoolingRetornoLeitura-or-mappings.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ProcessoPAT-E/processes/ProcessoIntimacaoSujeitoPassivo.bpmn",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ProcessoPAT-E/LeitorArquivoMainframe_file.jca",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/Auto desv I.txt",
+		"/home/ataxexe/workspace/funasa/sisad/sisad-bpm/ProcessoAvaliacao/xsl/avaliacao_confirmada_To_TblAvaliacaoMestreCollection.xsl",
+		"/home/ataxexe/workspace/funasa/projetos/processos/fct/ProcessoAvaliacaoFCT/xsl/AvaliacaoTerminada_To_TblAvaliacaoCollection.xsl",
+		"/home/ataxexe/Downloads/sefaz/RPCNatural-exemplo.txt",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/mainframe-service/src/br/gov/sefaz/poc/pat/PatAndamentoService.java",
+		"/home/ataxexe/Dropbox/colors/monokai.txt",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/mainframe-service/src/br/gov/sefaz/poc/pat/rpc/RPCNaturalProxy.java",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/mainframe-service/pom.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/pom-parents/ant/pom.xml",
+		"/home/ataxexe/workspace/funasa/projetos/servicos/siarh-service/pom.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/pom-parents/web/pom.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/pom-parents/human-task/pom.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/pom-parents/sca/pom.xml",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/EnviarDefesa_Form/public_html/EnviarDefesa_Form.jspx",
+		"/home/ataxexe/workspace/sefaz/poc-ipva/ProcessoPAT-E/composite.xml",
+		"/home/ataxexe/scripts/weblogic",
+		"/home/ataxexe/Dropbox/cast/idm.md",
+		"/home/ataxexe/workspace/trugger/build.gradle",
+		"/home/ataxexe/scripts/admin/scripts/common/users.sh",
+		"/home/ataxexe/scripts/admin/scripts/core.sh",
+		"/home/ataxexe/scripts/weblogic-new",
+		"/home/ataxexe/workspace/yummi/lib/yummi/formatters.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/colorizers.rb",
+		"/home/ataxexe/workspace/yummi/examples/cash_flow_table.yaml",
+		"/home/ataxexe/workspace/yummi/lib/yummi/table.rb",
+		"/home/ataxexe/workspace/yummi/bin/yummi",
+		"/home/ataxexe/workspace/yummi/lib/yummi.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/prompt.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/extensions.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/text_box.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/version.rb",
+		"/home/ataxexe/workspace/yummi/examples/extensions.rb",
+		"/home/ataxexe/workspace/rlogic/lib/wlst/scripts/monitor.py",
+		"/home/ataxexe/workspace/yummi/examples/license_box.rb",
+		"/home/ataxexe/workspace/yummi/README.md",
+		"/home/ataxexe/Dropbox/cast/funasa/senhas.txt",
+		"/home/ataxexe/workspace/funasa/projetos/processos/fct/fct.rb",
+		"/home/ataxexe/workspace/funasa/projetos/processos/fct/resources/avaliacao.sql",
+		"/home/ataxexe/workspace/funasa/projetos/processos/fct/resources/grants.sql",
+		"/home/ataxexe/workspace/yummi/yummi.gemspec",
+		"/home/ataxexe/workspace/yummi/lib/yummi/patterns/jboss.yaml",
+		"/home/ataxexe/workspace/yummi/lib/yummi/patterns/log.yaml",
+		"/home/ataxexe/workspace/yummi/lib/yummi/patterns/weblogic.yaml",
+		"/home/ataxexe/workspace/yummi/lib/yummi/logger.rb",
+		"/home/ataxexe/workspace/yummi/examples/monitor_table.rb",
+		"/home/ataxexe/workspace/yummi/examples/logcat_colorizer.rb",
+		"/home/ataxexe/workspace/yummi/examples/list_files.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/no_colors.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/generator.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/generate/colorize.sh.erb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/generate/colorize-functions.sh.erb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/color_mapping.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/generate/header.sh.erb",
+		"/home/ataxexe/bin/colorize",
+		"/home/ataxexe/workspace/funasa/scripts/config-oracle-linux",
+		"/home/ataxexe/workspace/yummi/lib/yummi/generate/shell.sh.erb",
+		"/home/ataxexe/workspace/yummi/shell/install.sh",
+		"/home/ataxexe/workspace/yummi/lib/yummi/table_builder.rb",
+		"/home/ataxexe/workspace/yummi/LICENSE",
+		"/home/ataxexe/workspace/yummi/examples/cash_flow_table.rb",
+		"/home/ataxexe/workspace/yummi/examples/logger.rb",
+		"/home/ataxexe/workspace/yummi/lib/yummi/data_parser.rb",
+		"/home/ataxexe/.config/sublime-text-2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
+		"/home/ataxexe/.yummi/patterns/siconv.yaml",
+		"/home/ataxexe/workspace/sokoban/opengl_sokoban.rb",
+		"/home/ataxexe/workspace/sokoban/sokoban.rb",
+		"/home/ataxexe/workspace/QuadradoMagico/build.properties",
+		"/home/ataxexe/workspace/QuadradoMagico/build.xml",
+		"/home/ataxexe/workspace/QuadradoMagico/manifest.txt",
+		"/home/ataxexe/workspace/QuadradoMagico/src/ataxexe/quadradoMagico/QuadradoMagico.java",
+		"/home/ataxexe/workspace/yummi/pkg/yummi-0.4.0.gem",
+		"/home/ataxexe/workspace/yummi/bin/server.log",
+		"/home/ataxexe/clients/funasa/sisad/sisad-bpm/ServicoAvaliacao/module_servicoavaliacao.xml",
+		"/home/ataxexe/clients/funasa/cspu/ResetPassword/LICENSE",
+		"/home/ataxexe/clients/funasa/cspu/reset-senha/PasswordService/src/br/gov/funasa/webservice/resetsenha/PasswordService.java",
+		"/home/ataxexe/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"<project>",
+			"/home/ataxexe/workspace/yummi",
+			"<project>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dbs",
+			"dbst",
+			"OPATH",
+			"public",
+			"$1",
+			"function",
+			"#",
+			"invoke",
+			"$1",
+			"$2",
+			"throught",
+			"parse_function",
+			"Yes",
+			"remove_soda_package",
+			"abort",
+			"$SODA_DIR/log",
+			"./",
+			"PUBLIC",
+			"SERVER",
+			"root",
+			"remote",
+			"TEMPLATE_FILE",
+			"admin",
+			"\"default_browser\": \"chrome\"",
+			"admin",
+			"install",
+			"TEMPLATE_FILE",
+			"template",
+			"SQL",
+			"UPDATE",
+			"serviceTask",
+			"/ns:endereco/ns1:",
+			"String retorno",
+			"br.gov.funasa",
+			"00000000037605",
+			"00000000033600",
+			"label",
+			"simple",
+			"required",
+			"inputText",
+			"f:validator",
+			"#",
+			"1",
+			"shift",
+			"&> /dev/null",
+			";;",
+			"format",
+			"params",
+			"set",
+			"params",
+			"style[:value]",
+			"title",
+			"params.border",
+			"params.separator",
+			"@color",
+			"get_input",
+			"bold",
+			"intense_",
+			"uncolorize",
+			"purple",
+			"gray",
+			"bold",
+			"bold_",
+			"Color",
+			"intense",
+			"purple",
+			"Yummi::Color",
+			"colors",
+			"color",
+			"colors",
+			"TYPES",
+			"Yummi::Color::Schema::",
+			"replace",
+			"if",
+			"private",
+			"get",
+			"Copyright (c) 2012",
+			"Copyright (c) 2011",
+			"mode",
+			"modes",
+			"p",
+			" \n",
+			"matched",
+			"raw",
+			"puts",
+			"raw",
+			"color",
+			"last_color",
+			"              \n",
+			"arg",
+			"line",
+			"colors",
+			"+up",
+			"params",
+			"colorizer",
+			"file",
+			"params",
+			"emergency",
+			"  \n",
+			"PATTERN",
+			"colorize",
+			"buff",
+			"left",
+			"top",
+			"top-",
+			"prc_proposta(",
+			"prc_proposta",
+			"style",
+			"@style.",
+			"unless no_border",
+			"style.color",
+			"fill_with",
+			"char",
+			"CHAR",
+			"char",
+			"CHAR",
+			"Aligner",
+			"if",
+			"border",
+			"@",
+			"vertical",
+			"horizontal",
+			"_corner",
+			"-corner",
+			"]",
+			"[:",
+			"unless",
+			"no_border"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"Copyright (c) 2013"
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 108.0
+	},
+	"output.git":
+	{
+		"height": 102.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"pom",
+				"pom-parents/parent/pom.xml"
+			],
+			[
+				"poolingleitura",
+				"ProcessoPAT-E/PoolingRetornoLeitura-properties.xml"
+			],
+			[
+				"pooling",
+				"ProcessoPAT-E/PoolingRetornoLeitura-or-mappings.xml"
+			],
+			[
+				"processointimaca",
+				"ProcessoPAT-E/processes/ProcessoIntimacaoSujeitoPassivo.bpmn"
+			],
+			[
+				"leitor",
+				"ProcessoPAT-E/LeitorArquivoMainframe_file.jca"
+			],
+			[
+				"processointima",
+				"ProcessoPAT-E/processes/ProcessoIntimacaoSujeitoPassivo.bpmn"
+			],
+			[
+				"servicejava",
+				"mainframe-service/src/br/gov/sefaz/poc/pat/PatAndamentoService.java"
+			],
+			[
+				"ipva",
+				"ProcessoPAT-E/xsd/ipva-origem.xsd"
+			],
+			[
+				"jsp",
+				"EnviarDefesa_Form/public_html/EnviarDefesa_Form.jspx"
+			],
+			[
+				"xml",
+				"ProcessoPAT-E/composite.xml"
+			],
+			[
+				"jspx",
+				"EnviarDefesa_Form/public_html/EnviarDefesa_Form.jspx"
+			],
+			[
+				"table",
+				"lib/yummi/table.rb"
+			],
+			[
+				"box",
+				"lib/yummi/text_box.rb"
+			],
+			[
+				"text",
+				"lib/yummi/text_box.rb"
+			],
+			[
+				"colorizers",
+				"lib/yummi/colorizers.rb"
+			],
+			[
+				"yummi",
+				"lib/yummi.rb"
+			],
+			[
+				"colorizesh",
+				"lib/yummi/generate/colorize.sh.erb"
+			],
+			[
+				"genera",
+				"lib/yummi/generator.rb"
+			],
+			[
+				"yummi.rb",
+				"lib/yummi.rb"
+			],
+			[
+				"coloriz",
+				"lib/yummi/colorizers.rb"
+			],
+			[
+				"jboss7",
+				"lib/yummi/mappings/jboss7.yaml"
+			],
+			[
+				"comp",
+				"lib/rboss/component_processor.rb"
+			],
+			[
+				"server",
+				"lib/rboss/cli/mappings/resources/server.yaml"
+			],
+			[
+				"heal",
+				"lib/rboss/view/health_checkers.rb"
+			],
+			[
+				"colori",
+				"lib/rboss/view/colorizers.rb"
+			],
+			[
+				"formatt",
+				"lib/rboss/view/formatters.rb"
+			],
+			[
+				"resultpa",
+				"lib/rboss/cli/result_parser.rb"
+			],
+			[
+				"compon",
+				"lib/rboss/component_processor.rb"
+			],
+			[
+				"color",
+				"lib/rboss/view/colorizers.rb"
+			],
+			[
+				"colr",
+				"lib/rboss/view/colorizers.rb"
+			],
+			[
+				"formatters",
+				"lib/rboss/view/formatters.rb"
+			],
+			[
+				"twiddle",
+				"lib/rboss/twiddle/base_monitor.rb"
+			],
+			[
+				"twidd",
+				"bin/twiddle"
+			],
+			[
+				"mapp",
+				"lib/rboss/cli/mappings.rb"
+			],
+			[
+				"rbosscli",
+				"bin/rboss-cli"
+			],
+			[
+				"datasource",
+				"lib/rboss/cli/mappings/resources/datasource.yaml"
+			],
+			[
+				"cli",
+				"lib/rboss/cli/mappings.rb"
+			],
+			[
+				"rboss-c",
+				"bin/rboss-cli"
+			],
+			[
+				"serve",
+				"lib/rboss/cli/mappings/resources/server.yaml"
+			],
+			[
+				"yumm",
+				"lib/yummi.rb"
+			],
+			[
+				"yum",
+				"lib/yummi.rb"
+			],
+			[
+				"y",
+				"lib/yummi.rb"
+			],
+			[
+				"",
+				"yummi.gemspec"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 232.0,
+	"status_bar_visible": true
+}

@@ -47,11 +47,12 @@ done
 
 [[ "$#" = "0" ]] && usage
 
+# Clears the output files
 [[ -n "$LOG_FILE" ]]              > $LOG_FILE
 [[ -n "$OPTIONS_FILE" ]]          > $OPTIONS_FILE
 [[ -n "$COMMAND_LOG_FILE" ]]      > $COMMAND_LOG_FILE
 [[ -n "$LAST_COMMAND_LOG_FILE" ]] > $LAST_COMMAND_LOG_FILE
 
-call $@
+call "$@"
 
 finish
