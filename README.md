@@ -219,3 +219,7 @@ be skipped.
         
 Asks user to choose a value from a list of options and stores the 0-based index
 of the selected value. If there is a variable named as *$variable*, the choice will be skipped.
+
+    choose "Server Type" "SERVER_TYPE" "Production" "Development"
+    
+    echo "$SERVER_TYPE"
