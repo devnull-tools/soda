@@ -18,6 +18,7 @@ function input {
       printf $(bold_white "[")$(bold_green "$3")$(bold_white "]")
     fi
     echo ""
+    printf "$(yellow " > ")"
     read $2
     if [[ "$(get_var $2)" == "" ]]; then
       set_var "$2" "$3"
@@ -49,6 +50,7 @@ function choose {
       echo "  $(bold_white "($i)") - $(yellow "$option")"
       ((i++))
     done
+    printf "$(yellow " > ")"
     read $var
   fi
   echo "# $text ($@)" >> $OPTIONS_FILE

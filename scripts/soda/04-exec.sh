@@ -19,6 +19,7 @@ function invoke {
     option=$(get_var "$2")
     [ -z "$option" ] && {
       echo "$(bold_white "$1? (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
+      printf "$(yellow " > ")"
       read option
     }
     echo "$2=$option" >> $OPTIONS_FILE
@@ -42,6 +43,7 @@ function invoke {
 #
 function ask {
   echo "$(bold_white "$1 (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
+  printf "$(yellow " > ")"
   read option
   echo "$option" | grep -qi "^Y$"
 }
