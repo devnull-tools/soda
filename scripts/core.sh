@@ -4,6 +4,8 @@
 PUBLIC_FUNCTIONS_USAGE="  FUNCTIONS:"
 OPTIONS_USAGE="  OPTIONS:"
 
+CURRENT_NAMESPACE=""
+
 #
 # Exposes the given function in the program usage.
 #
@@ -17,7 +19,7 @@ OPTIONS_USAGE="  OPTIONS:"
 #
 function public {
   PUBLIC_FUNCTIONS_USAGE="$PUBLIC_FUNCTIONS_USAGE
-    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "${1//_/-}") $2"
+    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$CURRENT_NAMESPACE::${1//_/-}") $2"
 }
 
 #
@@ -50,6 +52,7 @@ SODA_IMPORTS=""
 #
 function import {
   if [[ ! $(echo "$SODA_IMPORTS" | grep -ie ":$1:") ]]; then
+    CURRENT_NAMESPACE="$1"
     SODA_IMPORTS="$SODA_IMPORTS:$1:"
     load_scripts "$SODA_USER_DIR/scripts/$1" || load_scripts "$SODA_DIR/scripts/$1"
   fi
