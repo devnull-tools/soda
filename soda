@@ -13,6 +13,10 @@ fi
 SODA_RESOURCES=$SODA_USER_DIR/resources
 
 function usage {
+  for namespace in $(ls $SODA_USER_DIR/scripts); do
+    import "$namespace"
+  done
+
   echo "Usage: $(basename $0) [*PARAMETERS] FUNCTION [*ARGS]"
   printf "$OPTIONS_USAGE\n\n"
   printf "$PUBLIC_FUNCTIONS_USAGE\n"
