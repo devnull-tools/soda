@@ -31,11 +31,14 @@ for arg in "${@}"; do
   esac
 done
 
-# Conventionally import common and soda namespace
+# Imports common and soda namespace
 import soda
 import common
 
+parameter "import=NAMESPACE" "Imports the given namespace"
 parameter "help" "Prints this help message"
+
+[[ "$import" ]] && import "$import"
 
 [[ "$#" = "0" ]] && usage
 [[ "$help" ]] && usage
