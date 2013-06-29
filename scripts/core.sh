@@ -2,7 +2,7 @@
 
 # Stores the usage for exposed commands
 PUBLIC_FUNCTIONS_USAGE="  FUNCTIONS:"
-OPTIONS_USAGE="  OPTIONS:"
+OPTIONS_USAGE="  PARAMETERS:"
 
 CURRENT_NAMESPACE=""
 
