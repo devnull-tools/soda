@@ -1,8 +1,5 @@
 #!/bin/sh
 
-parameter "log_level=N" "Sets the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)"
-parameter "no_log_files" "Do not use log files"
-
 # Puts a colorized text in the console
 function puts {
   echo "$($1 "$2")"
@@ -49,18 +46,17 @@ function log {
   printf "%s | %-6s | %s\n" $(date +%H:%M:%S) "$1" "$2" >> $LOG_FILE
 }
 
-if [[ "$no_log_files" ]]; then
+parameter "no_log_files" "Do not use log files" && {
   function log { :; }
-else
+} || {
   # Clears the output files
   [[ -n "$LOG_FILE" ]]              > $LOG_FILE
   [[ -n "$OPTIONS_FILE" ]]          > $OPTIONS_FILE
   [[ -n "$COMMAND_LOG_FILE" ]]      > $COMMAND_LOG_FILE
   [[ -n "$LAST_COMMAND_LOG_FILE" ]] > $LAST_COMMAND_LOG_FILE
-fi
+}
 
-# Sets the log level
-if [[ -n "$log_level" ]]; then
+parameter "log_level=N" "Sets the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)" && {
   case $log_level in
     1)
       function debug { :; }
@@ -81,4 +77,4 @@ if [[ -n "$log_level" ]]; then
       function error { :; }
       ;;
   esac
-fi
+}

@@ -39,13 +39,19 @@ done
 import soda
 import common
 
-parameter "import=NAMESPACE" "Imports the given namespace"
-parameter "help" "Prints this help message"
+parameter "import=NAMESPACE" "Imports the given namespace" && {
+  import "$import"
+}
 
-[[ "$import" ]] && import "$import"
+parameter "help" "Prints this help message" && {
+  usage
+}
+
+parameter "options=NAME" "Loads the $SODA_USER_DIR/options/NAME.conf file" && {
+  . $SODA_USER_DIR/$options.conf
+}
 
 [[ "$#" = "0" ]] && usage
-[[ "$help" ]] && usage
 
 call "$@"
 

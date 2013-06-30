@@ -23,19 +23,22 @@ function public {
 }
 
 #
-# Exposes the given parameter in the program usage.
+# Exposes the given parameter in the program usage and returns indicating 
+# if the parameter was given.
 #
 # Arguments:
 #
 #   1- parameter name
 #   2- parameter description
 #
-# Note that all parameters are exposed, this only documents
-# the parameter in the program help message.
-#
 function parameter {
   OPTIONS_USAGE="$OPTIONS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${1//_/-}") $2"
+  if [[ $(eval echo "\$${1%%=*}") ]]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 SODA_IMPORTS=""

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-parameter "no_colors" "Do not use colors"
-
 function _color_escape {
   printf "\e[$1;3$2m$3\e[0;0m"
 }
@@ -70,8 +68,8 @@ function bold_white {
   _color_escape 1 7 "$1"
 }
 
-if [[ "$no_colors" ]]; then
+parameter "no_colors" "Do not use colors" && {
   function _color_escape {
     printf "$3"
   }
-fi
+}

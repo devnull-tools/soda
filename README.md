@@ -136,8 +136,12 @@ does not affect anything. You may pass the function args in $function_name.
 
 ### parameter (parameter_name, description)
 
-Adds the given parameter to the help message. This is only a documentation feature and
-does not affect anything.
+Adds the given parameter to the help message and returns indicating if the parameter
+was given.
+
+    parameter "help" "Prints this help message" && {
+      usage
+    }
 
 ### import (namespace)
 
