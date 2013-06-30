@@ -1,8 +1,7 @@
 #!/bin/sh
 
 #
-# Invokes a function based on user choice. Additionally, a pre_$function
-# and post_$function will be invoked if exists.
+# Invokes a function based on user choice.
 #
 # Arguments:
 #
@@ -24,16 +23,8 @@ function invoke {
     }
     echo "$2=$option" >> $OPTIONS_FILE
     echo "$option" | grep -qi "^Y$" && {
-      [ -n "$(type -t "pre_$2")" ] && {
-        debug "Invoking pre_$2"
-        pre_$2
-      }
       debug "Invoking $2"
       $2
-      [ -n "$(type -t "post_$2")" ] && {
-        debug "Invoking post_$2"
-        post_$2
-      }
     }
   }
 }

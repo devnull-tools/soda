@@ -149,8 +149,7 @@ If a namespace was already imported, then it will not be imported again.
 
 ### invoke (description, function_name)
 
-Invokes the given function based on user choice. Additionally, a pre_$function_name and
-post_$function_name will be invoked if exists. The value of the user choice will be stored
+Invokes the given function based on user choice. The value of the user choice will be stored
 in the $OPTIONS_FILE file.
 
 If there is a variable named exactly like the function, its value will be used instead of
