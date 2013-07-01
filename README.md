@@ -122,7 +122,7 @@ You can configure SODA through a **~/.soda/soda.conf** file. The supported prope
 some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
 * **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
 * **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
-* **SODA_PARAMETER_LENGTH** - The max length to format the function name in the help usage
+* **SODA_PARAMETER_LENGTH** - The max length to format the parameter name in the help usage
 
 ## Builtin functions
 
@@ -146,7 +146,7 @@ was given.
 ### import (namespace)
 
 Loads all scripts in the *scripts/namespace* directory. The scripts may be in
-$SODA_USER_DIR or $SODA_DIR. If the scripts are present in the first directory,
+*$SODA_USER_DIR* or *$SODA_DIR*. If the scripts are present in the first directory,
 the second one will not be used.
 
 If a namespace was already imported, then it will not be imported again.

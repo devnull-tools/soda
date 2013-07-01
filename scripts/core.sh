@@ -34,7 +34,7 @@ function public {
 function parameter {
   OPTIONS_USAGE="$OPTIONS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${1//_/-}") $2"
-  if [[ $(eval echo "\$${1%%=*}") ]]; then
+  if [[ $(get_var "${1%%=*}") ]]; then
     return 0
   else
     return 1
@@ -84,6 +84,16 @@ function set_parameter {
   var="${var%%=*}"
 
   eval "${var//-/_}=$value"
+}
+
+# Dynamically sets a variable value
+function set_var {
+  eval "$1=$2"
+}
+
+# Dynamically gets a variable value
+function get_var {
+  eval echo "\$$1"
 }
 
 [ -z "$OPTIONS_FILE" ] && OPTIONS_FILE=/dev/null
