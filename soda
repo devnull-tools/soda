@@ -48,7 +48,7 @@ parameter "help" "Prints this help message" && {
 }
 
 parameter "options=NAME" "Loads the $SODA_USER_DIR/options/NAME.conf file" && {
-  . $SODA_USER_DIR/$options.conf
+  . $SODA_USER_DIR/options/$options.conf
 }
 
 [[ "$#" = "0" ]] && usage
