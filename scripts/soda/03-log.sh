@@ -64,7 +64,7 @@ parameter "verbose" "Set the log level to DEBUG" && {
   log_level=0
 }
 
-parameter "log_level=N" "Sets the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)" && {
+parameter "log_level=N" "Set the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)" && {
   case $log_level in
     1)
       function debug { :; }
