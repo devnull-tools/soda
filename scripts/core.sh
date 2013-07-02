@@ -34,7 +34,7 @@ function public {
 #
 function parameter {
   OPTIONS_USAGE="$OPTIONS_USAGE
-    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${1//_/-}") $2"
+    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${1//_/-}")$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "($CURRENT_NAMESPACE)") $2"
   if [[ $(get_var "${1%%=*}") ]]; then
     return 0
   else
