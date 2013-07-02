@@ -123,6 +123,7 @@ some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
 * **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
 * **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
 * **SODA_PARAMETER_LENGTH** - The max length to format the parameter name in the help usage
+* **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help usage
 
 ## Builtin functions
 
