@@ -146,8 +146,7 @@ was given.
 ### import (namespace)
 
 Loads all scripts in the *scripts/namespace* directory. The scripts may be in
-*$SODA_USER_DIR* or *$SODA_DIR*. If the scripts are present in the first directory,
-the second one will not be used.
+*$SODA_USER_DIR* or *$SODA_DIR*.
 
 If a namespace was already imported, then it will not be imported again.
 

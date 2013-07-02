@@ -4,6 +4,7 @@
 PUBLIC_FUNCTIONS_USAGE="  FUNCTIONS:"
 OPTIONS_USAGE="  PARAMETERS:"
 
+# Used for showing the namespaces of public functions in help message
 CURRENT_NAMESPACE=""
 
 #
@@ -45,8 +46,7 @@ SODA_IMPORTS=""
 
 #
 # Loads all scripts in the *scripts/namespace* directory. The scripts may be in
-# $SODA_USER_DIR or $SODA_DIR. If the scripts are present in the first directory,
-# the second one will not be used.
+# $SODA_USER_DIR or $SODA_DIR.
 # 
 # If a namespace was already imported, then it will not be imported again.
 #
@@ -57,7 +57,9 @@ function import {
   if [[ ! $(echo "$SODA_IMPORTS" | grep -ie ":$1:") ]]; then
     CURRENT_NAMESPACE="$1"
     SODA_IMPORTS="$SODA_IMPORTS:$1:"
-    load_scripts "$SODA_USER_DIR/scripts/$1" || load_scripts "$SODA_DIR/scripts/$1"
+
+    load_scripts "$SODA_DIR/scripts/$1"
+    load_scripts "$SODA_USER_DIR/scripts/$1"
   fi
 }
 
