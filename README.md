@@ -14,6 +14,12 @@ Just clone the git repo and place the *soda* file in your path (a symlinks works
 After that, ensure you have a **$SODA_DIR** pointing to the place you clone the repo and you're
 done.
 
+## Bash Completion
+
+SODA supports bash completion by importing all namespaces and searching for defined parameters
+and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
+copy to */etc/bash_completion.d/*, ...).
+
 ## How To Use
 
 Create a *~/.soda* directory with the following structure:
@@ -132,13 +138,13 @@ most significant are listed below:
 
 ### task (function_name, description)
 
-Adds the given function to the help message. This is only a documentation feature and
-does not affect anything. You may pass the function args in *$function_name*.
+Adds the given function to the help message and register it for autocompletion. You may pass the
+function args in *$function_name*.
 
 ### parameter (parameter_name, description)
 
-Adds the given parameter to the help message and returns indicating if the parameter
-was given. You may pass the parameter args in *$parameter_name*
+Adds the given parameter to the help message, register ir for autocompletion and returns indicating
+if the parameter was given. You may pass the parameter args in *$parameter_name*
 
     parameter "help" "Prints this help message" && {
       usage

@@ -10,7 +10,7 @@ TASKS=""
 CURRENT_NAMESPACE=""
 
 #
-# Exposes the given function in the program usage.
+# Expose the given function in the program usage and register it for autocompletion.
 #
 # Arguments:
 #
@@ -28,8 +28,8 @@ function task {
 }
 
 #
-# Exposes the given parameter in the program usage and returns indicating 
-# if the parameter was given.
+# Exposes the given parameter in the program usage, register it for autocompletion 
+# and returns indicating if the parameter was given.
 #
 # Arguments:
 #
