@@ -97,14 +97,16 @@ function build_name {
 # To call a function in a namespace without import it implicit, use
 # the sintax namespace#function as the function name.
 #
+# To change the namespace delimiter (defaults to "#"), use the
+# SODA_NAMESPACE_DELIMITER variable
+#
 function call {
   function="$1"
   shift
   if [[ -n "$function" ]]; then
-    if [[ $(echo "$function" | grep -ie "#") ]]; then
-      namespace="${function%%#*}"
-      function="${function#*#}"
-
+    if [[ $(echo "$function" | grep -ie "${SODA_NAMESPACE_DELIMITER}") ]]; then
+      namespace="${function%%$SODA_NAMESPACE_DELIMITER*}"
+      function="${function#*${SODA_NAMESPACE_DELIMITER}}"
       import $namespace
     fi
     "$(build_name $function)" "$@"

@@ -68,7 +68,7 @@ SODA_IMPORTS=""
 function import {
   if [[ ! $(echo "$SODA_IMPORTS" | grep -ie ":$1:") ]]; then
     if [[ ! "$1" == "soda" ]]; then
-      TASK_NAMESPACE="$1#"
+      TASK_NAMESPACE="$1$SODA_NAMESPACE_DELIMITER"
       PARAMETER_NAMESPACE="[$1]"
     fi
     SODA_IMPORTS="$SODA_IMPORTS:$1:"
