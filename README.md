@@ -93,9 +93,9 @@ Alternatively, you can call an install function directly without using the *impo
       # code here
     }
     
-    $ soda something#install
+    $ soda something.install
     
-The **#** indicates that the namespace is the first part of the string and the function is the
+The **.** indicates that the namespace is the first part of the string and the function is the
 second part.
 
 ## Script Parameters
@@ -130,6 +130,8 @@ some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
 * **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
 * **SODA_PARAMETER_LENGTH** - The max length to format the parameter name in the help usage
 * **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help usage
+* **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also affects
+the bash completion
 
 ## Builtin functions
 
