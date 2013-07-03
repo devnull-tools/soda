@@ -56,6 +56,8 @@ This will call the *grid_pre_install* function passing *5* as the arguments. By 
 may call a function with underscores replacing them by hyphens. The *message* and *execute* functions
 ships with SODA and will be explained later.
 
+To see the program usage, type `$ soda` or `$ soda --help`
+
 ## Namespaces
 
 The namespaces are single directories in _scripts_. By default, the *common* and *soda* namespaces

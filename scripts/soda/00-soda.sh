@@ -8,8 +8,11 @@ parameter "help" "Print the help message." && {
   usage "$help"
 }
 
-parameter "options=NAME" "Load the \$SODA_USER_DIR/options/NAME.conf file" && {
-  . $SODA_USER_DIR/options/$options.conf
+parameter "options=NAME" "Load all NAME.conf file inside \$SODA_USER_DIR/options" && {
+  #. $SODA_USER_DIR/options/$options.conf
+  for conf in $(find $SODA_USER_DIR/options -type f -name "$options.conf"); do
+    source $conf
+  done
 }
 
 task "help [NAMESPACE]" "Print the help message for the given namespace (leave empty for all)"
