@@ -1,6 +1,6 @@
 # soda
 
-SODA is a simple platform to help writing and executing shell scripts.
+SODA is a simple platform to help writing and executing tasks in shell script.
 
 ## How It Works
 
@@ -227,3 +227,7 @@ will be skipped.
     choose "Server Type" "SERVER_TYPE" "Production" "Development"
     
     echo "$SERVER_TYPE"
+
+## Examples
+
+Check out the **examples** dir for a simple set of tasks that may help you.
