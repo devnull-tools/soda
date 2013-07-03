@@ -16,7 +16,7 @@ function git_push {
   git push
 }
 
-public "update" "Pull new commits from the repository"
+task "update" "Pull new commits from the repository"
 function update {
   local branch="$(current_branch)"
   if [[ ! "$branch" == "master" ]]; then
@@ -34,7 +34,7 @@ function update {
   fi
 }
 
-public "push" "Push local commits into the repository"
+task "push" "Push local commits into the repository"
 function push {
   local branch="$(current_branch)"
   if [[ "$branch" == "master" ]]; then
@@ -52,7 +52,7 @@ function push {
   fi
 }
 
-public "merge" "Merge commits into the master branch"
+task "merge" "Merge commits into the master branch"
 function merge {
   local branch="$(current_branch)"
   if [[ "$branch" == "master" ]]; then
@@ -67,7 +67,7 @@ function merge {
   fi
 }
 
-public "close" "Delete the current branch and switch back to master"
+task "close" "Delete the current branch and switch back to master"
 function close {
   local branch="$(current_branch)"
   if [[ "$branch" == "master" ]]; then
@@ -80,7 +80,7 @@ function close {
   fi
 }
 
-public "open" "Creates a new branch off master"
+task "open" "Creates a new branch off master"
 function open {
   local branch="$1"
   if [[ -z "$branch" ]]; then

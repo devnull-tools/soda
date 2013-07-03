@@ -56,13 +56,13 @@ parameter "no_log_files" "Do not use log files" && {
   [[ -n "$LAST_COMMAND_LOG_FILE" ]] > $LAST_COMMAND_LOG_FILE
 }
 
-if [[ ! $log_level ]]; then
-  log_level=1
-fi
-
 parameter "verbose" "Set the log level to DEBUG" && {
   log_level=0
 }
+
+if [[ ! $log_level ]]; then
+  log_level=1
+fi
 
 parameter "log_level=N" "Set the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)" && {
   case $log_level in

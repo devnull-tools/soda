@@ -60,7 +60,7 @@ function execute_soda_package {
   invoke "Remove soda package from server" remove_remote_package
 }
 
-public "remote" "Invoke the function in a remote server using ssh"
+task "remote" "Invoke the function in a remote server using ssh"
 
 function remote {
   ask "Build package" && {

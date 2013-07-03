@@ -6,7 +6,7 @@ SODA is a simple platform to help writing and executing tasks in shell script.
 
 SODA works by loading any scripts in a specific directory and calling a
 function passed by the command line. Every function can be exposed to
-the program help using the builtin **public** function.
+the program help using the builtin **task** function.
 
 ## How To Install
 
@@ -29,7 +29,7 @@ loaded and may be called through `soda`:
 
     # script in scripts/common/oracle-grid.sh
     
-    public "grid_pre_install" "Prepares the environment to install Oracle GRID"
+    task "grid_pre_install" "Prepares the environment to install Oracle GRID"
     
     function grid_pre_install {
       message "Installing RPMs"
@@ -60,7 +60,7 @@ only on specific cases.
 
     # script inside ~/.soda/scripts/common
     
-    public install "Installs the given product"
+    task install "Installs the given product"
     
     function install {
       import "install/$1" # loads the namespace that contains installation scripts
@@ -130,15 +130,15 @@ some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
 The builtin functions are present in *scripts/soda* dir and the *scripts/core.sh*, the
 most significant are listed below:
 
-### public (function_name, description)
+### task (function_name, description)
 
 Adds the given function to the help message. This is only a documentation feature and
-does not affect anything. You may pass the function args in $function_name.
+does not affect anything. You may pass the function args in *$function_name*.
 
 ### parameter (parameter_name, description)
 
 Adds the given parameter to the help message and returns indicating if the parameter
-was given.
+was given. You may pass the parameter args in *$parameter_name*
 
     parameter "help" "Prints this help message" && {
       usage

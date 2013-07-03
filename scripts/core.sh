@@ -4,7 +4,7 @@
 PUBLIC_FUNCTIONS_USAGE="  FUNCTIONS:"
 OPTIONS_USAGE="  PARAMETERS:"
 
-# Used for showing the namespaces of public functions in help message
+# Used for showing the namespaces of task functions in help message
 CURRENT_NAMESPACE=""
 
 #
@@ -18,7 +18,7 @@ CURRENT_NAMESPACE=""
 # Note that all functions are exposed, this only documents
 # the function in the program help message.
 #
-function public {
+function task {
   PUBLIC_FUNCTIONS_USAGE="$PUBLIC_FUNCTIONS_USAGE
     $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$CURRENT_NAMESPACE::${1//_/-}") $2"
 }
