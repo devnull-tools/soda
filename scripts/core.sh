@@ -3,6 +3,8 @@
 # Stores the usage for exposed commands
 TASKS_USAGE="  FUNCTIONS:"
 PARAMETERS_USAGE="  PARAMETERS:"
+PARAMETERS=""
+TASKS=""
 
 # Used for showing the namespaces of task functions in help message
 CURRENT_NAMESPACE=""
@@ -19,8 +21,10 @@ CURRENT_NAMESPACE=""
 # the function in the program help message.
 #
 function task {
+  local task_name="${1//_/-}"
   TASKS_USAGE="$TASKS_USAGE
-    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$CURRENT_NAMESPACE::${1//_/-}") $2"
+    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$CURRENT_NAMESPACE::$task_name") $2"
+  TASKS="$TASKS $CURRENT_NAMESPACE::${task_name%%=*}"
 }
 
 #
@@ -29,12 +33,13 @@ function task {
 #
 # Arguments:
 #
-#   1- parameter name
+#   1- parameter name (args should go here too)
 #   2- parameter description
 #
 function parameter {
   PARAMETERS_USAGE="$PARAMETERS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${1//_/-}")$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "($CURRENT_NAMESPACE)") $2"
+  PARAMETERS="$PARAMETERS --${1%%=*}"
   if [[ $(get_var "${1%%=*}") ]]; then
     return 0
   else
@@ -61,6 +66,12 @@ function import {
     load_scripts "$SODA_DIR/scripts/$1"
     load_scripts "$SODA_USER_DIR/scripts/$1"
   fi
+}
+
+function import_all_namespaces {
+  for namespace in $(ls $SODA_USER_DIR/scripts); do
+    import "$namespace"
+  done
 }
 
 #
