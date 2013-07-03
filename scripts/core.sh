@@ -3,11 +3,14 @@
 # Stores the usage for exposed commands
 TASKS_USAGE="  FUNCTIONS:"
 PARAMETERS_USAGE="  PARAMETERS:"
+
+NAMESPACES=""
 PARAMETERS=""
 TASKS=""
 
 # Used for showing the namespaces of task functions in help message
-CURRENT_NAMESPACE=""
+TASK_NAMESPACE=""
+PARAMETER_NAMESPACE=""
 
 #
 # Expose the given function in the program usage and register it for autocompletion.
@@ -23,8 +26,8 @@ CURRENT_NAMESPACE=""
 function task {
   local task_name="${1//_/-}"
   TASKS_USAGE="$TASKS_USAGE
-    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$CURRENT_NAMESPACE::$task_name") $2"
-  TASKS="$TASKS $CURRENT_NAMESPACE::${task_name%%=*}"
+    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$TASK_NAMESPACE$task_name") $2"
+  TASKS="$TASKS $TASK_NAMESPACE${task_name%% *}"
 }
 
 #
@@ -37,9 +40,13 @@ function task {
 #   2- parameter description
 #
 function parameter {
+  local parameter_name="${1//_/-}"
   PARAMETERS_USAGE="$PARAMETERS_USAGE
-    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${1//_/-}")$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "($CURRENT_NAMESPACE)") $2"
-  PARAMETERS="$PARAMETERS --${1%%=*}"
+    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $2"
+  PARAMETERS="$PARAMETERS --${parameter_name%%=*}"
+  if [[ "$parameter_name" =~ .+=.+ ]]; then
+    PARAMETERS="${PARAMETERS}="
+  fi
   if [[ $(get_var "${1%%=*}") ]]; then
     return 0
   else
@@ -60,8 +67,12 @@ SODA_IMPORTS=""
 #
 function import {
   if [[ ! $(echo "$SODA_IMPORTS" | grep -ie ":$1:") ]]; then
-    CURRENT_NAMESPACE="$1"
+    if [[ ! "$1" == "soda" ]]; then
+      TASK_NAMESPACE="$1#"
+      PARAMETER_NAMESPACE="[$1]"
+    fi
     SODA_IMPORTS="$SODA_IMPORTS:$1:"
+    NAMESPACES="$NAMESPACES $1"
 
     load_scripts "$SODA_DIR/scripts/$1"
     load_scripts "$SODA_USER_DIR/scripts/$1"
@@ -113,3 +124,18 @@ function get_var {
 [ -z "$LOG_FILE" ] && LOG_FILE=/dev/null
 [ -z "$COMMAND_LOG_FILE" ] && COMMAND_LOG_FILE=/dev/null
 [ -z "$LAST_COMMAND_LOG_FILE" ] && LAST_COMMAND_LOG_FILE=/dev/null
+
+function parameters {
+  import_all_namespaces
+  echo "$PARAMETERS"
+}
+
+function tasks {
+  import_all_namespaces
+  echo "$TASKS"
+}
+
+function namespaces {
+  import_all_namespaces
+  echo "$NAMESPACES"
+}

@@ -1,13 +1,9 @@
-# soda parameter-completion
+# soda bash-completion
 
 _soda () {
   local cur
-  # Pointer to current completion word.
-  # By convention, it's named "cur" but this isn't strictly necessary.
-
-  COMPREPLY=()   # Array variable storing the possible completions.
+  COMPREPLY=()
   cur=${COMP_WORDS[COMP_CWORD]}
-
   case "$cur" in
     --*)
     COMPREPLY=( $( compgen -W '$(soda parameters)' -- $cur ) );;
@@ -18,4 +14,4 @@ _soda () {
   return 0
 }
 
-complete -F _soda -o filenames soda
+complete -F _soda -o nospace soda

@@ -13,7 +13,11 @@ fi
 SODA_RESOURCES=$SODA_USER_DIR/resources
 
 function usage {
-  import_all_namespaces
+  if [[ -z "$1" ]]; then
+    import_all_namespaces
+  else
+    import "$1"
+  fi
 
   echo "Usage: $(basename $0) [*PARAMETERS] FUNCTION [*ARGS]"
   printf "$PARAMETERS_USAGE\n\n"

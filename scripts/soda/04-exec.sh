@@ -95,15 +95,15 @@ function build_name {
 # the conventions in #build_name.
 #
 # To call a function in a namespace without import it implicit, use
-# the sintax namespace::function as the function name.
+# the sintax namespace#function as the function name.
 #
 function call {
   function="$1"
   shift
   if [[ -n "$function" ]]; then
-    if [[ $(echo "$function" | grep -ie "::") ]]; then
-      namespace="${function%%::*}"
-      function="${function#*::}"
+    if [[ $(echo "$function" | grep -ie "#") ]]; then
+      namespace="${function%%#*}"
+      function="${function#*#}"
 
       import $namespace
     fi
