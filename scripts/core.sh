@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Stores the usage for exposed commands
-PUBLIC_FUNCTIONS_USAGE="  FUNCTIONS:"
-OPTIONS_USAGE="  PARAMETERS:"
+TASKS_USAGE="  FUNCTIONS:"
+PARAMETERS_USAGE="  PARAMETERS:"
 
 # Used for showing the namespaces of task functions in help message
 CURRENT_NAMESPACE=""
@@ -19,7 +19,7 @@ CURRENT_NAMESPACE=""
 # the function in the program help message.
 #
 function task {
-  PUBLIC_FUNCTIONS_USAGE="$PUBLIC_FUNCTIONS_USAGE
+  TASKS_USAGE="$TASKS_USAGE
     $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$CURRENT_NAMESPACE::${1//_/-}") $2"
 }
 
@@ -33,7 +33,7 @@ function task {
 #   2- parameter description
 #
 function parameter {
-  OPTIONS_USAGE="$OPTIONS_USAGE
+  PARAMETERS_USAGE="$PARAMETERS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${1//_/-}")$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "($CURRENT_NAMESPACE)") $2"
   if [[ $(get_var "${1%%=*}") ]]; then
     return 0

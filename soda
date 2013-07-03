@@ -18,8 +18,8 @@ function usage {
   done
 
   echo "Usage: $(basename $0) [*PARAMETERS] FUNCTION [*ARGS]"
-  printf "$OPTIONS_USAGE\n\n"
-  printf "$PUBLIC_FUNCTIONS_USAGE\n"
+  printf "$PARAMETERS_USAGE\n\n"
+  printf "$TASKS_USAGE\n"
   exit 1
 }
 
