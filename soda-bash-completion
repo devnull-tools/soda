@@ -6,9 +6,22 @@ _soda () {
   cur=${COMP_WORDS[COMP_CWORD]}
   case "$cur" in
     --*)
-    COMPREPLY=( $( compgen -W '$(soda parameters)' -- $cur ) );;
+      COMPREPLY=( $( compgen -W '$(soda parameters)' -- $cur ) )
+    ;;
     *)
-    COMPREPLY=( $( compgen -W '$(soda tasks)' -- $cur ) );;
+      local task=""
+      local i=1
+      for word in ${COMP_WORDS[@]:1}; do
+        if [[ ! "$word" =~ \-\-* ]]; then
+          task="$word"
+          break
+        fi
+        ((i++))
+      done
+      ((i++))
+      args=${COMP_WORDS[@]:$i}
+      COMPREPLY=( $( compgen -W '$(soda soda-task-bash-completion "$task" $args )' -- $cur ) )
+    ;;
   esac
 
   return 0

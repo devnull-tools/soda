@@ -157,9 +157,10 @@ function call {
 
 function parse_task {
   TASK="$1"
-  if [[ $(echo "$TASK" | grep "$SODA_NAMESPACE_DELIMITER") ]]; then
-    NAMESPACE="${TASK%%$SODA_NAMESPACE_DELIMITER*}"
-    TASK="${TASK#*${SODA_NAMESPACE_DELIMITER}}"
+  NAMESPACE="${TASK%%$SODA_NAMESPACE_DELIMITER*}"
+  TASK="${TASK#*${SODA_NAMESPACE_DELIMITER}}"
+  if [[ $(expr length "$1") == $(expr length "$NAMESPACE") ]]; then
+    NAMESPACE=""
   fi
   TASK=$(build_name "$TASK")
   if [[ -n "$NAMESPACE" ]]; then
@@ -192,6 +193,18 @@ function parameters {
 function tasks {
   import_all_namespaces
   echo "$TASKS"
+}
+
+function soda_task_bash_completion {
+  parse_task "$1" && {
+    import "$NAMESPACE"
+  }
+  shift
+  if [[ $(type -t "${TASK}_bash_completion") ]]; then
+    "${TASK}_bash_completion" "$@"
+  else
+    tasks
+  fi
 }
 
 function namespaces {
