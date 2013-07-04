@@ -55,7 +55,8 @@ copy to */etc/bash_completion.d/*, ...).
 The namespaces are single directories in _scripts_. By default, the *common* and *soda* namespaces
 are always imported. You can include other namespaces using the **import** function.
 
-Namespaces are useful if you have a set of scripts that you should use only on specific cases.
+Namespaces are useful if you have a set of scripts that you should use only on specific cases. (It
+also keeps your scripts organized.)
 
     # Example: script inside ~/.soda/scripts/git
     
