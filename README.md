@@ -33,8 +33,6 @@ Create a *~/.soda* directory with the following structure:
 Inside *scripts*, any function in any script present in *scripts/common* will be
 loaded and may be called through `soda`:
 
-    # script in scripts/common/git.sh
-    
     task "git-open" "Creates a new branch off master"
     function git_open {
       local branch="$1"
@@ -59,7 +57,7 @@ are always imported. You can include other namespaces using the **import** funct
 
 Namespaces are useful if you have a set of scripts that you should use only on specific cases.
 
-    # script inside ~/.soda/scripts/git
+    # Example: script inside ~/.soda/scripts/git
     
     task "push" "Push local commits into the repository"
     
@@ -82,12 +80,11 @@ Namespaces are useful if you have a set of scripts that you should use only on s
       unstash_work
     }
 
-You can call any tasks in the *git* namespace using a **"."**:
+You can call any task in *git* namespace using a **"."**:
     
     $ soda git.push
     
-The **"."** indicates that the namespace is the first part of the string and the task is the
-second part.
+The **"."** indicates that namespace is the first part and task is the second part.
 
 ## Task Parameters
 
