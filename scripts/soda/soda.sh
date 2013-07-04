@@ -19,3 +19,7 @@ task "help [NAMESPACE]" "Print the help message for the given namespace (leave e
 function help {
   usage "$1"
 }
+
+function help_bash_completion {
+  namespaces
+}

@@ -145,15 +145,27 @@ function build_name {
 # SODA_NAMESPACE_DELIMITER variable
 #
 function call {
-  local function="$1"
+  TASK="$1"
   shift
-  if [[ -n "$function" ]]; then
-    if [[ $(echo "$function" | grep -ie "${SODA_NAMESPACE_DELIMITER}") ]]; then
-      local namespace="${function%%$SODA_NAMESPACE_DELIMITER*}"
-      function="${function#*${SODA_NAMESPACE_DELIMITER}}"
-      import "$namespace"
-    fi
-    "$(build_name $function)" "$@"
+  if [[ -n "$TASK" ]]; then
+    parse_task "$TASK" && {
+      import "$NAMESPACE"
+    }
+    "$TASK" "$@"
+  fi
+}
+
+function parse_task {
+  TASK="$1"
+  if [[ $(echo "$TASK" | grep -ie "${SODA_NAMESPACE_DELIMITER}") ]]; then
+    NAMESPACE="${TASK%%$SODA_NAMESPACE_DELIMITER*}"
+    TASK="${TASK#*${SODA_NAMESPACE_DELIMITER}}"
+  fi
+  TASK=$(build_name "$TASK")
+  if [[ -n "$NAMESPACE" ]]; then
+    return 0
+  else
+    return 1
   fi
 }
 
