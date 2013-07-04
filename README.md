@@ -33,74 +33,63 @@ Create a *~/.soda* directory with the following structure:
 Inside *scripts*, any function in any script present in *scripts/common* will be
 loaded and may be called through `soda`:
 
-    # script in scripts/common/oracle-grid.sh
+    # script in scripts/common/git.sh
     
-    task "grid_pre_install" "Prepares the environment to install Oracle GRID"
-    
-    function grid_pre_install {
-      message "Installing RPMs"
-
-      yum install -y $SODA_RESOURCES/rpms/grid/*.rpm $SODA_RESOURCES/rpms/grid/ol$1/*.rpm
-
-      execute "Creating group asmadmin" groupadd -g 504 asmadmin
-      execute "Creating group asmdba" groupadd -g 506 asmdba
-      execute "Creating group asmoper" groupadd -g 507 asmoper
-      
-      execute "Creating user grid" useradd -u 501 -g oinstall -G asmadmin,asmdba,asmoper grid
-      execute "Adding groups for user oracle" usermod -u 502 -G dba,asmdba oracle
+    task "git-open" "Creates a new branch off master"
+    function git_open {
+      local branch="$1"
+      if [[ -z "$branch" ]]; then
+        input "Name your branch" branch work
+      fi
+      git checkout -b "$branch"
     }
 
-    $ soda grid-pre-install 5
+    $ soda git-open work
 
-This will call the *grid_pre_install* function passing *5* as the arguments. By convention, you
-may call a function with underscores replacing them by hyphens. The *message* and *execute* functions
-ships with SODA and will be explained later.
+This will call the *git_open* function passing *work* as the arguments. By convention, you
+may call a function with underscores replacing them by hyphens. To execute the task without
+arguments, just use `soda git-open`.
 
 To see the program usage, type `$ soda` or `$ soda --help`
 
-## Namespaces
+## Task Namespaces
 
 The namespaces are single directories in _scripts_. By default, the *common* and *soda* namespaces
 are always imported. You can include other namespaces using the **import** function.
 
-Namespaces are useful if you have a set of scripts that you should use
-only on specific cases.
+Namespaces are useful if you have a set of scripts that you should use only on specific cases.
 
-    # script inside ~/.soda/scripts/common
+    # script inside ~/.soda/scripts/git
     
-    task install "Installs the given product"
+    task "push" "Push local commits into the repository"
     
-    function install {
-      import "install/$1" # loads the namespace that contains installation scripts
-      shift
-      begin_install "$@"
-      finish_install "$@"
-    }
-    
-    # script inside ~/.soda/scripts/install/something/install.sh
-    
-    function begin_install {
-      # code here
-    }
-    
-    function finish_install {
-      # code here
+    function push {
+      stash_work
+      local branch="$(current_branch)"
+      if [[ "$branch" == "master" ]]; then
+        message "Pushing changes from master into server"
+        git_push
+      else
+        message "Pushing changes from $branch into master"
+        git checkout master
+        git merge "$branch"
+        message "Pushing changes from master into server"
+        git_push
+        message "Going back to $branch branch"
+        git checkout "$branch"
+        git rebase master
+      fi
+      unstash_work
     }
 
-Alternatively, you can call an install function directly without using the *import* function:
-
-    # script inside ~/.soda/scripts/something/install.sh
+You can call any tasks in the *git* namespace using a **"."**:
     
-    function install {
-      # code here
-    }
+    $ soda git.push
     
-    $ soda something.install
-    
-The **.** indicates that the namespace is the first part of the string and the function is the
+The **"."** indicates that the namespace is the first part of the string and the task is the
 second part.
 
-## Script Parameters
+## Task Parameters
 
 If you need to pass a set of parameters, you can use --OPTION_NAME in case of a boolean option or
 --OPTION_NAME=OPTION_VALUE. The parameterss will be translated replacing hyphens with underscores
@@ -114,7 +103,7 @@ If you need to pass a set of parameters, you can use --OPTION_NAME in case of a 
       fi
       
 To register a parameter in the program usage, use the *parameter* function (for more details, see the
-documentation bellow).
+documentation bellow). The registered parameters will also be available for bash completion.
 
 ## Configuration
 
@@ -142,12 +131,12 @@ most significant are listed below:
 
 ### task (function_name, description)
 
-Adds the given function to the help message and register it for autocompletion. You may pass the
+Adds the given function to the help message and register it for bash completion. You may pass the
 function args in *$function_name*.
 
 ### parameter (parameter_name, description)
 
-Adds the given parameter to the help message, register ir for autocompletion and returns indicating
+Adds the given parameter to the help message, register ir for bash completion and returns indicating
 if the parameter was given. You may pass the parameter args in *$parameter_name*
 
     parameter "help" "Prints this help message" && {
