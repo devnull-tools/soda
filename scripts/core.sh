@@ -200,8 +200,8 @@ function soda_task_bash_completion {
     import "$NAMESPACE"
   }
   shift
-  if [[ $(type -t "${TASK}_bash_completion") ]]; then
-    "${TASK}_bash_completion" "$@"
+  if [[ $(type -t "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}") ]]; then
+    "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}" "$@"
   else
     tasks
   fi

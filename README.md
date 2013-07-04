@@ -131,6 +131,8 @@ some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
 * **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help usage
 * **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also affects
 the bash completion
+* **SODA_TASK_BASH_COMPLETION_SUFFIX** - The suffix to build the function for custom bash completion
+(defaults to *_bash_completion*)
 
 ## Builtin functions
 
