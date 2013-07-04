@@ -50,6 +50,16 @@ SODA supports bash completion by importing all namespaces and searching for defi
 and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
 copy to */etc/bash_completion.d/*, ...).
 
+To customize the options for a given task, use a function named ${TASK}_bash_completion:
+
+      function my_task_bash_completion {
+        echo "option1"
+        echo "option2"
+      }
+      
+      $ soda my-task [TAB]
+      option1 option2
+
 ## Task Namespaces
 
 The namespaces are single directories in _scripts_. By default, the *common* and *soda* namespaces
