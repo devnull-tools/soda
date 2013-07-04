@@ -156,7 +156,6 @@ function call {
 }
 
 function parse_task {
-  echo "-> $1"
   TASK="$1"
   if [[ $(echo "$TASK" | grep -iq "${SODA_NAMESPACE_DELIMITER}") ]]; then
     NAMESPACE="${TASK%%$SODA_NAMESPACE_DELIMITER*}"
@@ -164,7 +163,6 @@ function parse_task {
   fi
   TASK=$(build_name "$TASK")
   if [[ -n "$NAMESPACE" ]]; then
-    echo "=> $NAMESPACE"
     return 0
   else
     return 1
