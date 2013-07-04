@@ -178,10 +178,6 @@ $LAST_COMMAND_LOG_FILE.
 
     execute "Installing GCC" yum install -y gcc
 
-### require_reboot
-
-Indicates that a reboot is required. SODA will ask to reboot before terminate.
-
 ### message (message)
 
 Displays an information message and logs it in the *$LOG_FILE*

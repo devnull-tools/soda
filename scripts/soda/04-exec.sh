@@ -112,35 +112,3 @@ function call {
     "$(build_name $function)" "$@"
   fi
 }
-
-# Aborts the script
-function abort {
-  debug "Aborted with exit code $1"
-  exit $1
-}
-
-#
-# Indicates that a reboot is required. Soda will ask to reboot
-# before terminate.
-#
-function require_reboot {
-  REBOOT_REQUIRED=true
-}
-
-#
-# Finish the program.
-#
-function finish {
-  [ "$REBOOT_REQUIRED" == true ] && {
-    warn "A reboot is required to complete process!"
-    invoke "Reboot system" reboot
-  }
-}
-
-#
-# Reboots the system
-#
-function reboot {
-  warn "Rebooting system now!"
-  init 6
-}
