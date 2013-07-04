@@ -14,12 +14,6 @@ Just clone the git repo and place the *soda* file in your path (a symlinks works
 After that, ensure you have a **$SODA_DIR** pointing to the place you clone the repo and you're
 done.
 
-## Bash Completion
-
-SODA supports bash completion by importing all namespaces and searching for defined parameters
-and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
-copy to */etc/bash_completion.d/*, ...).
-
 ## How To Use
 
 Create a *~/.soda* directory with the following structure:
@@ -49,6 +43,12 @@ may call a function with underscores replacing them by hyphens. To execute the t
 arguments, just use `soda git-open`.
 
 To see the program usage, type `$ soda` or `$ soda --help`
+
+## Bash Completion
+
+SODA supports bash completion by importing all namespaces and searching for defined parameters
+and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
+copy to */etc/bash_completion.d/*, ...).
 
 ## Task Namespaces
 

@@ -79,36 +79,3 @@ function execute {
     log "FAIL" "$description"
   fi
 }
-
-#
-# Parse the function name. By convention, '-' will be replaced
-# by '_' to build the function name.
-#
-function build_name {
-  echo "${1//-/_}"
-}
-
-#
-# Calls the given function with the given args.
-#
-# Before the call, the function name will be normalized using
-# the conventions in #build_name.
-#
-# To call a function in a namespace without import it implicit, use
-# the sintax namespace#function as the function name.
-#
-# To change the namespace delimiter (defaults to "#"), use the
-# SODA_NAMESPACE_DELIMITER variable
-#
-function call {
-  function="$1"
-  shift
-  if [[ -n "$function" ]]; then
-    if [[ $(echo "$function" | grep -ie "${SODA_NAMESPACE_DELIMITER}") ]]; then
-      namespace="${function%%$SODA_NAMESPACE_DELIMITER*}"
-      function="${function#*${SODA_NAMESPACE_DELIMITER}}"
-      import $namespace
-    fi
-    "$(build_name $function)" "$@"
-  fi
-}
