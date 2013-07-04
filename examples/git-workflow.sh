@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Example of a simple git workflow
+
 function current_branch {
   echo "$(git branch | grep "*" | cut -d' ' -f2)"
 }
