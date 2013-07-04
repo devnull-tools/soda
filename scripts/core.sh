@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Stores the usage for exposed commands
-TASKS_USAGE="  FUNCTIONS:"
+TASKS_USAGE="  TASKS:"
 PARAMETERS_USAGE="  PARAMETERS:"
 
 NAMESPACES=""
@@ -11,6 +11,11 @@ TASKS=""
 # Used for showing the namespaces of task functions in help message
 TASK_NAMESPACE=""
 PARAMETER_NAMESPACE=""
+
+function clear_help_usage {
+  TASKS_USAGE="  TASKS:"
+  PARAMETERS_USAGE="  PARAMETERS:"  
+}
 
 #
 # Expose the given function in the program usage and register it for autocompletion.
@@ -55,6 +60,12 @@ function parameter {
 }
 
 SODA_IMPORTS=""
+
+function clear_imports {
+  SODA_IMPORTS=""
+  TASK_NAMESPACE=""
+  PARAMETER_NAMESPACE=""
+}
 
 #
 # Loads all scripts in the *scripts/namespace* directory. The scripts may be in

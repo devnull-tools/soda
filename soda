@@ -13,13 +13,18 @@ fi
 SODA_RESOURCES=$SODA_USER_DIR/resources
 
 function usage {
+  local task="TASK"
   if [[ -z "$1" ]]; then
     import_all_namespaces
   else
+    clear_help_usage
+    clear_imports
+    task="$1${SODA_NAMESPACE_DELIMITER}TASK"
     import "$1"
+    TASKS_USAGE="${TASKS_USAGE//$1${SODA_NAMESPACE_DELIMITER}/}"
   fi
 
-  echo "Usage: $(basename $0) [*PARAMETERS] FUNCTION [*ARGS]"
+  echo "Usage: $(basename $0) [*PARAMETERS] $task [*ARGS]"
   printf "$PARAMETERS_USAGE\n\n"
   printf "$TASKS_USAGE\n"
   exit 1
@@ -37,7 +42,7 @@ for arg in "${@}"; do
   esac
 done
 
-# Imports common and soda namespace
+# Imports common and soda namespace by default
 import soda
 import common
 
