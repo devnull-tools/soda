@@ -197,12 +197,16 @@ function tasks {
 
 function soda_task_bash_completion {
   parse_task "$1" && {
+    log "Importing $1"
     import "$NAMESPACE"
   }
   shift
+  log "TASK: $TASK"
   if [[ $(type -t "${TASK}_bash_completion") ]]; then
+    log "Calling custom bash-completion ${TASK}_bash_completion"
     "${TASK}_bash_completion" "$@"
   else
+    log "Retrieving tasks"
     tasks
   fi
 }

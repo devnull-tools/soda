@@ -11,8 +11,8 @@ _soda () {
     *)
       local task=""
       local i=1
-      for word in ${COMP_WORDS[@]:1}; do
-        if [[ ! "$word" =~ \-\-* ]]; then
+      for word in "${COMP_WORDS[@]:1}"; do
+        if [[ ! "$word" =~ ^\-\-* ]]; then
           task="$word"
           break
         fi
