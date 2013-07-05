@@ -55,13 +55,27 @@ copy to */etc/bash_completion.d/*, ...). The default bash completion proposes ta
 
 To customize the options for a given task, use a function named ${TASK}_bash_completion:
 
-      function my_task_bash_completion {
-        echo "foo"
-        echo "bar"
-      }
+    function my_task_bash_completion {
+      echo "foo"
+      echo "bar"
+    }
 
-      $ soda my-task f[TAB]
-      $ soda my-task foo
+    $ soda my-task f[TAB]
+    $ soda my-task foo
+
+If a parameter is passed after the task declaration in command line, the suggestions will be only
+the parameters for the task namespace.
+
+    # namespace my-namespace
+
+    option "option" "My custom option"
+    task "my-task" "My task"
+    function my_task {
+      :
+    }
+
+    $ soda my-namespace.my-task --[TAB]
+    $ soda my-namespace.my-task --option
 
 ## Task Namespaces
 

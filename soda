@@ -24,20 +24,23 @@ function usage {
     TASKS_USAGE="${TASKS_USAGE//$1${SODA_NAMESPACE_DELIMITER}/}"
   fi
 
-  echo "Usage: $(basename $0) [*PARAMETERS] $task [*ARGS]"
+  echo "Usage: $(basename $0) [*PARAMETERS] $task [*ARGS] [*PARAMETERS]"
   printf "$PARAMETERS_USAGE\n\n"
   printf "$TASKS_USAGE\n"
   exit 1
 }
 
-SODA_PARAMETERS=""
+SODA_PARAMETERS=()
+SODA_TASK_PARAMETERS=()
 
 for arg in "${@}"; do
   case $arg in
     --*)
-      SODA_PARAMETERS="$SODA_PARAMETERS $arg"
+      SODA_PARAMETERS+=("$arg")
       set_parameter "$arg"
-      shift
+      ;;
+    *)
+      SODA_TASK_PARAMETERS+=("$arg")
       ;;
   esac
 done
@@ -48,4 +51,4 @@ import common
 
 [[ "$#" = "0" ]] && usage
 
-call "$@"
+call "${SODA_TASK_PARAMETERS[@]}"

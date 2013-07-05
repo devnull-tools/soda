@@ -5,23 +5,18 @@ _soda () {
   local cur
   COMPREPLY=()
   cur=${COMP_WORDS[COMP_CWORD]}
+  local args=()
+  for word in "${COMP_WORDS[@]:1}"; do
+    if [[ ! "$word" =~ ^\-\-* ]]; then
+      args+=("$word")
+    fi
+  done
   case "$cur" in
     --*)
-      COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter)' -- $cur ) )
+      COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter ${args[@]})' -- $cur ) )
     ;;
     *)
-      local task=""
-      local i=1
-      for word in "${COMP_WORDS[@]:1}"; do
-        if [[ ! "$word" =~ ^\-\-* ]]; then
-          task="$word"
-          break
-        fi
-        ((i++))
-      done
-      ((i++))
-      args=${COMP_WORDS[@]:$i}
-      COMPREPLY=( $( compgen -W '$(soda bash-completion-task "$task" $args )' -- $cur ) )
+      COMPREPLY=( $( compgen -W '$(soda bash-completion-task ${args[@]})' -- $cur ) )
     ;;
   esac
 

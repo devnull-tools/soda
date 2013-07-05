@@ -22,8 +22,17 @@ function help_bash_completion {
 
 task bash_completion_parameter "Show proposals for parameters"
 function bash_completion_parameter {
-  import_all_namespaces
-  echo "$BASH_COMPLETION_PARAMETERS"
+  if [[ $# -ge 1 ]]; then
+    parse_task "$1" && {
+      clear_help_usage
+      clear_imports
+      import "$NAMESPACE"
+      echo "$BASH_COMPLETION_PARAMETERS"
+    }
+  else
+    import_all_namespaces
+    echo "$BASH_COMPLETION_PARAMETERS"
+  fi
 }
 
 task "bash_completion_task [TASK]" "Show proposals for autocomplete tasks"

@@ -16,7 +16,7 @@ PARAMETER_NAMESPACE=""
 
 function clear_help_usage {
   TASKS_USAGE="  TASKS:"
-  PARAMETERS_USAGE="  PARAMETERS:"  
+  PARAMETERS_USAGE="  PARAMETERS:"
 }
 
 #
@@ -38,7 +38,7 @@ function task {
 }
 
 #
-# Exposes the given parameter in the program usage, register it for autocompletion 
+# Exposes the given parameter in the program usage, register it for autocompletion
 # and returns indicating if the parameter was given.
 #
 # Arguments:
@@ -49,7 +49,8 @@ function task {
 function parameter {
   local parameter_name="${1//_/-}"
   PARAMETERS_USAGE="$PARAMETERS_USAGE
-    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $2"
+    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")"
+  PARAMETERS_USAGE="${PARAMETERS_USAGE}$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $2"
   BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS $PARAMETERS --${parameter_name%%=*}"
   if [[ "$parameter_name" =~ .+=.+ ]]; then
     BASH_COMPLETION_PARAMETERS="${BASH_COMPLETION_PARAMETERS}="
@@ -67,12 +68,14 @@ function clear_imports {
   SODA_IMPORTS=""
   TASK_NAMESPACE=""
   PARAMETER_NAMESPACE=""
+  BASH_COMPLETION_PARAMETERS=""
+  BASH_COMPLETION_TASKS=""
 }
 
 #
 # Loads all scripts in the *scripts/namespace* directory. The scripts may be in
 # $SODA_USER_DIR or $SODA_DIR.
-# 
+#
 # If a namespace was already imported, then it will not be imported again.
 #
 # Example: to import the namespace denoted by $SODA_USER_DIR/scripts/install
@@ -116,6 +119,9 @@ function load_scripts {
 
 function set_parameter {
   local parameter="${1#*--}"
+  if [[ -z "$parameter" ]]; then
+    return 1
+  fi
   local value="${parameter#*=}"
   if [[ ! $(echo "$1" | grep -ie "=") ]]; then
     value=true
