@@ -173,8 +173,7 @@ pass the parameter args in *$parameter_name*
 
 ### import (namespace)
 
-Loads all scripts in the *scripts/namespace* directory. The scripts may be in
-*$SODA_USER_DIR* or *$SODA_DIR*.
+Loads all scripts in the scripts/$namespace directory relative to ${SODA_USER_DIR} or ${SODA_DIR}.
 
 If a namespace was already imported, then it will not be imported again.
 
@@ -190,8 +189,8 @@ asking user.
 
 Asks user about something and indicates if the answer is **yes** or **no**.
 
-    ask "Remove temporary directoryes?" && {
-      rm -rf /tmp/my-temp-dir
+    ask "Push commits?" && {
+      git push
     }
 
 ### check (description)
@@ -204,7 +203,7 @@ description.
 Executes a command and checks if it was sucessfull. The output will be redirected to
 $LAST_COMMAND_LOG_FILE.
 
-    execute "Installing GCC" yum install -y gcc
+    execute "Pushing commits" git push
 
 ### message (message)
 
@@ -228,7 +227,7 @@ Displays a successfull operation message and logs it in the *$LOG_FILE*
 
 ### fail (message)
 
-Displays a failed operation message and logs it in the $LOG_FILE
+Displays a failed operation message and logs it in the *$LOG_FILE*.
 
 ### input (description, variable, [default_value])
 
