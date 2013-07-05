@@ -113,7 +113,6 @@ To customize the options for a given task, use a function named ${TASK}_bash_com
       echo "bar"
     }
 
-
     $ soda my-task f[TAB]
     $ soda my-task foo
 
@@ -127,7 +126,6 @@ the parameters for the task namespace.
     function my_task {
       :
     }
-
 
     $ soda my-namespace.my-task --[TAB]
     $ soda my-namespace.my-task --option
@@ -240,7 +238,6 @@ be skipped.
 
     input "Server address" "SERVER" "localhost"
     input "User name" "USER_NAME" "$(whoami)"
-
 
     scp file $USER_NAME@$SERVER:/tmp/.
 
