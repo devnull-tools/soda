@@ -1,9 +1,5 @@
 #!/bin/sh
 
-parameter "import=NAMESPACE" "Import the given namespace" && {
-  import "$import"
-}
-
 parameter "help" "Print the help message." && {
   usage "$help"
 }
