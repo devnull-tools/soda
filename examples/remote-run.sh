@@ -24,10 +24,10 @@ function build_remote_package {
   execute "Copying user files" cp -r $SODA_USER_DIR $temp
 
   echo "SODA_USER_DIR=.soda" >> $temp/soda.conf
-  
+
   rm -rf build
   mkdir build
-  
+
   cd /tmp
 
   local package=$SODA_DIR/build/soda.zip
@@ -58,7 +58,7 @@ function execute_soda_package {
 
   message "Executing soda"
   ssh $SSH_USER@$SSH_SERVER "cd $DEST_DIR; rm -rf soda; unzip soda.zip ; cd soda ; ./soda $SODA_PARAMETERS $@ ;"
-  
+
   invoke "Remove soda package from server" remove_remote_package
 }
 
@@ -76,5 +76,5 @@ function run {
 }
 
 function run_bash_completion {
-  soda_task_bash_completion $@
+  bash_completion_task "$@"
 }

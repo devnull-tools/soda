@@ -19,7 +19,7 @@ done.
 Create a *~/.soda* directory with the following structure:
 
 * _scripts_ - directory to put the scripts organized by namespaces
-* _resources_ - directory to put resources (available through the 
+* _resources_ - directory to put resources (available through the
 **$SODA_RESOURCES** variable)
 * _options_ - directory to put custom options using the pattern ${option_name}.conf
 (you can load the option using the **--options** parameter)
@@ -59,7 +59,7 @@ To customize the options for a given task, use a function named ${TASK}_bash_com
         echo "foo"
         echo "bar"
       }
-      
+
       $ soda my-task f[TAB]
       $ soda my-task foo
 
@@ -72,9 +72,9 @@ Namespaces are useful if you have a set of scripts that you should use only on s
 also keeps your scripts organized.)
 
     # Example: script inside ~/.soda/scripts/git
-    
+
     task "push" "Push local commits into the repository"
-    
+
     function push {
       stash_work
       local branch="$(current_branch)"
@@ -95,9 +95,9 @@ also keeps your scripts organized.)
     }
 
 You can call any task in *git* namespace using a **"."**:
-    
+
     $ soda git.push
-    
+
 The **"."** indicates that namespace is the first part and task is the second part.
 
 ## Task Parameters
@@ -107,14 +107,14 @@ If you need to pass a set of parameters, you can use --OPTION_NAME in case of a 
 (but ignoring the prefix **--**).
 
       $ soda --my-option=test
-      
+
       # script
       if [[ -n "$my_option" ]]; then
         # some code
       fi
-      
-To register a parameter in the program usage, use the *parameter* function (for more details, see the
-documentation bellow). The registered parameters will also be available for bash completion.
+
+To register a parameter in the program usage, use the *parameter* function (for more details, see
+the documentation bellow). The registered parameters will also be available for bash completion.
 
 ## Configuration
 
@@ -131,9 +131,10 @@ some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
 * **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
 * **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
 * **SODA_PARAMETER_LENGTH** - The max length to format the parameter name in the help usage
-* **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help usage
-* **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also affects
-the bash completion
+* **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help
+usage
+* **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also
+affects the bash completion
 * **SODA_TASK_BASH_COMPLETION_SUFFIX** - The suffix to build the function for custom bash completion
 (defaults to *_bash_completion*)
 
@@ -178,7 +179,7 @@ Asks user about something and indicates if the answer is **yes** or **no**.
     ask "Remove temporary directoryes?" && {
       rm -rf /tmp/my-temp-dir
     }
-    
+
 ### check (description)
 
 Checks if the previous command returned successfully and logs the result using the given
@@ -223,17 +224,17 @@ be skipped.
 
     input "Server address" "SERVER" "localhost"
     input "User name" "USER_NAME" "$(whoami)"
-    
+
     scp file $USER_NAME@$SERVER:/tmp/.
-    
+
 ### choose (description, variable, *options)
-        
+
 Asks user to choose a value from a list of options and stores the 0-based index
 of the selected value. If there is a variable named as *$variable*, the choice
 will be skipped.
 
     choose "Server Type" "SERVER_TYPE" "Production" "Development"
-    
+
     echo "$SERVER_TYPE"
 
 ## Examples
