@@ -1,3 +1,4 @@
+#!/bin/sh
 # soda bash-completion
 
 _soda () {
@@ -6,7 +7,7 @@ _soda () {
   cur=${COMP_WORDS[COMP_CWORD]}
   case "$cur" in
     --*)
-      COMPREPLY=( $( compgen -W '$(soda parameters)' -- $cur ) )
+      COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter)' -- $cur ) )
     ;;
     *)
       local task=""
@@ -20,7 +21,7 @@ _soda () {
       done
       ((i++))
       args=${COMP_WORDS[@]:$i}
-      COMPREPLY=( $( compgen -W '$(soda soda-task-bash-completion "$task" $args )' -- $cur ) )
+      COMPREPLY=( $( compgen -W '$(soda bash-completion-task "$task" $args )' -- $cur ) )
     ;;
   esac
 

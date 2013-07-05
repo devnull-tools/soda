@@ -19,3 +19,23 @@ function help {
 function help_bash_completion {
   namespaces
 }
+
+task bash_completion_parameter "Show proposals for parameters"
+function bash_completion_parameter {
+  import_all_namespaces
+  echo "$BASH_COMPLETION_PARAMETERS"
+}
+
+task "bash_completion_task [TASK]" "Show proposals for autocomplete tasks"
+function bash_completion_task {
+  parse_task "$1" && {
+    import "$NAMESPACE"
+  }
+  shift
+  if [[ $(type -t "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}") ]]; then
+    "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}" "$@"
+  else
+    import_all_namespaces
+    echo "$BASH_COMPLETION_TASKS"
+  fi
+}

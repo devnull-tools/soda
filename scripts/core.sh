@@ -5,8 +5,10 @@ TASKS_USAGE="  TASKS:"
 PARAMETERS_USAGE="  PARAMETERS:"
 
 NAMESPACES=""
-PARAMETERS=""
 TASKS=""
+
+BASH_COMPLETION_TASKS=""
+BASH_COMPLETION_PARAMETERS=""
 
 # Used for showing the namespaces of task functions in help message
 TASK_NAMESPACE=""
@@ -20,19 +22,19 @@ function clear_help_usage {
 #
 # Expose the given function in the program usage and register it for autocompletion.
 #
+# Tasks not registered cannot be executed.
+#
 # Arguments:
 #
 #   1- function name (args should go here too)
 #   2- function description
 #
-# Note that all functions are exposed, this only documents
-# the function in the program help message.
-#
 function task {
   local task_name="${1//_/-}"
   TASKS_USAGE="$TASKS_USAGE
     $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$TASK_NAMESPACE$task_name") $2"
-  TASKS="$TASKS $TASK_NAMESPACE${task_name%% *}"
+  TASKS="$TASKS {$TASK_NAMESPACE${task_name%% *}}"
+  BASH_COMPLETION_TASKS="$BASH_COMPLETION_TASKS $TASK_NAMESPACE${task_name%% *}"
 }
 
 #
@@ -48,9 +50,9 @@ function parameter {
   local parameter_name="${1//_/-}"
   PARAMETERS_USAGE="$PARAMETERS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $2"
-  PARAMETERS="$PARAMETERS --${parameter_name%%=*}"
+  BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS $PARAMETERS --${parameter_name%%=*}"
   if [[ "$parameter_name" =~ .+=.+ ]]; then
-    PARAMETERS="${PARAMETERS}="
+    BASH_COMPLETION_PARAMETERS="${BASH_COMPLETION_PARAMETERS}="
   fi
   if [[ $(get_var "${1%%=*}") ]]; then
     return 0
@@ -77,7 +79,7 @@ function clear_imports {
 # use `import install`.
 #
 function import {
-  if [[ ! $(echo "$SODA_IMPORTS" | grep -ie ":$1:") ]]; then
+  if [[ ! $(echo "$SODA_IMPORTS" | grep ":$1:") ]]; then
     if [[ "$1" != "soda" ]]; then
       if [[ "$1" != "common" ]]; then
         TASK_NAMESPACE="$1$SODA_NAMESPACE_DELIMITER"
@@ -113,14 +115,14 @@ function load_scripts {
 }
 
 function set_parameter {
-  local var="${1#*--}"
-  local value="${var#*=}"
+  local parameter="${1#*--}"
+  local value="${parameter#*=}"
   if [[ ! $(echo "$1" | grep -ie "=") ]]; then
     value=true
   fi
-  var="${var%%=*}"
+  parameter="${parameter%%=*}"
 
-  eval "${var//-/_}=$value"
+  eval "${parameter//-/_}=$value"
 }
 
 
@@ -145,12 +147,16 @@ function build_name {
 # SODA_NAMESPACE_DELIMITER variable
 #
 function call {
-  TASK="$1"
+  local task_name="$1"
   shift
-  if [[ -n "$TASK" ]]; then
-    parse_task "$TASK" && {
+  if [[ -n "$task_name" ]]; then
+    parse_task "$task_name" && {
       import "$NAMESPACE"
     }
+    if [[ ! "$TASKS" == *"{${task_name}}"* ]]; then
+      error "Task \"$task_name\" not found."
+      exit 1
+    fi
     "$TASK" "$@"
   fi
 }
@@ -184,28 +190,6 @@ function get_var {
 [ -z "$LOG_FILE" ] && LOG_FILE=/dev/null
 [ -z "$COMMAND_LOG_FILE" ] && COMMAND_LOG_FILE=/dev/null
 [ -z "$LAST_COMMAND_LOG_FILE" ] && LAST_COMMAND_LOG_FILE=/dev/null
-
-function parameters {
-  import_all_namespaces
-  echo "$PARAMETERS"
-}
-
-function tasks {
-  import_all_namespaces
-  echo "$TASKS"
-}
-
-function soda_task_bash_completion {
-  parse_task "$1" && {
-    import "$NAMESPACE"
-  }
-  shift
-  if [[ $(type -t "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}") ]]; then
-    "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}" "$@"
-  else
-    tasks
-  fi
-}
 
 function namespaces {
   import_all_namespaces

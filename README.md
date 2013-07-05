@@ -4,9 +4,9 @@ SODA is a simple platform to help writing and executing tasks in shell script.
 
 ## How It Works
 
-SODA works by loading any scripts in a specific directory and calling a
-function passed by the command line. Every function can be exposed to
-the program help using the builtin **task** function.
+SODA works by loading any scripts in a specific directory and calling a function
+passed by the command line. Only functions exposes through the builtin **task** function
+may be called.
 
 ## How To Install
 
@@ -48,17 +48,20 @@ To see the program usage, type `$ soda` or `$ soda --help`
 
 SODA supports bash completion by importing all namespaces and searching for defined parameters
 and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
-copy to */etc/bash_completion.d/*, ...).
+copy to */etc/bash_completion.d/*, ...). The default bash completion proposes tasks and parameters.
+
+    $ soda he[TAB]
+    $ soda help
 
 To customize the options for a given task, use a function named ${TASK}_bash_completion:
 
       function my_task_bash_completion {
-        echo "option1"
-        echo "option2"
+        echo "foo"
+        echo "bar"
       }
       
-      $ soda my-task [TAB]
-      option1 option2
+      $ soda my-task f[TAB]
+      $ soda my-task foo
 
 ## Task Namespaces
 
@@ -141,13 +144,13 @@ most significant are listed below:
 
 ### task (function_name, description)
 
-Adds the given function to the help message and register it for bash completion. You may pass the
-function args in *$function_name*.
+Register the given function as a task and enables invoking it. You may pass the function
+args in *$function_name*.
 
 ### parameter (parameter_name, description)
 
-Adds the given parameter to the help message, register ir for bash completion and returns indicating
-if the parameter was given. You may pass the parameter args in *$parameter_name*
+Register the given parameter and returns indicating if the parameter was given. You may
+pass the parameter args in *$parameter_name*
 
     parameter "help" "Prints this help message" && {
       usage
