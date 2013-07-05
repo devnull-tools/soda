@@ -44,39 +44,6 @@ arguments, just use `soda git-open`.
 
 To see the program usage, type `$ soda` or `$ soda --help`
 
-## Bash Completion
-
-SODA supports bash completion by importing all namespaces and searching for defined parameters
-and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
-copy to */etc/bash_completion.d/*, ...). The default bash completion proposes tasks and parameters.
-
-    $ soda he[TAB]
-    $ soda help
-
-To customize the options for a given task, use a function named ${TASK}_bash_completion:
-
-    function my_task_bash_completion {
-      echo "foo"
-      echo "bar"
-    }
-
-    $ soda my-task f[TAB]
-    $ soda my-task foo
-
-If a parameter is passed after the task declaration in command line, the suggestions will be only
-the parameters for the task namespace.
-
-    # namespace my-namespace
-
-    option "option" "My custom option"
-    task "my-task" "My task"
-    function my_task {
-      :
-    }
-
-    $ soda my-namespace.my-task --[TAB]
-    $ soda my-namespace.my-task --option
-
 ## Task Namespaces
 
 The namespaces are single directories in _scripts_. By default, the *common* and *soda* namespaces
@@ -129,6 +96,41 @@ If you need to pass a set of parameters, you can use --OPTION_NAME in case of a 
 
 To register a parameter in the program usage, use the *parameter* function (for more details, see
 the documentation bellow). The registered parameters will also be available for bash completion.
+
+## Bash Completion
+
+SODA supports bash completion by importing all namespaces and searching for defined parameters
+and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
+copy to */etc/bash_completion.d/*, ...). The default bash completion proposes tasks and parameters.
+
+    $ soda he[TAB]
+    $ soda help
+
+To customize the options for a given task, use a function named ${TASK}_bash_completion:
+
+    function my_task_bash_completion {
+      echo "foo"
+      echo "bar"
+    }
+
+
+    $ soda my-task f[TAB]
+    $ soda my-task foo
+
+If a parameter is passed after the task declaration in command line, the suggestions will be only
+the parameters for the task namespace.
+
+    # namespace my-namespace
+
+    option "option" "My custom option"
+    task "my-task" "My task"
+    function my_task {
+      :
+    }
+
+
+    $ soda my-namespace.my-task --[TAB]
+    $ soda my-namespace.my-task --option
 
 ## Configuration
 
@@ -238,6 +240,7 @@ be skipped.
 
     input "Server address" "SERVER" "localhost"
     input "User name" "USER_NAME" "$(whoami)"
+
 
     scp file $USER_NAME@$SERVER:/tmp/.
 
