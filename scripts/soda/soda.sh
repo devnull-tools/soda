@@ -49,12 +49,14 @@ function bash_completion_parameter {
       clear_help_usage
       clear_imports
       import "$NAMESPACE"
-      echo "$BASH_COMPLETION_PARAMETERS"
+    } || {
+      import soda
+      import common
     }
   else
     import_all_namespaces
-    echo "$BASH_COMPLETION_PARAMETERS"
   fi
+  echo "$BASH_COMPLETION_PARAMETERS"
 }
 
 task "bash_completion_task [TASK]" "Show proposals for autocomplete tasks"
