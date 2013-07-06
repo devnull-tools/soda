@@ -26,7 +26,25 @@ _soda () {
   local cur
   COMPREPLY=()
   cur=${COMP_WORDS[COMP_CWORD]}
-  local args=(${COMP_WORDS[@]:1})
+  local aux=(${COMP_WORDS[@]:1})
+  local args=()
+  # When using "=" for parameters, they came splitted
+  # this will remove all parameters and their values
+  # TODO find a better way of doing this
+  local ignore_next=""
+  for arg in ${aux[@]}; do
+    if [[ $ignore_next ]]; then
+      ignore_next=""
+      continue
+    fi
+    if [[ ! "$arg" == "--"* ]]; then
+      if [[ "$arg" == "=" ]]; then
+        ignore_next=true
+      else
+        args+=("$arg")
+      fi
+    fi
+  done
   local additional_args="--no-log-files --log-level=4"
   case "$cur" in
     --*)
