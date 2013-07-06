@@ -33,6 +33,6 @@ function compile_bash_completion {
   if [[ -f "$1" ]]; then
     echo "html pdf docx"
   else
-    ls
+    return 1
   fi
 }

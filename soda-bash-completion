@@ -26,21 +26,21 @@ _soda () {
   local cur
   COMPREPLY=()
   cur=${COMP_WORDS[COMP_CWORD]}
-  local args=()
-  for word in "${COMP_WORDS[@]:1}"; do
-    if [[ ! "$word" =~ ^\-\-* ]]; then
-      args+=("$word")
-    fi
-  done
+  local args=(${COMP_WORDS[@]:1})
+  local additional_args="--no-log-files --log-level=4"
   case "$cur" in
     --*)
-      COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter ${args[@]})' -- $cur ) )
+      COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter $additional_args ${args[@]})' -- $cur ) )
     ;;
     *)
-      COMPREPLY=( $( compgen -W '$(soda bash-completion-task ${args[@]})' -- $cur ) )
+      suggestions="$(soda bash-completion-task $additional_args ${args[@]})"
+      if [[ $? == 0 ]]; then
+        COMPREPLY=( $( compgen -W '$suggestions' -- $cur ) )
+      else
+        COMPREPLY=( $( compgen -f -- $cur ) )
+      fi
     ;;
   esac
-
   return 0
 }
 

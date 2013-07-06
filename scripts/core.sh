@@ -61,7 +61,8 @@ function task {
 
 #
 # Exposes the given parameter in the program usage, register it for autocompletion
-# and returns indicating if the parameter was given.
+# and returns indicating if the parameter was given. You can use the parameter value
+# through the variable $parameter_name or value.
 #
 # Arguments:
 #
@@ -77,7 +78,8 @@ function parameter {
   if [[ "$parameter_name" =~ .+=.+ ]]; then
     BASH_COMPLETION_PARAMETERS="${BASH_COMPLETION_PARAMETERS}="
   fi
-  if [[ $(get_var "${1%%=*}") ]]; then
+  value="$(get_var "${1%%=*}")"
+  if [[ $value ]]; then
     return 0
   else
     return 1
@@ -181,11 +183,19 @@ function call {
     parse_task "$task_name" && {
       import "$NAMESPACE"
     }
-    if [[ ! "$TASKS" == *"{${task_name}}"* ]]; then
+    task_exists "${task_name}" || {
       error "Task \"$task_name\" not found."
       exit 1
-    fi
+    }
     "$TASK" "$@"
+  fi
+}
+
+function task_exists {
+  if [[ "$TASKS" == *"{$1}"* ]]; then
+    return 0
+  else
+    return 1
   fi
 }
 

@@ -27,7 +27,7 @@ parameter "help" "Print the help message." && {
 }
 
 parameter "options=NAME" "Load all NAME.conf file inside \$SODA_USER_DIR/options" && {
-  for conf in $(find $SODA_USER_DIR/options -type f -name "$options.conf"); do
+  for conf in $(find $SODA_USER_DIR/options -type f -name "$value.conf"); do
     source $conf
   done
 }
@@ -64,11 +64,18 @@ function bash_completion_task {
   parse_task "$1" && {
     import "$NAMESPACE"
   }
-  shift
   if [[ $(type -t "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}") ]]; then
+    shift
     "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}" "$@"
-  else
+  elif [[ $# == 0 ]]; then
     import_all_namespaces
     echo "$BASH_COMPLETION_TASKS"
+  else
+    task_exists "$1" && {
+      exit 1
+    } || {
+      import_all_namespaces
+      echo "$BASH_COMPLETION_TASKS"
+    }
   fi
 }

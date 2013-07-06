@@ -87,7 +87,7 @@ if [[ ! $log_level ]]; then
 fi
 
 parameter "log_level=N" "Set the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)" && {
-  case $log_level in
+  case $value in
     1)
       function debug { :; }
       ;;

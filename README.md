@@ -165,7 +165,8 @@ args in *$function_name*.
 ### parameter (parameter_name, description)
 
 Register the given parameter and returns indicating if the parameter was given. You may
-pass the parameter args in *$parameter_name*
+pass the parameter args in *$parameter_name*. The parameter value is accessible through
+the variable $parameter_name or value.
 
     parameter "help" "Prints this help message" && {
       usage
