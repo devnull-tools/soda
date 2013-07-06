@@ -22,9 +22,11 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-task "compile FILE OUTPUT_FORMAT" \
+# Example of using pandoc
+
+task "parse FILE OUTPUT_FORMAT" \
      'Parses the given file and outputs it in a file $FILE.$OUTPUT_FORMAT'
-function compile {
+function parse {
   local basename="$(basename "$1")"
   pandoc -o "${basename%%.*}.$2" -S -s "$1"
 }
