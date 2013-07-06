@@ -30,7 +30,7 @@ _soda () {
   local args=()
   # When using "=" for parameters, they came splitted
   # this will remove all parameters and their values
-  # TODO find a better way of doing this
+  # TODO find a better way to do this
   local ignore_next=""
   for arg in ${aux[@]}; do
     if [[ $ignore_next ]]; then
