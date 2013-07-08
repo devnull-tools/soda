@@ -31,7 +31,7 @@ function parse {
   pandoc -o "${basename%%.*}.$2" -S -s "$1"
 }
 
-function compile_bash_completion {
+function parse_bash_completion {
   if [[ -f "$1" ]]; then
     echo "html pdf docx"
   else
