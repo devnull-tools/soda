@@ -47,7 +47,7 @@ _soda () {
   done
   local additional_args="--no-log-files --log-level=4"
   case "$cur" in
-    --*)
+    -*)
       COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter $additional_args ${args[@]})' -- $cur ) )
     ;;
     *)
