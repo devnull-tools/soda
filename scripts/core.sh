@@ -36,7 +36,7 @@ BASH_COMPLETION_PARAMETERS=""
 TASK_NAMESPACE=""
 PARAMETER_NAMESPACE=""
 
-function clear_help_usage {
+namespaces() {
   TASKS_USAGE="  TASKS:"
   PARAMETERS_USAGE="  PARAMETERS:"
 }
@@ -51,7 +51,7 @@ function clear_help_usage {
 #   1- function name (args should go here too)
 #   2- function description
 #
-function task {
+task() {
   local task_name="${1//_/-}"
   TASKS_USAGE="$TASKS_USAGE
     $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$TASK_NAMESPACE$task_name") $2"
@@ -72,7 +72,7 @@ function task {
 #   1- parameter name (value should go here too)
 #   2- parameter description
 #
-function parameter {
+parameter() {
   local parameter_name="${1//_/-}"
   PARAMETERS_USAGE="$PARAMETERS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")"
@@ -99,7 +99,7 @@ function parameter {
 
 SODA_IMPORTS=""
 
-function clear_imports {
+clear_imports() {
   SODA_IMPORTS=""
   TASK_NAMESPACE=""
   PARAMETER_NAMESPACE=""
@@ -116,7 +116,7 @@ function clear_imports {
 # Example: to import the namespace denoted by $SODA_USER_DIR/scripts/install
 # use `import install`.
 #
-function import {
+import() {
   if [[ ! $(echo "$SODA_IMPORTS" | grep ":$1:") ]]; then
     if [[ "$1" != "soda" ]]; then
       if [[ "$1" != "common" ]]; then
@@ -132,7 +132,7 @@ function import {
   fi
 }
 
-function import_all_namespaces {
+import_all_namespaces() {
   for namespace in $(ls $SODA_USER_DIR/scripts); do
     import "$namespace"
   done
@@ -141,7 +141,7 @@ function import_all_namespaces {
 #
 # Loads all scripts inside a directory
 #
-function load_scripts {
+load_scripts() {
   if [[ -d "$1" ]]; then
     for script in $(ls "$1" | grep .sh | sort); do
       . "$1/$script"
@@ -152,7 +152,7 @@ function load_scripts {
   fi
 }
 
-function set_parameter {
+set_parameter() {
   local parameter="${1#*--}"
   if [[ -z "$parameter" ]]; then
     return 1
@@ -171,7 +171,7 @@ function set_parameter {
 # Parse the function name. By convention, '-' will be replaced
 # by '_' to build the function name.
 #
-function build_name {
+build_name() {
   echo "${1//-/_}"
 }
 
@@ -187,7 +187,7 @@ function build_name {
 # To change the namespace delimiter (defaults to "#"), use the
 # SODA_NAMESPACE_DELIMITER variable
 #
-function call {
+call() {
   local task_name="$1"
   shift
   if [[ -n "$task_name" ]]; then
@@ -202,7 +202,7 @@ function call {
   fi
 }
 
-function task_exists {
+task_exists() {
   if [[ "$TASKS" == *"{$1}"* ]]; then
     return 0
   else
@@ -210,7 +210,7 @@ function task_exists {
   fi
 }
 
-function parse_task {
+parse_task() {
   TASK="$1"
   NAMESPACE="${TASK%%$SODA_NAMESPACE_DELIMITER*}"
   TASK="${TASK#*${SODA_NAMESPACE_DELIMITER}}"
@@ -226,12 +226,12 @@ function parse_task {
 }
 
 # Dynamically sets a variable value
-function set_var {
+set_var() {
   eval "$1=$2"
 }
 
 # Dynamically gets a variable value
-function get_var {
+get_var() {
   eval echo "\$$1"
 }
 
@@ -240,7 +240,7 @@ function get_var {
 [ -z "$COMMAND_LOG_FILE" ] && COMMAND_LOG_FILE=/dev/null
 [ -z "$LAST_COMMAND_LOG_FILE" ] && LAST_COMMAND_LOG_FILE=/dev/null
 
-function namespaces {
+namespaces() {
   import_all_namespaces
   echo "$NAMESPACES"
 }

@@ -33,7 +33,7 @@
 #
 # If there is a variable named as $2, the input will be skipped.
 #
-function input {
+input() {
   if [[ -z "$(get_var $2)" ]]; then
     printf "$(bold_white "$1"): "
     if [[ -n "$3" ]]; then
@@ -61,7 +61,7 @@ function input {
 #
 # If there is a variable named as $2, the choice will be skipped.
 #
-function choose {
+choose() {
   text=$1
   var=$2
   shift 2

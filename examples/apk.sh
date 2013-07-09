@@ -25,7 +25,7 @@
 # Example of handling apk files for renaming and install
 
 task "name APK" "Extracts the apk name from its Android Manifest"
-function name {
+name() {
   retain_set="[A-Za-z0-9-_.+[:blank:]]"
   label_patterns=("application: label=" "launchable activity name=")
   for pattern in ${label_patterns[@]}
@@ -38,7 +38,7 @@ function name {
 }
 
 task "install APK" "Installs the apk file in device"
-function install {
+install() {
   for apk in "$@";
   do
     adb install -r "$apk"
@@ -46,14 +46,14 @@ function install {
 }
 
 task "version APK" "Extracts the apk version from its Android Manifest"
-function version {
+version() {
   version=$(aapt d badging "$1" | grep "versionName=" | cut -d\' -f6)
   echo $version
 }
 
 task "rename APK|DIR" \
     "Renames the desired apks based on the Android Manifest. Replaces whitespaces with underscores."
-function rename {
+rename() {
   if [[ -d "$1" ]]; then
     dir=$1
     [ -z "$dir" ] && dir=.

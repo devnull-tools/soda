@@ -28,7 +28,7 @@ Inside *scripts*, any function in any script present in *scripts/common* will be
 loaded and may be called through `soda`:
 
     task "git-open" "Creates a new branch off master"
-    function git_open {
+    git_open() {
       local branch="$1"
       if [[ -z "$branch" ]]; then
         input "Name your branch" branch work
@@ -56,7 +56,7 @@ also keeps your scripts organized.)
 
     task "push" "Push local commits into the repository"
 
-    function push {
+    push() {
       stash_work
       local branch="$(current_branch)"
       if [[ "$branch" == "master" ]]; then
@@ -108,7 +108,7 @@ copy to */etc/bash_completion.d/*, ...). The default bash completion proposes ta
 
 To customize the options for a given task, use a function named ${TASK}_bash_completion:
 
-    function my_task_bash_completion {
+    my_task_bash_completion() {
       echo "foo"
       echo "bar"
     }
@@ -123,7 +123,7 @@ the parameters for the task namespace.
 
     option "option" "My custom option"
     task "my-task" "My task"
-    function my_task {
+    my_task() {
       :
     }
 

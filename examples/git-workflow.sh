@@ -24,23 +24,23 @@
 
 # Example of a simple git workflow
 
-function current_branch {
+current_branch() {
   echo "$(git branch | grep "*" | cut -d' ' -f2)"
 }
 
-function git_fetch {
+git_fetch() {
   git fetch
 }
 
-function git_rebase {
+git_rebase() {
   git rebase origin/master
 }
 
-function git_push {
+git_push() {
   git push
 }
 
-function stash_work {
+stash_work() {
   git diff-files --quiet
   if [[ "$?" == 1 ]]; then
     message "Stashing changes"
@@ -52,7 +52,7 @@ function stash_work {
   fi
 }
 
-function unstash_work {
+unstash_work() {
   if [[ $STASH ]]; then
     message "Applying stash"
     git stash apply
@@ -64,7 +64,7 @@ function unstash_work {
 }
 
 task "update" "Pull new commits from the repository"
-function update {
+update() {
   stash_work
   local branch="$(current_branch)"
   if [[ ! "$branch" == "master" ]]; then
@@ -84,7 +84,7 @@ function update {
 }
 
 task "push" "Push local commits into the repository"
-function push {
+push() {
   stash_work
   local branch="$(current_branch)"
   if [[ "$branch" == "master" ]]; then
@@ -104,7 +104,7 @@ function push {
 }
 
 task "merge" "Merge commits into the master branch"
-function merge {
+merge() {
   stash_work
   local branch="$(current_branch)"
   if [[ "$branch" == "master" ]]; then
@@ -121,7 +121,7 @@ function merge {
 }
 
 task "close" "Delete the current branch and switch back to master"
-function close {
+close() {
   local branch="$(current_branch)"
   if [[ "$branch" == "master" ]]; then
     error "Cannot delete master branch"
@@ -134,7 +134,7 @@ function close {
 }
 
 task "open" "Creates a new branch off master"
-function open {
+open() {
   local branch="$1"
   if [[ -z "$branch" ]]; then
     input "Name your branch" branch work
@@ -150,15 +150,15 @@ if [[ "$?" == 0 ]]; then
   if [[ $(git branch -a | grep -ie trunk) ]]; then
     message "Found git svn branch"
 
-    function git_fetch {
+    git_fetch() {
       git svn fetch
     }
 
-    function git_rebase {
+    git_rebase() {
       git svn rebase
     }
 
-    function git_push {
+    git_push() {
       git svn dcommit
     }
   fi

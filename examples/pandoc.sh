@@ -28,7 +28,7 @@ parameter "open-file[=PROGRAM]" "Open the generated file after compilation"
 
 task "parse FILE OUTPUT_FORMAT" \
      'Parses the given file and outputs it in a file $FILE.$OUTPUT_FORMAT'
-function parse {
+parse() {
   local basename="$(basename "$1")"
   pandoc -o "${basename%%.*}.$2" -S -s "$1" && {
     success "pandoc converting"
@@ -46,7 +46,7 @@ function parse {
   }
 }
 
-function parse_bash_completion {
+parse_bash_completion() {
   if [[ -f "$1" ]]; then
     # Only a few output examples
     echo "html pdf docx odt"

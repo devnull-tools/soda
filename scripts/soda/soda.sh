@@ -33,16 +33,16 @@ parameter "options=NAME" "Load all NAME.conf file inside \$SODA_USER_DIR/options
 }
 
 task "help [NAMESPACE]" "Print the help message for the given namespace (leave empty for all)"
-function help {
+help() {
   usage "$1"
 }
 
-function help_bash_completion {
+help_bash_completion () {
   namespaces
 }
 
 task bash_completion_parameter "Show proposals for parameters"
-function bash_completion_parameter {
+bash_completion_parameter () {
   if [[ $# -ge 1 ]]; then
     parse_task "$1" && {
       clear_help_usage
@@ -59,7 +59,7 @@ function bash_completion_parameter {
 }
 
 task "bash_completion_task [TASK]" "Show proposals for autocomplete tasks"
-function bash_completion_task {
+bash_completion_task() {
   parse_task "$1" && {
     import "$NAMESPACE"
   }

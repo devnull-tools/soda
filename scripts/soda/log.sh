@@ -23,53 +23,53 @@
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
 # Puts a colorized text in the console
-function puts {
+puts() {
   echo "$($1 "$2")"
 }
 
 # Displays an information message and logs it in the $LOG_FILE
-function message {
+message() {
   log "INFO" "$1"
   puts blue "INFO: $1"
 }
 
 # Displays a debug message and logs it in the $LOG_FILE
-function debug {
+debug() {
   log "DEBUG" "$1"
   puts gray "DEBUG: $1"
 }
 
 # Displays a warn message and logs it in the $LOG_FILE
-function warn {
+warn() {
   log "WARN" "$1"
   puts yellow "WARN: $1"
 }
 
 # Displays en error message and logs it in the $LOG_FILE
-function error {
+error() {
   log "ERROR" "$1"
   puts red "ERROR: $1"
 }
 
 # Logs a successfull operation
-function success {
+success() {
   log "OK" "$1"
   echo "$(printf "%-60s [  %s  ]" "$1" $(green "OK"))"
 }
 
 # Logs a failed operation
-function fail {
+fail() {
   log "FAIL" "$1"
   echo "$(printf "%-60s [ %s ]" "$1" $(red "FAIL"))"
 }
 
 # Inserts a log message in $LOG_FILE
-function log {
+log() {
   printf "%s | %-6s | %s\n" $(date +%H:%M:%S) "$1" "$2" >> $LOG_FILE
 }
 
 parameter "no_log_files" "Do not use log files" && {
-  function log { :; }
+  log() { :; }
 } || {
   # Clears the output files
   [[ -n "$LOG_FILE" ]]              > $LOG_FILE
@@ -89,22 +89,22 @@ fi
 parameter "log_level=N" "Set the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)" && {
   case $value in
     1)
-      function debug { :; }
+      debug() { :; }
       ;;
     2)
-      function debug { :; }
-      function message { :; }
+      debug() { :; }
+      message() { :; }
       ;;
     3)
-      function debug { :; }
-      function message { :; }
-      function warn { :; }
+      debug() { :; }
+      message() { :; }
+      warn() { :; }
       ;;
     4)
-      function debug { :; }
-      function message { :; }
-      function warn { :; }
-      function error { :; }
+      debug() { :; }
+      message() { :; }
+      warn() { :; }
+      error() { :; }
       ;;
   esac
 }

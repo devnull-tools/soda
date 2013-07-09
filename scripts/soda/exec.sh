@@ -35,7 +35,7 @@
 #
 # The value of the user choice will be stored in the $OPTIONS_FILE file.
 #
-function invoke {
+invoke() {
   [ -n "$(type -t $2)" ] && {
     option=$(get_var "$2")
     [ -z "$option" ] && {
@@ -54,7 +54,7 @@ function invoke {
 #
 # Asks user about something and indicates if the answer is 'yes' or 'no'
 #
-function ask {
+ask() {
   echo "$(bold_white "$1 (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
   printf "$(yellow " > ")"
   read option
@@ -68,7 +68,7 @@ function ask {
 #
 #  1- The command description
 #
-function check {
+check() {
   code="$?"
   if [[ $code == 0 ]]; then
     success "$1"
@@ -86,7 +86,7 @@ function check {
 #  1- The command description
 #  ...- The command itself
 #
-function execute {
+execute() {
   description=$1
   shift
   printf "%-60s " "$description"

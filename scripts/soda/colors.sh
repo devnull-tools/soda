@@ -22,76 +22,76 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-function _color_escape {
+_color_escape() {
   printf "\e[$1;3$2m$3\e[0;0m"
 }
 
-function red {
+red() {
   _color_escape 0 1 "$1"
 }
 
-function green {
+green() {
   _color_escape 0 2 "$1"
 }
 
-function yellow {
+yellow() {
   _color_escape 0 3 "$1"
 }
 
-function blue {
+blue() {
   _color_escape 0 4 "$1"
 }
 
-function magenta {
+magenta() {
   _color_escape 0 5 "$1"
 }
 
-function cyan {
+cyan() {
   _color_escape 0 6 "$1"
 }
 
-function gray {
+gray() {
   _color_escape 0 7 "$1"
 }
 
-function white {
+white() {
   _color_escape 0 7 "$1"
 }
 
-function bold_gray {
+bold_gray() {
   _color_escape 1 0 "$1"
 }
 
-function bold_red {
+bold_red() {
   _color_escape 1 1 "$1"
 }
 
-function bold_green {
+bold_green() {
   _color_escape 1 2 "$1"
 }
 
-function bold_yellow {
+bold_yellow() {
   _color_escape 1 3 "$1"
 }
 
-function bold_blue {
+bold_blue() {
   _color_escape 1 4 "$1"
 }
 
-function bold_magenta {
+bold_magenta() {
   _color_escape 1 5 "$1"
 }
 
-function bold_cyan {
+bold_cyan() {
   _color_escape 1 6 "$1"
 }
 
-function bold_white {
+bold_white() {
   _color_escape 1 7 "$1"
 }
 
 parameter "no_colors" "Do not use colors" && {
-  function _color_escape {
+  _color_escape() {
     printf "$3"
   }
 }
