@@ -136,8 +136,6 @@ You can configure SODA through a **~/.soda/soda.conf** file. The supported prope
 
 * **SODA_LOG_DIR** - Directory for writing the log files (defaults to soda *directory/log*)
 * **LOG_FILE** - The main log file  (defaults to *$SODA_LOG_DIR/soda.log*)
-* **OPTIONS_FILE** - The file to write the options for some builting functions
-(defaults to *$SODA_LOG_DIR/soda.options.conf*)
 * **COMMAND_LOG_FILE** - The file to write the command log when using some builting functions
 (defaults to *$SODA_LOG_DIR/soda.command.log*)
 * **LAST_COMMAND_LOG_FILE** - The file to write the log for the last command executed when using
@@ -181,8 +179,7 @@ If a namespace was already imported, then it will not be imported again.
 
 ### invoke (description, function_name)
 
-Invokes the given function based on user choice. The value of the user choice will be stored
-in the $OPTIONS_FILE file.
+Invokes the given function based on user choice.
 
 If there is a variable named exactly like the function, its value will be used instead of
 asking user.
@@ -234,8 +231,7 @@ Displays a failed operation message and logs it in the *$LOG_FILE*.
 ### input (description, variable, [default_value])
 
 Asks the user to input a value. The value will be stored in the indicated
-variable. If there is a variable named as *$variable*, the input asking will
-be skipped.
+variable.
 
     input "Server address" "SERVER" "localhost"
     input "User name" "USER_NAME" "$(whoami)"
@@ -245,12 +241,11 @@ be skipped.
 ### choose (description, variable, *options)
 
 Asks user to choose a value from a list of options and stores the 0-based index
-of the selected value. If there is a variable named as *$variable*, the choice
-will be skipped.
+of the selected value and the label in the $variable_label var.
 
     choose "Server Type" "SERVER_TYPE" "Production" "Development"
 
-    echo "$SERVER_TYPE"
+    echo "$SERVER_TYPE: $SERVER_TYPE_label"
 
 ## Examples
 

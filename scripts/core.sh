@@ -235,7 +235,6 @@ get_var() {
   eval echo "\$$1"
 }
 
-[ -z "$OPTIONS_FILE" ] && OPTIONS_FILE=/dev/null
 [ -z "$LOG_FILE" ] && LOG_FILE=/dev/null
 [ -z "$COMMAND_LOG_FILE" ] && COMMAND_LOG_FILE=/dev/null
 [ -z "$LAST_COMMAND_LOG_FILE" ] && LAST_COMMAND_LOG_FILE=/dev/null

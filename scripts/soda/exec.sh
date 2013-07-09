@@ -33,21 +33,28 @@
 # If there is a variable named exactly like the function, its
 # value will be used instead of asking user.
 #
-# The value of the user choice will be stored in the $OPTIONS_FILE file.
-#
 invoke() {
   [ -n "$(type -t $2)" ] && {
-    option=$(get_var "$2")
+    local option="$(get_var "$2")"
     [ -z "$option" ] && {
-      echo "$(bold_white "$1? (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
-      printf "$(yellow " > ")"
-      read option
+      local prompt="$(bold_white "$1?")"
+      prompt="$prompt ($(green "[Y]")es/$(red "[N]")o/$(bold_green "[A]")lways/n$(bold_red "[E]")ver)"
+      read -p "$prompt " -n1 option
+      echo ""
+      if [[ "$option" =~ ^[Aa]$ ]]; then
+        # sets the var for always invoke
+        set_var "$2" "y"
+        option="y"
+      elif [[ "$option" =~ ^[Ee]$ ]]; then
+        # sets the var for never invoke
+        set_var "$2" "n"
+        option="n"
+      fi
     }
-    echo "$2=$option" >> $OPTIONS_FILE
-    echo "$option" | grep -qi "^Y$" && {
+    if [[ "$option" =~ ^[Yy]$ ]]; then
       debug "Invoking $2"
       $2
-    }
+    fi
   }
 }
 
@@ -55,10 +62,14 @@ invoke() {
 # Asks user about something and indicates if the answer is 'yes' or 'no'
 #
 ask() {
-  echo "$(bold_white "$1 (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
-  printf "$(yellow " > ")"
-  read option
-  echo "$option" | grep -qi "^Y$"
+  prompt="$(bold_white "$1 (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
+  read -p "$prompt " -n1
+  echo ""
+  if [[ "$REPLY" =~ ^[Yy] ]]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 #
