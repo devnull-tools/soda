@@ -30,7 +30,8 @@ function name {
   label_patterns=("application: label=" "launchable activity name=")
   for pattern in ${label_patterns[@]}
   do
-    label=$(aapt d badging "$1" | grep $pattern | cut -d\' -f2- | rev | cut -d\' -f4- | rev | tr -dc $retain_set)
+    label=$(aapt d badging "$1" | grep $pattern | cut -d\' -f2- | rev | cut -d\' -f4- | rev | \
+     tr -dc $retain_set)
     [ -n "$label" ] && break
   done
   echo $label
@@ -50,7 +51,8 @@ function version {
   echo $version
 }
 
-task "rename APK|DIR" "Renames the desired apks based on the Android Manifest. Replaces whitespaces with underscores."
+task "rename APK|DIR" \
+    "Renames the desired apks based on the Android Manifest. Replaces whitespaces with underscores."
 function rename {
   if [[ -d "$1" ]]; then
     dir=$1

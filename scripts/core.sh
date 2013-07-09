@@ -61,12 +61,15 @@ function task {
 
 #
 # Exposes the given parameter in the program usage, register it for autocompletion
-# and returns indicating if the parameter was given. You can use the parameter value
-# through the variable $parameter_name or value.
+# and returns indicating if the parameter was given. You can access the parameter
+# value through the variable named as the parameter name or "value".
+#
+# To expose a value based parameter use the syntax PARAMETER=VALUE. To expose a
+# parameter with optional value use the syntax PARAMETER[=VALUE].
 #
 # Arguments:
 #
-#   1- parameter name (args should go here too)
+#   1- parameter name (value should go here too)
 #   2- parameter description
 #
 function parameter {
@@ -74,9 +77,17 @@ function parameter {
   PARAMETERS_USAGE="$PARAMETERS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")"
   PARAMETERS_USAGE="${PARAMETERS_USAGE}$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $2"
-  BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS $PARAMETERS --${parameter_name%%=*}"
+  if [[ "$parameter_name" == *"[="*"]" ]]; then
+    local _optional=true
+    parameter_name=${parameter_name//[/}
+    parameter_name=${parameter_name//]/}
+  fi
+  BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS --${parameter_name%%=*}"
   if [[ "$parameter_name" =~ .+=.+ ]]; then
     BASH_COMPLETION_PARAMETERS="${BASH_COMPLETION_PARAMETERS}="
+    if [[ $_optional ]]; then
+      BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS --${parameter_name%%=*}"
+    fi
   fi
   value="$(get_var "${1%%=*}")"
   if [[ $value ]]; then

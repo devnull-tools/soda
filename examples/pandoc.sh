@@ -24,16 +24,32 @@
 
 # Example of using pandoc
 
+parameter "open-file[=PROGRAM]" "Open the generated file after compilation"
+
 task "parse FILE OUTPUT_FORMAT" \
      'Parses the given file and outputs it in a file $FILE.$OUTPUT_FORMAT'
 function parse {
   local basename="$(basename "$1")"
-  pandoc -o "${basename%%.*}.$2" -S -s "$1"
+  pandoc -o "${basename%%.*}.$2" -S -s "$1" && {
+    success "pandoc converting"
+    # Checks if the parameter was set
+    if [[ $open_file ]]; then
+      if [[ ${open_file} == true ]]; then
+        message "Opening file using kde-open"
+        # opens the file using kde system
+        kde-open "${basename%%.*}.$2" &
+      else
+        message "Opening file using $open_file"
+        $open_file "${basename%%.*}.$2" &
+      fi
+    fi
+  }
 }
 
 function parse_bash_completion {
   if [[ -f "$1" ]]; then
-    echo "html pdf docx"
+    # Only a few output examples
+    echo "html pdf docx odt"
   else
     return 1
   fi

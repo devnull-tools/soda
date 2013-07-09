@@ -23,7 +23,7 @@
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
 parameter "help" "Print the help message." && {
-  usage "$help"
+  usage
 }
 
 parameter "options=NAME" "Load all NAME.conf file inside \$SODA_USER_DIR/options" && {
@@ -33,7 +33,6 @@ parameter "options=NAME" "Load all NAME.conf file inside \$SODA_USER_DIR/options
 }
 
 task "help [NAMESPACE]" "Print the help message for the given namespace (leave empty for all)"
-
 function help {
   usage "$1"
 }
