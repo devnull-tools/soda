@@ -34,11 +34,18 @@
 # value will be used instead of asking user.
 #
 invoke() {
-  [ -n "$(type -t $2)" ] && {
+  if [[ -n "$(type -t $2)" ]]; then
     local option="$(get_var "$2")"
     [ -z "$option" ] && {
       local prompt="$(bold_white "$1?")"
-      prompt="$prompt ($(green "[Y]")es/$(red "[N]")o/$(bold_green "[A]")lways/n$(bold_red "[E]")ver)"
+      local open="$(bold_white '(')"
+      local close="$(bold_white ')')"
+      local sep="$(bold_white '/')"
+      local yes="$(green "[Y]es")"
+      local no="$(red "[N]o")"
+      local always="$(bold_green "[A]lways")"
+      local never="$(bold_red "n[E]ver")"
+      prompt="$prompt ${open}${yes}${sep}${no}${sep}${always}${sep}${never}${close}"
       read -p "$prompt " -n1 option
       echo ""
       if [[ "$option" =~ ^[Aa]$ ]]; then
@@ -55,7 +62,9 @@ invoke() {
       debug "Invoking $2"
       $2
     fi
-  }
+  else
+    error "$2 not defined"
+  fi
 }
 
 #
