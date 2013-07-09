@@ -36,7 +36,7 @@ BASH_COMPLETION_PARAMETERS=""
 TASK_NAMESPACE=""
 PARAMETER_NAMESPACE=""
 
-namespaces() {
+clear_help_usage() {
   TASKS_USAGE="  TASKS:"
   PARAMETERS_USAGE="  PARAMETERS:"
 }
@@ -198,8 +198,10 @@ call() {
       error "Task \"$task_name\" not found."
       exit 1
     }
+    broadcast "start"
     "$TASK" "$@"
   fi
+  broadcast "terminate"
 }
 
 task_exists() {
