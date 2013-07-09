@@ -227,12 +227,25 @@ parse_task() {
 
 # Dynamically sets a variable value
 set_var() {
-  eval "$1=$2"
+  eval "$1=\"$2\""
 }
 
 # Dynamically gets a variable value
 get_var() {
   eval echo "\$$1"
+}
+
+append_var() {
+  local content="$(get_var "$1") $2"
+  set_var "$1" "${content}"
+}
+
+var_defined() {
+  if [[ -z "$get_var $1" ]]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 [ -z "$LOG_FILE" ] && LOG_FILE=/dev/null
