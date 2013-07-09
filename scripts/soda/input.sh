@@ -62,6 +62,9 @@ choose() {
   for option in "$@"; do
     prompt="$prompt
 $(bold_white "($i)") - $(yellow "$option")"
+    if [[ $i == 0 ]]; then
+      prompt="$prompt <=="
+    fi
     ((i++))
     options+=("$option")
   done
@@ -70,5 +73,8 @@ $(bold_white "($i)") - $(yellow "$option")"
   size=$(($i / 10 + 1))
   read -p "$prompt" -n$size $var
   echo ""
-  set_var "${var}_label" "${options[$REPLY]}"
+  if [[ -z "$(get_var $var)" ]]; then
+    set_var "$var" "0"
+  fi
+  set_var "${var}_label" "${options[$var]}"
 }
