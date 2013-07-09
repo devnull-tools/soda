@@ -74,4 +74,8 @@ import common
 
 [[ "$#" = "0" ]] && usage
 
+broadcast "start"
+
 call "${SODA_TASK_PARAMETERS[@]}"
+
+broadcast "terminate"
