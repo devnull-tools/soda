@@ -21,6 +21,5 @@ broadcast() {
 }
 
 parameter "no_broadcast" "Disable broadcasting events" && {
-  echo "Disabling Broadcasting"
   broadcast() { :; }
 }
