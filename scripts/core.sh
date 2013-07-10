@@ -103,7 +103,8 @@ parameter() {
   local value="$(get_var "$parameter_name")"
   if [[ $value ]]; then
     if [[ "$value" == true ]]; then
-      if [[ -z "$default" ]]; then
+      if [[ -n "$default" ]]; then
+        debug "Setting default value for $parameter_name: $default"
         set_var "$parameter_name" "$default"
       fi
     fi
