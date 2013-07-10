@@ -180,7 +180,7 @@ most significant are listed below:
 Register the given function as a task and enables invoking it. You may pass the function
 args in *$function_name*.
 
-### parameter (parameter_name, description)
+### parameter (parameter_name, [default_value], description)
 
 Register the given parameter and returns indicating if the parameter was given. You may
 pass the parameter args in *$parameter_name*. The parameter value is accessible through
@@ -190,6 +190,10 @@ use the syntax PARAMETER[=VALUE].
 
     parameter "help" "Prints this help message" && {
       usage
+    }
+
+    parameter "backup[=EXTENSION]" "bak" "Indicates the extension for file backup" && {
+      additional_parameters="$additional_parameters --extension=$backup"
     }
 
 ### import (namespace)
