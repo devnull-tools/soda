@@ -97,6 +97,23 @@ If you need to pass a set of parameters, you can use --OPTION_NAME in case of a 
 To register a parameter in the program usage, use the *parameter* function (for more details, see
 the documentation bellow). The registered parameters will also be available for bash completion.
 
+## Events
+
+You can subscribe and publish events in SODA using **when** and **broadcast** builtin functions.
+
+    when finish say_goodbye
+    say_goodbye() {
+      echo "Goodbye, $1!"
+    }
+
+    broadcast finish "$USER"
+
+The builtin events are:
+
+* **start** - before the task execution
+* **finish** - after the task execution
+* **fail** *(exit code)* - when a command fails to execute
+
 ## Bash Completion
 
 SODA supports bash completion by importing all namespaces and searching for defined parameters
@@ -130,22 +147,8 @@ the parameters for the task namespace.
     $ soda my-namespace.my-task --[TAB]
     $ soda my-namespace.my-task --option
 
-## Events
-
-You can subscribe and publish events in SODA using **when** and **broadcast** builtin functions.
-
-    when finish say_goodbye
-    say_goodbye() {
-      echo "Goodbye, $1!"
-    }
-
-    broadcast finish "$USER"
-
-The builtin events are:
-
-* **start** - before the task execution
-* **finish** - after the task execution
-* **fail** *(exit code)* - when a command fails to execute
+It is important to remember that logs and event broadcasting are disabled while SODA is in bash
+completion mode.
 
 ## Configuration
 
