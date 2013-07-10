@@ -48,7 +48,6 @@ invoke() {
       prompt="$prompt ${open}${yes}${sep}${no}${sep}${always}${sep}${never}${close}"
       read -p "$prompt " -n1 option
       echo ""
-      broadcast "read_input" "$2" "$option"
       if [[ "$option" =~ ^[Aa]$ ]]; then
         # sets the var for always invoke
         set_var "$2" "y"
@@ -65,7 +64,6 @@ invoke() {
     fi
   else
     error "$2 not defined"
-    broadcast "function_missing" "$2"
   fi
 }
 

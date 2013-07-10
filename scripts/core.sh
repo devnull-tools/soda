@@ -166,7 +166,6 @@ set_parameter() {
   eval "${parameter}=$value"
 }
 
-
 #
 # Parse the function name. By convention, '-' will be replaced
 # by '_' to build the function name.

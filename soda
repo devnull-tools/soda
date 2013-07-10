@@ -75,7 +75,7 @@ import common
 [[ "${#SODA_TASK_PARAMETERS}" = "0" ]] && usage
 
 task_name=${SODA_TASK_PARAMETERS[0]}
-echo "$task_name"
+
 if [[ -n "$task_name" ]]; then
   parse_task "$task_name" && {
     import "$NAMESPACE"

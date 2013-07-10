@@ -20,6 +20,7 @@ broadcast() {
   done
 }
 
-parameter "no-broadcast" "Disable broadcasting events" && {
+parameter "no_broadcast" "Disable broadcasting events" && {
+  echo "Disabling Broadcasting"
   broadcast() { :; }
 }

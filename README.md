@@ -130,6 +130,23 @@ the parameters for the task namespace.
     $ soda my-namespace.my-task --[TAB]
     $ soda my-namespace.my-task --option
 
+## Events
+
+You can subscribe and publish events in SODA using **when** and **broadcast** builtin functions.
+
+    when finish say_goodbye
+    say_goodbye() {
+      echo "Goodbye, $1!"
+    }
+
+    broadcast finish "$USER"
+
+The builtin events are:
+
+* **start** - before the task execution
+* **finish** - after the task execution
+* **fail** *(exit code)* - when a command fails to execute
+
 ## Configuration
 
 You can configure SODA through a **~/.soda/soda.conf** file. The supported properties are:
