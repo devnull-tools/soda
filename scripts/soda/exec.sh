@@ -111,7 +111,7 @@ execute() {
   description=$1
   shift
   printf "%-60s " "$description"
-  $@ &>$LAST_COMMAND_LOG_FILE
+  "$@" &>$LAST_COMMAND_LOG_FILE
   code="$?"
   cat $LAST_COMMAND_LOG_FILE >> $COMMAND_LOG_FILE
   if [[ $code == 0 ]]; then
