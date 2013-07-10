@@ -36,7 +36,7 @@
 invoke() {
   if [[ -n "$(type -t $2)" ]]; then
     local option="$(get_var "$2")"
-    [ -z "$option" ] && {
+    if [[ -z "$option" ]]; then
       local prompt="$(bold_white "$1?")"
       local open="$(bold_white '(')"
       local close="$(bold_white ')')"
@@ -48,6 +48,7 @@ invoke() {
       prompt="$prompt ${open}${yes}${sep}${no}${sep}${always}${sep}${never}${close}"
       read -p "$prompt " -n1 option
       echo ""
+      broadcast "read_input" "$2" "$option"
       if [[ "$option" =~ ^[Aa]$ ]]; then
         # sets the var for always invoke
         set_var "$2" "y"
@@ -57,13 +58,14 @@ invoke() {
         set_var "$2" "n"
         option="n"
       fi
-    }
+    fi
     if [[ "$option" =~ ^[Yy]$ ]]; then
       debug "Invoking $2"
       $2
     fi
   else
     error "$2 not defined"
+    broadcast "function_missing" "$2"
   fi
 }
 
@@ -94,6 +96,7 @@ check() {
     success "$1"
   else
     fail "$1" $code
+    broadcast "fail" "$code"
   fi
 }
 
@@ -119,5 +122,6 @@ execute() {
   else
     printf "[ %s ]\n" $(red "FAIL")
     log "FAIL" "$description"
+    broadcast "fail" "$code"
   fi
 }

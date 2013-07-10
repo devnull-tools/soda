@@ -72,6 +72,19 @@ done
 import soda
 import common
 
-[[ "$#" = "0" ]] && usage
+[[ "${#SODA_TASK_PARAMETERS}" = "0" ]] && usage
 
-call "${SODA_TASK_PARAMETERS[@]}"
+task_name=${SODA_TASK_PARAMETERS[0]}
+echo "$task_name"
+if [[ -n "$task_name" ]]; then
+  parse_task "$task_name" && {
+    import "$NAMESPACE"
+  }
+  task_exists "${task_name}" || {
+    error "Task \"$task_name\" not found."
+    exit 1
+  }
+  broadcast "start"
+  "$TASK" "${SODA_TASK_PARAMETERS[@]:1}"
+fi
+broadcast "finish"

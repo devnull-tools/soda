@@ -162,8 +162,8 @@ set_parameter() {
     value=true
   fi
   parameter="${parameter%%=*}"
-
-  eval "${parameter//-/_}=$value"
+  parameter="${parameter//-/_}"
+  eval "${parameter}=$value"
 }
 
 
@@ -173,35 +173,6 @@ set_parameter() {
 #
 build_name() {
   echo "${1//-/_}"
-}
-
-#
-# Calls the given function with the given args.
-#
-# Before the call, the function name will be normalized using
-# the conventions in #build_name.
-#
-# To call a function in a namespace without import it implicit, use
-# the sintax namespace#function as the function name.
-#
-# To change the namespace delimiter (defaults to "#"), use the
-# SODA_NAMESPACE_DELIMITER variable
-#
-call() {
-  local task_name="$1"
-  shift
-  if [[ -n "$task_name" ]]; then
-    parse_task "$task_name" && {
-      import "$NAMESPACE"
-    }
-    task_exists "${task_name}" || {
-      error "Task \"$task_name\" not found."
-      exit 1
-    }
-    broadcast "start"
-    "$TASK" "$@"
-  fi
-  broadcast "terminate"
 }
 
 task_exists() {

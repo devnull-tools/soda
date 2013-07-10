@@ -1,13 +1,9 @@
 #!/bin/sh
 
-# Subscribe an event
-subscribe() {
-  local subscriber="$1"
-  if [[ "$2" == "to" ]]; then
-    local event="$3"
-  else
-    local event="$2"
-  fi
+# Subscribe to an event
+when() {
+  local event="$1"
+  local subscriber="$2"
   debug "$subscriber subscribed to $event"
   append_var "SODA_EVENT_${event}" " $subscriber"
 }
@@ -22,4 +18,8 @@ broadcast() {
     debug "Notifying $subscriber"
     $subscriber "$@"
   done
+}
+
+parameter "no-broadcast" "Disable broadcasting events" && {
+  broadcast() { :; }
 }
