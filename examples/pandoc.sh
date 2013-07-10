@@ -51,6 +51,6 @@ parse_bash_completion() {
     # Only a few output examples
     echo "html pdf docx odt"
   else
-    return 1
+    exit 1
   fi
 }
