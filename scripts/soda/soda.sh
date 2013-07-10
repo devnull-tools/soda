@@ -27,7 +27,7 @@ parameter "help" "Print the help message." && {
 }
 
 parameter "options=NAME" "Load all NAME.conf file inside \$SODA_USER_DIR/options" && {
-  for conf in $(find $SODA_USER_DIR/options -type f -name "$value.conf"); do
+  for conf in $(find $SODA_USER_DIR/options -type f -name "$options.conf"); do
     source $conf
   done
 }

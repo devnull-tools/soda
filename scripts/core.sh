@@ -62,7 +62,7 @@ task() {
 #
 # Exposes the given parameter in the program usage, register it for autocompletion
 # and returns indicating if the parameter was given. You can access the parameter
-# value through the variable named as the parameter name or "value".
+# value through the variable named as the parameter name.
 #
 # To expose a value based parameter use the syntax PARAMETER=VALUE. To expose a
 # parameter with optional value use the syntax PARAMETER[=VALUE].
@@ -70,13 +70,22 @@ task() {
 # Arguments:
 #
 #   1- parameter name (value should go here too)
-#   2- parameter description
+#   2- default value (optional)
+#   3- parameter description
 #
 parameter() {
   local parameter_name="${1//_/-}"
+  local default=""
+  local description=""
+  if [[ $# == 3 ]]; then
+    default="$2"
+    description="$3 (defaults to '$2')"
+  else
+    description="$2"
+  fi
   PARAMETERS_USAGE="$PARAMETERS_USAGE
     $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")"
-  PARAMETERS_USAGE="${PARAMETERS_USAGE}$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $2"
+  PARAMETERS_USAGE="${PARAMETERS_USAGE}$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $description"
   if [[ "$parameter_name" == *"[="*"]" ]]; then
     local _optional=true
     parameter_name=${parameter_name//[/}
@@ -89,8 +98,15 @@ parameter() {
       BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS --${parameter_name%%=*}"
     fi
   fi
-  value="$(get_var "${1%%=*}")"
+  parameter_name="${parameter_name//-/_}"
+  parameter_name="${parameter_name%%=*}"
+  local value="$(get_var "$parameter_name")"
   if [[ $value ]]; then
+    if [[ "$value" == true ]]; then
+      if [[ -z "$default" ]]; then
+        set_var "$parameter_name" "$default"
+      fi
+    fi
     return 0
   else
     return 1
@@ -197,8 +213,12 @@ parse_task() {
   fi
 }
 
-# Dynamically sets a variable value
+# Dynamically sets a variable value. When used with "if PREDICATE", the function
+# predicate_$PREDICATE will be called before.
 set_var() {
+  if [[ "$3" == "if" ]]; then
+    "predicate_$4" "$1" || return
+  fi
   eval "$1=\"$2\""
 }
 
@@ -207,13 +227,15 @@ get_var() {
   eval echo "\$$1"
 }
 
-append_var() {
+# Appends the value to the given variable
+append_to_var() {
   local content="$(get_var "$1") $2"
   set_var "$1" "${content}"
 }
 
-var_defined() {
-  if [[ -z "$get_var $1" ]]; then
+# Check if the given variable has value
+predicate_empty() {
+  if [[ -z "$(get_var $1)" ]]; then
     return 0
   else
     return 1

@@ -5,7 +5,7 @@ when() {
   local event="$1"
   local subscriber="$2"
   debug "$subscriber subscribed to $event"
-  append_var "SODA_EVENT_${event}" " $subscriber"
+  append_to_var "SODA_EVENT_${event}" " $subscriber"
 }
 
 # Broadcast an event

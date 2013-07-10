@@ -184,8 +184,9 @@ args in *$function_name*.
 
 Register the given parameter and returns indicating if the parameter was given. You may
 pass the parameter args in *$parameter_name*. The parameter value is accessible through
-the variable $parameter_name or value. To expose a value based parameter use the syntax
-PARAMETER=VALUE. To expose a parameter with optional value use the syntax PARAMETER[=VALUE].
+the variable $parameter_name (with hyphens replaced by underscores). To expose a value
+based parameter use the syntax PARAMETER=VALUE. To expose a parameter with optional value
+use the syntax PARAMETER[=VALUE].
 
     parameter "help" "Prints this help message" && {
       usage
