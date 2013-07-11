@@ -214,12 +214,8 @@ parse_task() {
   fi
 }
 
-# Dynamically sets a variable value. When used with "if PREDICATE", the function
-# predicate_$PREDICATE will be called before.
+# Dynamically sets a variable value.
 set_var() {
-  if [[ "$3" == "if" ]]; then
-    "predicate_$4" "$1" || return
-  fi
   eval "$1=\"$2\""
 }
 
@@ -228,19 +224,10 @@ get_var() {
   eval echo "\$$1"
 }
 
-# Appends the value to the given variable
+# Appends the value to the given variable (creates the variable if necessary)
 append_to_var() {
   local content="$(get_var "$1") $2"
   set_var "$1" "${content}"
-}
-
-# Check if the given variable has value
-predicate_empty() {
-  if [[ -z "$(get_var $1)" ]]; then
-    return 0
-  else
-    return 1
-  fi
 }
 
 [ -z "$LOG_FILE" ] && LOG_FILE=/dev/null
