@@ -81,7 +81,9 @@ parameter "verbose" "Set the log level to DEBUG" && {
   log_level=0
 }
 
-set_var log_level 1 if empty
+if [[ -z "$log_level" ]]; then
+  log_level=1
+fi
 
 parameter "log-level=N" "Set the log level (DEBUG=0 MESSAGE=1 WARN=2 ERROR=3 NONE=4)" && {
   case $log_level in
