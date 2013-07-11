@@ -23,7 +23,9 @@
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
 #
-# Asks user to input a value.
+# Asks user to input a value and stores it in the given variable.
+# If the variable is in upper case and previously set, the prompt
+# will be skipped
 #
 # Arguments:
 #
@@ -32,9 +34,13 @@
 #   3- Default value to assign if user input is empty
 #
 input() {
+  if [[ ("${2^^}" == "$2") && (-n "$(get_var "$2")") ]]; then
+    debug "Variable '\$$2' already set. Skipping input..."
+    return 1
+  fi
   local prompt="$(bold_white "$1"): "
   if [[ -n "$3" ]]; then
-    prompt="$prompt $(bold_white "[")$(bold_green "$3")$(bold_white "]")"
+    prompt="$prompt $(bold_white "[")$(bold_green "$3")$(bold_white "]") "
   fi
   read -p "$prompt" $2
   if [[ "$(get_var $2)" == "" ]]; then
@@ -43,8 +49,11 @@ input() {
 }
 
 #
-# Asks user to choose a value from a list. The label for selection will be stored in
-# $VAR_label variable.
+# Asks user to choose a value from a list and stores it in the given variable.
+# If the variable is in upper case and previously set, the prompt
+# will be skipped
+#
+# The label for selection will be stored in $VAR_label variable.
 #
 # Arguments:
 #
@@ -53,26 +62,31 @@ input() {
 #   *- List of labels
 #
 choose() {
-  text="$1"
-  var="$2"
+  local text="$1"
+  local var="$2"
   shift 2
-  local prompt="$(bold_white "$text:")"
-  local i=0
-  local options=()
-  for option in "$@"; do
+  if [[ ("${var^^}" == "$var") && (-n "$(get_var "$var")") ]]; then
+    debug "Variable '\$$var' already set. Skipping input..."
+    local options=("$@")
+  else
+    local prompt="$(bold_white "$text:")"
+    local i=0
+    local options=()
+    for option in "$@"; do
+      prompt="$prompt
+  $(bold_white "($i)") - $(yellow "$option")"
+      if [[ $i == 0 ]]; then
+        prompt="$prompt <=="
+      fi
+      ((i++))
+      options+=("$option")
+    done
     prompt="$prompt
-$(bold_white "($i)") - $(yellow "$option")"
-    if [[ $i == 0 ]]; then
-      prompt="$prompt <=="
-    fi
-    ((i++))
-    options+=("$option")
-  done
-  prompt="$prompt
-"
-  size=$(($i / 10 + 1))
-  read -p "$prompt" -n$size $var
-  echo ""
+> "
+    size=$(($i / 10 + 1))
+    read -p "$prompt" -n$size $var
+    echo ""
+  fi
   if [[ -z "$(get_var $var)" ]]; then
     set_var "$var" "0"
   fi

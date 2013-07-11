@@ -256,7 +256,8 @@ Displays a failed operation message and logs it in the *$LOG_FILE*.
 ### input (description, variable, [default_value])
 
 Asks the user to input a value. The value will be stored in the indicated
-variable.
+variable. If the variable name is in upper case and is already set, the prompt
+will not be shown.
 
     input "Server address" "SERVER" "localhost"
     input "User name" "USER_NAME" "$(whoami)"
@@ -266,7 +267,8 @@ variable.
 ### choose (description, variable, *options)
 
 Asks user to choose a value from a list of options and stores the 0-based index
-of the selected value and the label in the $variable_label var.
+of the selected value and the label in the $variable_label var. If the variable name
+is in upper case and is already set, the prompt will not be shown.
 
     choose "Server Type" "SERVER_TYPE" "Production" "Development"
 
