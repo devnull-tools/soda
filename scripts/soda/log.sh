@@ -55,13 +55,13 @@ log_fatal() {
 # Logs a successfull operation
 log_ok() {
   file_log "OK" "$1"
-  printf "%-60s [  %s  ]" "$1" "$(green "OK")"
+  console_log "OK" "$1" green
 }
 
 # Logs a failed operation
 log_fail() {
   file_log "FAIL" "$1"
-  printf "%-60s [ %s ]" "$1" "$(red "FAIL")"
+  console_log "FAIL" "$1" red
 }
 
 # Logs the given message
