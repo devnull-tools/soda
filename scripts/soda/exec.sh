@@ -46,7 +46,7 @@ invoke() {
       local always="$(bold_green "[")A$(bold_green "]")lways"
       local never="n$(red "[")E$(red "]")ver"
       prompt="$prompt ${open}${yes}${sep}${no}${sep}${always}${sep}${never}${close}"
-      read -p "$prompt " -n1 option
+      read -p "$prompt " option
       echo ""
       if [[ "$option" =~ ^[Aa]$ ]]; then
         # sets the var for always invoke

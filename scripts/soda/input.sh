@@ -83,9 +83,13 @@ choose() {
     done
     prompt="$prompt
 > "
-    size=$(($i / 10 + 1))
-    read -p "$prompt" -n$size $var
+    read -p "$prompt" $var
     echo ""
+    while [[ ("$var" -ge $i) || ("$var" -lt 0) ]]; do
+      echo "$(red "Invalid input, choose a value between 0 and $(($i - 1))")"
+      read -p "> " $var
+      echo ""
+    done
   fi
   if [[ -z "$(get_var $var)" ]]; then
     set_var "$var" "0"
