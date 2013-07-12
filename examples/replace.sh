@@ -40,7 +40,7 @@ replace() {
     [[ $(file $file_name | grep -i "text")  ]] || continue
     # Tests if the file contains the old string
     [[ $(grep "$OLD_STRING" $file_name)  ]] || continue
-    message "Found in $(basename "$file_name")"
+    log_info "Found in $(basename "$file_name")"
     invoke "Replace changes in $(basename "$file_name")" replace_in_file
   done
 }

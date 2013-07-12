@@ -59,11 +59,11 @@ invoke() {
       fi
     fi
     if [[ "$option" =~ ^[Yy]$ ]]; then
-      debug "Invoking $2"
+      log_debug "Invoking $2"
       $2
     fi
   else
-    error "$2 not defined"
+    log_error "$2 not defined"
   fi
 }
 
@@ -91,35 +91,34 @@ ask() {
 check() {
   code="$?"
   if [[ $code == 0 ]]; then
-    success "$1"
+    log_ok "$1"
   else
-    fail "$1" $code
+    log_fail "$1" $code
     broadcast "fail" "$code"
   fi
 }
 
 #
 # Executes a command and checks if it was sucessfull. The output will be redirected
-# to $LAST_COMMAND_LOG_FILE
+# to $LOG_FILE
 #
 # Arguments:
 #
 #  1- The command description
-#  ...- The command itself
+#  ...- The command itself (and parameters)
 #
 execute() {
   description=$1
   shift
   printf "%-60s " "$description"
-  "$@" &>$LAST_COMMAND_LOG_FILE
+  "$@" &>>$LOG_FILE
   code="$?"
-  cat $LAST_COMMAND_LOG_FILE >> $COMMAND_LOG_FILE
   if [[ $code == 0 ]]; then
-    printf "[  %s  ]\n" $(green "OK")
-    log "OK" "$description"
+    printf "[  %s  ]\n" "$(green "OK")"
+    file_log "OK" "$description"
   else
-    printf "[ %s ]\n" $(red "FAIL")
-    log "FAIL" "$description"
+    printf "[ %s ]\n" "$(red "FAIL")"
+    file_log "FAIL" "$description"
     broadcast "fail" "$code"
   fi
 }

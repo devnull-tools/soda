@@ -31,15 +31,15 @@ task "parse FILE OUTPUT_FORMAT" \
 parse() {
   local basename="$(basename "$1")"
   pandoc -o "${basename%%.*}.$2" -S -s "$1" && {
-    success "pandoc converting"
+    log_ok "pandoc converting"
     # Checks if the parameter was set
     if [[ $open_file ]]; then
       if [[ ${open_file} == true ]]; then
-        message "Opening file using kde-open"
+        log_info "Opening file using kde-open"
         # opens the file using kde system
         kde-open "${basename%%.*}.$2" &
       else
-        message "Opening file using $open_file"
+        log_info "Opening file using $open_file"
         $open_file "${basename%%.*}.$2" &
       fi
     fi

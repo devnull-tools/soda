@@ -43,7 +43,7 @@ git_push() {
 stash_work() {
   git diff-files --quiet
   if [[ "$?" == 1 ]]; then
-    message "Stashing changes"
+    log_info "Stashing changes"
     STASH=true
     git stash save
     if [[ $(git stash list | wc -l) == 0 ]]; then
@@ -54,10 +54,10 @@ stash_work() {
 
 unstash_work() {
   if [[ $STASH ]]; then
-    message "Applying stash"
+    log_info "Applying stash"
     git stash apply
     if [[ $STASH_CLEAR ]]; then
-      message "Clearing stash"
+      log_info "Clearing stash"
       git stash clear
     fi
   fi
@@ -68,16 +68,16 @@ update() {
   stash_work
   local branch="$(current_branch)"
   if [[ ! "$branch" == "master" ]]; then
-    message "Switching to master branch"
+    log_info "Switching to master branch"
     git checkout master
     local switch=true
   fi
   git_fetch
   git_rebase
   if [[ $switch ]]; then
-    message "Switching back to $branch branch"
+    log_info "Switching back to $branch branch"
     git checkout "$branch"
-    message "Porting changes into $branch"
+    log_info "Porting changes into $branch"
     git rebase master
   fi
   unstash_work
@@ -88,15 +88,15 @@ push() {
   stash_work
   local branch="$(current_branch)"
   if [[ "$branch" == "master" ]]; then
-    message "Pushing changes from master into server"
+    log_info "Pushing changes from master into server"
     git_push
   else
-    message "Pushing changes from $branch into master"
+    log_info "Pushing changes from $branch into master"
     git checkout master
     git merge "$branch"
-    message "Pushing changes from master into server"
+    log_info "Pushing changes from master into server"
     git_push
-    message "Going back to $branch branch"
+    log_info "Going back to $branch branch"
     git checkout "$branch"
     git rebase master
   fi
@@ -110,10 +110,10 @@ merge() {
   if [[ "$branch" == "master" ]]; then
     error "Already on master branch"
   else
-    message "Pushing changes from $branch into master"
+    log_info "Pushing changes from $branch into master"
     git checkout master
     git merge "$branch"
-    message "Going back to $branch branch"
+    log_info "Going back to $branch branch"
     git checkout "$branch"
     git rebase master
   fi
@@ -126,9 +126,9 @@ close() {
   if [[ "$branch" == "master" ]]; then
     error "Cannot delete master branch"
   else
-    message "Switching to master branch"
+    log_info "Switching to master branch"
     git checkout master
-    message "Deleting branch $branch"
+    log_info "Deleting branch $branch"
     git branch -d "$branch"
   fi
 }
@@ -148,7 +148,7 @@ git_status="$(git status &> /dev/null)"
 
 if [[ "$?" == 0 ]]; then
   if [[ $(git branch -a | grep -ie trunk) ]]; then
-    message "Found git svn branch"
+    log_info "Found git svn branch"
 
     git_fetch() {
       git svn fetch

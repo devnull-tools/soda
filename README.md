@@ -154,12 +154,7 @@ completion mode.
 
 You can configure SODA through a **~/.soda/soda.conf** file. The supported properties are:
 
-* **SODA_LOG_DIR** - Directory for writing the log files (defaults to soda *directory/log*)
-* **LOG_FILE** - The main log file  (defaults to *$SODA_LOG_DIR/soda.log*)
-* **COMMAND_LOG_FILE** - The file to write the command log when using some builting functions
-(defaults to *$SODA_LOG_DIR/soda.command.log*)
-* **LAST_COMMAND_LOG_FILE** - The file to write the log for the last command executed when using
-some builting functions (defaults to *$SODA_LOG_DIR/soda.last.command.log*)
+* **LOG_FILE** - The log file  (defaults to *$SODA_DIR/log/soda.log*)
 * **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
 * **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
 * **SODA_PARAMETER_LENGTH** - The max length to format the parameter name in the help usage
@@ -169,6 +164,29 @@ usage
 affects the bash completion
 * **SODA_TASK_BASH_COMPLETION_SUFFIX** - The suffix to build the function for custom bash completion
 (defaults to *_bash_completion*)
+
+## Logging
+
+To log something, just call the **log** function passing the category and message (optionally, you
+can pass a color for showing in console). There are some aliases for calling log with a predefined
+category:
+
+* **log_debug** - uses the DEBUG category
+* **log_info** - uses the INFO category
+* **log_notice** - uses the NOTICE category
+* **log_warn** - uses the WARN category
+* **log_error** - uses the ERROR category
+* **log_fatal** - uses the FATAL category
+
+### Custom logging
+
+If you want to use another log system (a *syslog* or another) just define a **log** function.
+
+    log() {
+      local category="$1"
+      local message="$2"
+      logger -s -t "$category" "$message"
+    }
 
 ## Builtin functions
 
@@ -228,30 +246,6 @@ Executes a command and checks if it was sucessfull. The output will be redirecte
 $LAST_COMMAND_LOG_FILE.
 
     execute "Pushing commits" git push
-
-### message (message)
-
-Displays an information message and logs it in the *$LOG_FILE*
-
-### debug (message)
-
-Displays a debug message and logs it in the *$LOG_FILE*
-
-### warn (message)
-
-Displays a warn message and logs it in the *$LOG_FILE*
-
-### error (message)
-
-Displays en error message and logs it in the *$LOG_FILE*
-
-### success (message)
-
-Displays a successfull operation message and logs it in the *$LOG_FILE*
-
-### fail (message)
-
-Displays a failed operation message and logs it in the *$LOG_FILE*.
 
 ### input (description, variable, [default_value])
 

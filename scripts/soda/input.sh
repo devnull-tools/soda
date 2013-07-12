@@ -35,7 +35,7 @@
 #
 input() {
   if [[ ("${2^^}" == "$2") && (-n "$(get_var "$2")") ]]; then
-    debug "Variable '\$$2' already set. Skipping input..."
+    log_debug "Variable '\$$2' already set. Skipping input..."
     return 1
   fi
   local prompt="$(bold_white "$1"): "
@@ -66,7 +66,7 @@ choose() {
   local var="$2"
   shift 2
   if [[ ("${var^^}" == "$var") && (-n "$(get_var "$var")") ]]; then
-    debug "Variable '\$$var' already set. Skipping input..."
+    log_debug "Variable '\$$var' already set. Skipping input..."
     local options=("$@")
   else
     local prompt="$(bold_white "$text:")"
