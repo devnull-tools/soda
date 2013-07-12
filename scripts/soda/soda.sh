@@ -26,12 +26,6 @@ parameter "help" "Print the help message." && {
   usage
 }
 
-parameter "options=NAME" "Load all NAME.conf file inside \$SODA_USER_DIR/options" && {
-  for conf in $(find $SODA_USER_DIR/options -type f -name "$options.conf"); do
-    source $conf
-  done
-}
-
 task "help [NAMESPACE]" "Print the help message for the given namespace (leave empty for all)"
 help() {
   usage "$1"
