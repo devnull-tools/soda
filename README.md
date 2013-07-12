@@ -155,15 +155,16 @@ completion mode.
 You can configure SODA through a **~/.soda/soda.conf** file. The supported properties are:
 
 * **LOG_FILE** - The log file  (defaults to *$SODA_DIR/log/soda.log*)
-* **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
-* **SODA_FUNCTION_ARGS_LENGTH** - The max length to format the function parameters in the help usage
-* **SODA_PARAMETER_LENGTH** - The max length to format the parameter name in the help usage
-* **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help
-usage
 * **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also
 affects the bash completion
 * **SODA_TASK_BASH_COMPLETION_SUFFIX** - The suffix to build the function for custom bash completion
 (defaults to *_bash_completion*)
+* **SODA_FILE_LOG_PATTERN** - The pattern to format logs that goes in *LOG_FILE*
+* **SODA_CONSOLE_LOG_PATTERN** - The pattern to format logs that goes in console
+* **SODA_FUNCTION_NAME_LENGTH** - The max length to format the function name in the help usage
+* **SODA_PARAMETER_NAME_LENGTH** - The max length to format the parameter names in the help usage
+* **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help
+usage
 
 ## Logging
 
