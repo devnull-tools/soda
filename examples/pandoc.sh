@@ -24,24 +24,17 @@
 
 # Example of using pandoc
 
-parameter "open-file[=PROGRAM]" "Open the generated file after compilation"
+parameter "open-file[=PROGRAM]" "kde-open" "Open the generated file after compilation"
 
 task "parse FILE OUTPUT_FORMAT" \
      'Parses the given file and outputs it in a file $FILE.$OUTPUT_FORMAT'
 parse() {
   local basename="$(basename "$1")"
-  pandoc -o "${basename%%.*}.$2" -S -s "$1" && {
-    log_ok "pandoc converting"
+  execute "pandoc converting" pandoc -o "${basename%%.*}.$2" -S -s "$1" && {
     # Checks if the parameter was set
     if [[ $open_file ]]; then
-      if [[ ${open_file} == true ]]; then
-        log_info "Opening file using kde-open"
-        # opens the file using kde system
-        kde-open "${basename%%.*}.$2" &
-      else
-        log_info "Opening file using $open_file"
-        $open_file "${basename%%.*}.$2" &
-      fi
+      log_info "Opening file using $open_file"
+      $open_file "${basename%%.*}.$2" &
     fi
   }
 }
