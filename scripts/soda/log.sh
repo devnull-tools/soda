@@ -34,7 +34,7 @@ log_info() {
 
 # Logs a message using 'NOTICE' category
 log_notice() {
-  log "NOTICE" "$1" blue
+  log "NOTICE" "$1" cyan
 }
 
 # Logs a message using 'WARN' category
