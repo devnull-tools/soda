@@ -32,8 +32,6 @@ if [[ -f "$SODA_USER_DIR/soda.conf" ]]; then
   . $SODA_USER_DIR/soda.conf
 fi
 
-SODA_RESOURCES=$SODA_USER_DIR/resources
-
 function usage {
   local task="TASK"
   if [[ -z "$1" ]]; then
