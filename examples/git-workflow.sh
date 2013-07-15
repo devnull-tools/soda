@@ -142,24 +142,30 @@ open() {
   git checkout -b "$branch"
 }
 
-# Tests if the git is using svn
+# Uses event broadcast to determine if a svn integration is used
+when start check_svn
+check_svn() {
+  # Tests if the git is using svn
+  log_debug "Checking for svn"
+  git_status="$(git status &> /dev/null)"
 
-git_status="$(git status &> /dev/null)"
+  if [[ "$?" == 0 ]]; then
+    if [[ $(git branch -a | grep -ie trunk) ]]; then
+      log_info "Found git svn branch"
 
-if [[ "$?" == 0 ]]; then
-  if [[ $(git branch -a | grep -ie trunk) ]]; then
-    log_info "Found git svn branch"
+      git_fetch() {
+        git svn fetch
+      }
 
-    git_fetch() {
-      git svn fetch
-    }
+      git_rebase() {
+        git svn rebase
+      }
 
-    git_rebase() {
-      git svn rebase
-    }
-
-    git_push() {
-      git svn dcommit
-    }
+      git_push() {
+        git svn dcommit
+      }
+    fi
+  else
+    log_debug "No svn found"
   fi
-fi
+}
