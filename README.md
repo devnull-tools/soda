@@ -110,7 +110,8 @@ The builtin events are:
 
 * **start** - before the task execution
 * **finish** - after the task execution
-* **fail** *(exit code)* - when a command fails to execute
+* **fail** *(exit code)* - when a command fails to execute (broadcasted by *execute* and *check*
+functions)
 
 ## Bash Completion
 
