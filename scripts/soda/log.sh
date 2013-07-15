@@ -24,44 +24,42 @@
 
 # Logs a message using 'DEBUG' category
 log_debug() {
-  log "DEBUG" "$1" gray
+  log "DEBUG" "$1" "$SODA_COLOR_DEBUG"
 }
 
 # Logs a message using 'INFO' category
 log_info() {
-  log "INFO" "$1" blue
+  log "INFO" "$1" "$SODA_COLOR_INFO"
 }
 
 # Logs a message using 'NOTICE' category
 log_notice() {
-  log "NOTICE" "$1" cyan
+  log "NOTICE" "$1" "$SODA_COLOR_NOTICE"
 }
 
 # Logs a message using 'WARN' category
 log_warn() {
-  log "WARN" "$1" yellow
+  log "WARN" "$1" "$SODA_COLOR_WARN"
 }
 
 # Logs a message using 'ERROR' category
 log_error() {
-  log "ERROR" "$1" red
+  log "ERROR" "$1" "$SODA_COLOR_ERROR"
 }
 
 # Logs a message using 'FATAL' category
 log_fatal() {
-  log "FATAL" "$1" bold_red
+  log "FATAL" "$1" "$SODA_COLOR_FATAL"
 }
 
 # Logs a successfull operation
 log_ok() {
-  file_log "OK" "$1"
-  console_log "OK" "$1" green
+  log "OK" "$1" "$SODA_COLOR_OK"
 }
 
 # Logs a failed operation
 log_fail() {
-  file_log "FAIL" "$1"
-  console_log "FAIL" "$1" red
+  log "FAIL" "$1" "$SODA_COLOR_FAIL"
 }
 
 # Logs the given message
