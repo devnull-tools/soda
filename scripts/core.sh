@@ -236,8 +236,6 @@ append_to_var() {
 }
 
 [ -z "$LOG_FILE" ] && LOG_FILE=/dev/null
-[ -z "$COMMAND_LOG_FILE" ] && COMMAND_LOG_FILE=/dev/null
-[ -z "$LAST_COMMAND_LOG_FILE" ] && LAST_COMMAND_LOG_FILE=/dev/null
 
 namespaces() {
   import_all_namespaces
