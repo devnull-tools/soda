@@ -142,7 +142,7 @@ parameter "log-level=N" "Set the log level (DEBUG INFO WARN ERROR FATAL NONE)" &
       log_fatal() { :; }
       ;;
     *)
-      echo "Invalid log-level"
+      echo "Invalid log-level: $log_level"
       exit 1
       ;;
   esac
