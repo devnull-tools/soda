@@ -46,6 +46,10 @@ function usage {
   fi
 
   echo "Usage: $(basename $0) [*PARAMETERS] $task [*ARGS] [*PARAMETERS]"
+  echo "  * Only functions exposed by 'task' will appear here and can be invoked"
+  echo "  * Any --PARAMETER will be converted to a variable (using soda's conventions)"
+  echo "  * Parameters after task will be suggested by bash completion based on the task namespace"
+  echo ""
   printf "$PARAMETERS_USAGE\n\n"
   printf "$TASKS_USAGE\n"
   exit 1
@@ -84,5 +88,5 @@ if [[ -n "$task_name" ]]; then
   }
   broadcast "start"
   "$TASK" "${SODA_TASK_PARAMETERS[@]:1}"
+  broadcast "finish"
 fi
-broadcast "finish"
