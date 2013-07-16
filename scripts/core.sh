@@ -224,6 +224,7 @@ get_var() {
   eval echo "\$$1"
 }
 
+# Converts the string to upper case (for use with old versions of bash)
 uppercase() {
   echo "$1" | tr '[:lower:]' '[:upper:]'
 }
