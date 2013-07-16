@@ -34,7 +34,7 @@
 #   3- Default value to assign if user input is empty
 #
 input() {
-  if [[ ("${2^^}" == "$2") && (-n "$(get_var "$2")") ]]; then
+  if [[ ("$(uppercase "$2")" == "$2") && (-n "$(get_var "$2")") ]]; then
     log_debug "Variable '\$$2' already set. Skipping input..."
     return 1
   fi
@@ -65,7 +65,7 @@ choose() {
   local text="$1"
   local var="$2"
   shift 2
-  if [[ ("${var^^}" == "$var") && (-n "$(get_var "$var")") ]]; then
+  if [[ ("$(uppercase "$var")" == "$var") && (-n "$(get_var "$var")") ]]; then
     log_debug "Variable '\$$var' already set. Skipping input..."
     local options=("$@")
   else

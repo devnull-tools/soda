@@ -224,6 +224,10 @@ get_var() {
   eval echo "\$$1"
 }
 
+uppercase() {
+  echo "$1" | tr '[:lower:]' '[:upper:]'
+}
+
 # Appends the value to the given variable (creates the variable if necessary)
 append_to_var() {
   local content="$(get_var "$1") $2"

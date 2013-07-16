@@ -105,7 +105,7 @@ if [[ -z "$log_level" ]]; then
 fi
 
 parameter "log-level=N" "Set the log level (DEBUG INFO WARN ERROR FATAL NONE)" && {
-  case "${log_level^^}" in
+  case "$(uppercase ${log_level})" in
     DEBUG)
       ;;
     INFO)
