@@ -22,8 +22,8 @@ Create a *~/.soda* directory with the following structure:
 * _resources_ - directory to put resources (available through the
 **$RESOURCES** variable)
 
-Inside *scripts*, any function in any script present in *scripts/common* will be
-loaded and may be called through `soda`:
+Inside *scripts*, any function in any script present in *scripts/common* (and exposed through
+**task**) will be loaded and can be used:
 
     task "git-open" "Creates a new branch off master"
     git_open() {
@@ -40,11 +40,11 @@ This will call the *git_open* function passing *work* as the arguments. By conve
 may call a function with underscores replacing them by hyphens. To execute the task without
 arguments, just use `soda git-open`.
 
-To see the program usage, type `$ soda` or `$ soda --help`
+To see the program usage, type `$ soda` or `$ soda help`
 
 ## Task Namespaces
 
-The namespaces are single directories in _scripts_. By default, the *common* and *soda* namespaces
+The namespaces are simply directories in _scripts_. By default, the *common* and *soda* namespaces
 are always imported. You can include other namespaces using the **import** function.
 
 Namespaces are useful if you have a set of scripts that you should use only on specific cases. (It
@@ -95,6 +95,8 @@ If you need to pass a set of parameters, you can use --OPTION_NAME in case of a 
 To register a parameter in the program usage, use the *parameter* function (for more details, see
 the documentation bellow). The registered parameters will also be available for bash completion.
 
+Keep in mind that **any** parameter will be converted to a variable (even those not exposed).
+
 ## Events
 
 You can subscribe and publish events in SODA using **when** and **broadcast** builtin functions.
@@ -117,7 +119,8 @@ functions)
 
 SODA supports bash completion by importing all namespaces and searching for defined parameters
 and tasks. To enable bash completion, use the file **soda-bash-completion** (you can source it,
-copy to */etc/bash_completion.d/*, ...). The default bash completion proposes tasks and parameters.
+copy to */etc/bash_completion.d/* or using your preferred way). The default bash completion proposes
+tasks and parameters.
 
     $ soda he[TAB]
     $ soda help
@@ -242,16 +245,18 @@ description.
 
 ### execute (description, command, [*args])
 
-Executes a command and checks if it was sucessfull. The output will be redirected to
-$LAST_COMMAND_LOG_FILE.
+Executes a command and checks if it was sucessfull. The output will be redirected to *$LOG_FILE* and
+the result will be .
 
     execute "Pushing commits" git push
+    # outputs according to exit code:
+    # Pushing commits           [  OK  ]
+    # Pushing commits           [ FAIL ]
 
 ### input (description, variable, [default_value])
 
-Asks the user to input a value. The value will be stored in the indicated
-variable. If the variable name is in upper case and is already set, the prompt
-will not be shown.
+Asks the user to input a value. The value will be stored in the indicated variable. If the variable
+name is in upper case and is already set, the prompt will be skipped.
 
     input "Server address" "SERVER" "localhost"
     input "User name" "USER_NAME" "$(whoami)"
@@ -262,7 +267,7 @@ will not be shown.
 
 Asks user to choose a value from a list of options and stores the 0-based index
 of the selected value and the label in the $variable_label var. If the variable name
-is in upper case and is already set, the prompt will not be shown.
+is in upper case and is already set, the prompt will be skipped.
 
     choose "Server Type" "SERVER_TYPE" "Production" "Development"
 
