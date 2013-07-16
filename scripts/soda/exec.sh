@@ -99,8 +99,8 @@ check() {
 }
 
 #
-# Executes a command and checks if it was sucessfull. The output will be redirected
-# to $LOG_FILE
+# Executes a command and checks if it was sucessfull. The output can be retrieved using
+# the variable $LAST_EXECUTION_OUTPUT
 #
 # Arguments:
 #
@@ -111,7 +111,7 @@ execute() {
   description=$1
   shift
   printf "%-60s " "$description"
-  "$@" &>>$LOG_FILE
+  LAST_EXECUTION_OUTPUT="$("$@" 2>&1)"
   code="$?"
   if [[ $code == 0 ]]; then
     printf "[  %s  ]\n" "$(green "OK")"

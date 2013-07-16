@@ -88,8 +88,9 @@ console_log() {
 parameter "no-file-log" "Do not log in files" && {
   file_log() { :; }
 } || {
-  # Clears the output files
-  [[ -n "$LOG_FILE" ]] > $LOG_FILE
+  if ! [[ -f "$LOG_FILE" ]]; then
+    touch "$LOG_FILE"
+  fi
 }
 
 parameter "no-console-log" "Do not log in console" && {
