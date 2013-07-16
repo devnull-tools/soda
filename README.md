@@ -242,8 +242,8 @@ description.
 
 ### execute (description, command, [*args])
 
-Executes a command and checks if it was sucessfull. The output will be redirected to *$LOG_FILE* and
-the result will be .
+Executes a command and checks if it was sucessfull. The output will be stored in the variable
+*$LAST_EXECUTION_OUTPUT* and the result will be .
 
     execute "Pushing commits" git push
     # outputs according to exit code:
