@@ -227,9 +227,6 @@ If a namespace was already imported, then it will not be imported again.
 
 Invokes the given function based on user choice.
 
-If there is a variable named exactly like the function, its value will be used instead of
-asking user.
-
 ### ask (question)
 
 Asks user about something and indicates if the answer is **yes** or **no**.
