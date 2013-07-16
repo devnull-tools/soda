@@ -41,10 +41,10 @@ invoke() {
       local open="$(bold_white '(')"
       local close="$(bold_white ')')"
       local sep="$(bold_white '/')"
-      local yes="$(green "[")Y$(green "]")es"
-      local no="$(red "[")N$(red "]")o"
-      local always="$(bold_green "[")A$(bold_green "]")lways"
-      local never="n$(red "[")E$(red "]")ver"
+      local yes="[$(green "y")]es"
+      local no="[$(red "N")]o"
+      local always="[$(bold_green "a")]lways"
+      local never="n[$(bold_red "e")]ver"
       prompt="$prompt ${open}${yes}${sep}${no}${sep}${always}${sep}${never}${close}"
       read -p "$prompt " option
       echo ""
@@ -72,9 +72,9 @@ invoke() {
 #
 ask() {
   prompt="$(bold_white "$1 (")$(bold_green 'y')$(bold_white '/')$(bold_green 'N')$(bold_white ')')"
-  read -p "$prompt " -n1
+  read -p "$prompt "
   echo ""
-  if [[ "$REPLY" =~ ^[Yy] ]]; then
+  if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     return 0
   else
     return 1
