@@ -92,9 +92,11 @@ check() {
   code="$?"
   if [[ $code == 0 ]]; then
     log_ok "$1"
+    return 0
   else
     log_fail "$1" $code
     broadcast "fail" "$code"
+    return 1
   fi
 }
 
