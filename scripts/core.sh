@@ -150,9 +150,12 @@ import() {
 }
 
 import_all_namespaces() {
-  for namespace in $(ls $SODA_USER_DIR/scripts); do
-    import "$namespace"
-  done
+  import soda
+  if [[ -d "$SODA_USER_DIR/scripts" ]]; then
+    for namespace in $SODA_USER_DIR/scripts/*; do
+      import "$(basename $namespace)"
+    done
+  fi
 }
 
 #
@@ -160,8 +163,8 @@ import_all_namespaces() {
 #
 load_scripts() {
   if [[ -d "$1" ]]; then
-    for script in $(ls "$1" | grep .sh | sort); do
-      . "$1/$script"
+    for script in $1/*; do
+      . "$script"
     done
     return 0
   else
