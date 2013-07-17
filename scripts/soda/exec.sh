@@ -118,9 +118,11 @@ execute() {
   if [[ $code == 0 ]]; then
     printf "[  %s  ]\n" "$(green "OK")"
     file_log "OK" "$description"
+    return 0
   else
     printf "[ %s ]\n" "$(red "FAIL")"
     file_log "FAIL" "$description"
     broadcast "fail" "$code"
+    return 1
   fi
 }
