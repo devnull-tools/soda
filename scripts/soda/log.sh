@@ -71,11 +71,12 @@ log() {
   console_log "$category" "$message" "$color"
 }
 
-# Inserts a log message in $LOG_FILE
+# Put a log message in $LOG_FILE
 file_log() {
   printf "$SODA_FILE_LOG_PATTERN" $(date +"${SODA_DATE_LOG_PATTERN}") "$1" "$2" >> $LOG_FILE
 }
 
+# Put a log message in console
 console_log() {
   local message="$(printf "$SODA_CONSOLE_LOG_PATTERN" "$1" "$2")"
   if [[ -n "$3" ]]; then
