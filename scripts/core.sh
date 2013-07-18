@@ -187,7 +187,7 @@ set_parameter() {
   parameter="${parameter%%=*}"
   parameter="${parameter//-/_}"
   parameter="$(uppercase $parameter)"
-  eval "${parameter}=$value"
+  eval "${parameter}=\"$value\""
 }
 
 #
