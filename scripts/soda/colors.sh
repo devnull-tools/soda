@@ -92,6 +92,6 @@ bold_white() {
 
 parameter "no-colors" "Do not use colors" && {
   _color_escape() {
-    printf "$3"
+    echo -en "$3"
   }
 }
