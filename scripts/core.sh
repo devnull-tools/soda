@@ -62,10 +62,8 @@ task() {
 #
 # Exposes the given parameter in the program usage, register it for autocompletion
 # and returns indicating if the parameter was given. You can access the parameter
-# value through the variable named as the parameter name.
-#
-# To expose a value based parameter use the syntax PARAMETER=VALUE. To expose a
-# parameter with optional value use the syntax PARAMETER[=VALUE].
+# value through the variable named as the parameter name with upper case and hyphens
+# replaced by unerscores.
 #
 # Arguments:
 #

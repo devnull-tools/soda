@@ -168,6 +168,9 @@ affects the bash completion
 * **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help
 usage
 
+Remember that parameters are converted to upper case, so you can call `soda --log-file=path/to/file`
+and the *$LOG_FILE* variable will be set to that value.
+
 ## Logging
 
 To log something, just call the **log** function passing the category and message (optionally, you
@@ -201,20 +204,18 @@ most significant are listed below:
 Register the given function as a task and enables invoking it. You may pass the function
 args in *$function_name*.
 
-### parameter (parameter_name, [default_value], description)
+### parameter (parameter_name, [value_name] ,[default_value], description)
 
-Register the given parameter and returns indicating if the parameter was given. You may
-pass the parameter args in *$parameter_name*. The parameter value is accessible through
-the variable $parameter_name (with hyphens replaced by underscores). To expose a value
-based parameter use the syntax PARAMETER=VALUE. To expose a parameter with optional value
-use the syntax PARAMETER[=VALUE].
+Register the given parameter and returns indicating if the parameter was given. The parameter value
+is accessible through the variable $parameter_name in upper case with hyphens replaced by
+underscores.
 
     parameter "help" "Prints this help message" && {
       usage
     }
 
-    parameter "backup[=EXTENSION]" "bak" "Indicates the extension for file backup" && {
-      additional_parameters="$additional_parameters --extension=$backup"
+    parameter "backup-extension" "[EXTENSION]" "bak" "Indicates the extension for file backup" && {
+      additional_parameters="$additional_parameters --extension=$BACKUP_EXTENSION"
     }
 
 ### import (namespace)
