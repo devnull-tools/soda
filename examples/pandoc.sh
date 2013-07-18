@@ -24,7 +24,7 @@
 
 # Example of using pandoc
 
-parameter "open-file[=PROGRAM]" "kde-open" "Open the generated file after compilation"
+parameter "open-file" "[PROGRAM]" "kde-open" "Open the generated file after compilation"
 
 task "parse FILE OUTPUT_FORMAT" \
      'Parses the given file and outputs it in a file $FILE.$OUTPUT_FORMAT'

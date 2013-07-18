@@ -90,7 +90,7 @@ bold_white() {
   _color_escape 1 7 "$1"
 }
 
-parameter "no_colors" "Do not use colors" && {
+parameter "no-colors" "Do not use colors" && {
   _color_escape() {
     printf "$3"
   }

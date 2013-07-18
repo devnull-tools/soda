@@ -69,37 +69,40 @@ task() {
 #
 # Arguments:
 #
-#   1- parameter name (value should go here too)
-#   2- default value (optional)
-#   3- parameter description
+# parameter name, [parameter value, [default value]], description
 #
 parameter() {
-  local parameter_name="${1//_/-}"
+  local parameter_name="$(lowercase ${1//_/-})"
+  local parameter_value=""
   local default=""
   local description=""
   if [[ $# == 3 ]]; then
-    default="$2"
-    description="$3 (defaults to '$2')"
+    parameter_value="$2"
+    description="$3"
+  elif [[ $# == 4 ]]; then
+    parameter_value="$2"
+    default="$3"
+    description="$4 (defaults to '$3')"
   else
     description="$2"
   fi
-  PARAMETERS_USAGE="$PARAMETERS_USAGE
-    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}")"
-  PARAMETERS_USAGE="${PARAMETERS_USAGE}$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $description"
-  if [[ "$parameter_name" == *"[="*"]" ]]; then
-    local _optional=true
-    parameter_name=${parameter_name//[/}
-    parameter_name=${parameter_name//]/}
+  if [[ "$parameter_value" == *"["*"]" ]]; then
+    local optional=true
+    parameter_value="${parameter_value/[/[=}"
+  elif [[ -n "$parameter_value" ]]; then
+    parameter_value="=${parameter_value}"
   fi
-  BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS --${parameter_name%%=*}"
-  if [[ "$parameter_name" =~ .+=.+ ]]; then
+  PARAMETERS_USAGE="$PARAMETERS_USAGE
+    $(printf "%-${SODA_PARAMETER_NAME_LENGTH}s" "--${parameter_name}${parameter_value}")"
+  PARAMETERS_USAGE="${PARAMETERS_USAGE}$(printf "%+${SODA_PARAMETER_NAMESPACE_LENGTH}s" "$PARAMETER_NAMESPACE") $description"
+  BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS --${parameter_name}"
+  if [[ -n "$parameter_value" ]]; then
     BASH_COMPLETION_PARAMETERS="${BASH_COMPLETION_PARAMETERS}="
-    if [[ $_optional ]]; then
-      BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS --${parameter_name%%=*}"
+    if [[ $optional ]]; then
+      BASH_COMPLETION_PARAMETERS="$BASH_COMPLETION_PARAMETERS --${parameter_name}"
     fi
   fi
-  parameter_name="${parameter_name//-/_}"
-  parameter_name="${parameter_name%%=*}"
+  parameter_name="$(uppercase ${parameter_name//-/_})"
   local value="$(get_var "$parameter_name")"
   if [[ $value ]]; then
     if [[ "$value" == true ]]; then
@@ -183,6 +186,7 @@ set_parameter() {
   fi
   parameter="${parameter%%=*}"
   parameter="${parameter//-/_}"
+  parameter="$(uppercase $parameter)"
   eval "${parameter}=$value"
 }
 
@@ -230,6 +234,11 @@ get_var() {
 # Converts the string to upper case (for use with old versions of bash)
 uppercase() {
   echo "$1" | tr '[:lower:]' '[:upper:]'
+}
+
+# Converts the string to lower case (for use with old versions of bash)
+lowercase() {
+  echo "$1" | tr '[:upper:]' '[:lower:]'
 }
 
 # Appends the value to the given variable (creates the variable if necessary)

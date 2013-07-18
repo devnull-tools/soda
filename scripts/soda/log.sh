@@ -99,15 +99,15 @@ parameter "no-console-log" "Do not log in console" && {
 }
 
 parameter "verbose" "Set the log level to DEBUG" && {
-  log_level=DEBUG
+  LOG_LEVEL=DEBUG
 }
 
-if [[ -z "$log_level" ]]; then
-  log_level=INFO
+if [[ -z "$LOG_LEVEL" ]]; then
+  LOG_LEVEL=INFO
 fi
 
-parameter "log-level=N" "Set the log level (DEBUG INFO WARN ERROR FATAL NONE)" && {
-  case "$(uppercase ${log_level})" in
+parameter "LOG_LEVEL" "N" "Set the log level (DEBUG INFO WARN ERROR FATAL NONE)" && {
+  case "$(uppercase ${LOG_LEVEL})" in
     DEBUG)
       ;;
     INFO)
@@ -144,7 +144,7 @@ parameter "log-level=N" "Set the log level (DEBUG INFO WARN ERROR FATAL NONE)" &
       log_fatal() { :; }
       ;;
     *)
-      echo "Invalid log-level: $log_level"
+      echo "Invalid log-level: $LOG_LEVEL"
       exit 1
       ;;
   esac

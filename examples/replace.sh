@@ -45,7 +45,7 @@ replace() {
   done
 }
 
-parameter "backup[=EXTENSION]" ".bak" "Backups the changes with the extension"
+parameter "backup" "[EXTENSION]" ".bak" "Backups the changes with the extension"
 
 replace_in_file() {
   execute "Replacing in $(basename "$file_name")" \

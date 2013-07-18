@@ -82,13 +82,13 @@ The **"."** indicates that namespace is the first part and task is the second pa
 ## Task Parameters
 
 If you need to pass a set of parameters, you can use --OPTION_NAME in case of a boolean option or
---OPTION_NAME=OPTION_VALUE. The parameterss will be translated replacing hyphens with underscores
-(but ignoring the prefix **--**).
+--OPTION_NAME=OPTION_VALUE. The parameters will be translated replacing hyphens with underscores
+(but ignoring the prefix **--**) **with upper case**.
 
       $ soda --my-option=test
 
       # script
-      if [[ -n "$my_option" ]]; then
+      if [[ -n "$MY_OPTION" ]]; then
         # some code
       fi
 
@@ -140,7 +140,7 @@ the parameters for the task namespace.
 
     # namespace my-namespace
 
-    option "option" "My custom option"
+    parameter "option" "My custom option"
     task "my-task" "My task"
     my_task() {
       :
