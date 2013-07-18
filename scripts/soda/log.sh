@@ -73,7 +73,7 @@ log() {
 
 # Inserts a log message in $LOG_FILE
 file_log() {
-  printf "$SODA_FILE_LOG_PATTERN" $(date +%H:%M:%S) "$1" "$2" >> $LOG_FILE
+  printf "$SODA_FILE_LOG_PATTERN" $(date +"${SODA_DATE_LOG_PATTERN}") "$1" "$2" >> $LOG_FILE
 }
 
 console_log() {
