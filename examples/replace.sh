@@ -45,16 +45,16 @@ replace() {
   done
 }
 
-parameter "backup" "[EXTENSION]" ".bak" "Backups the changes with the extension"
+parameter "BACKUP" "[EXTENSION]" ".bak" "Backups the changes with the extension"
 
 replace_in_file() {
   execute "Replacing in $(basename "$file_name")" \
-    sed -i$backup -e "s/${OLD_STRING}/${NEW_STRING}/g" "$file_name"
-  if [[ -n "$backup" ]]; then
+    sed -i$BACKUP -e "s/${OLD_STRING}/${NEW_STRING}/g" "$file_name"
+  if [[ -n "$BACKUP" ]]; then
     invoke "Show diff" show_diff
   fi
 }
 
 show_diff() {
-  diff "$file_name" "$file_name$backup"
+  diff "$file_name" "$file_name$BACKUP"
 }

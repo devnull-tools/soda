@@ -32,9 +32,9 @@ parse() {
   local basename="$(basename "$1")"
   execute "pandoc converting" pandoc -o "${basename%%.*}.$2" -S -s "$1" && {
     # Checks if the parameter was set
-    if [[ $open_file ]]; then
-      log_info "Opening file using $open_file"
-      $open_file "${basename%%.*}.$2" &
+    if [[ $OPEN_FILE ]]; then
+      log_info "Opening file using $OPEN_FILE"
+      $OPEN_FILE "${basename%%.*}.$2" &
     fi
   }
 }
