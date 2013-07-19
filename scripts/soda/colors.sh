@@ -23,7 +23,7 @@
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
 _color_escape() {
-  printf "\e[$1;3$2m$3\e[0;0m"
+  echo -e "\e[$1;3$2m$3\e[0;0m"
 }
 
 red() {
@@ -92,6 +92,6 @@ bold_white() {
 
 parameter "no-colors" "Do not use colors" && {
   _color_escape() {
-    echo -en "$3"
+    echo -e "$3"
   }
 }
