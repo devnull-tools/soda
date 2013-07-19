@@ -40,7 +40,7 @@ This will call the *git_open* function passing *work* as the arguments. By conve
 may call a function with underscores replacing them by hyphens. To execute the task without
 arguments, just use `soda git-open`.
 
-To see the program usage, type `$ soda` or `$ soda help`
+To see the program usage, type `soda`, `soda help` or `soda --help`.
 
 ## Task Namespaces
 
@@ -77,7 +77,8 @@ You can call any task in *git* namespace using a **"."**:
 
     $ soda git.push
 
-The **"."** indicates that namespace is the first part and task is the second part.
+The **"."** indicates that namespace is the first part and task is the second part. To see a help
+message for only one namespace, use `soda help NAMESPACE`.
 
 ## Task Parameters
 
@@ -199,10 +200,11 @@ If you want to use another log system (a *syslog* or another) just define a **lo
 The builtin functions are present in *scripts/soda* dir and the *scripts/core.sh*, the
 most significant are listed below:
 
-### task (function_name, description)
+### task (function_name, [description])
 
 Register the given function as a task and enables invoking it. You may pass the function
-args in *$function_name*.
+args in *$function_name*. If a description is given, expose the given function in the program usage
+and register it for autocompletion.
 
 ### parameter (parameter_name, [value_name] ,[default_value], description)
 
