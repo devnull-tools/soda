@@ -60,6 +60,14 @@ task() {
 }
 
 #
+# Register the task without exposing it to the help usage or bash completion
+#
+hidden_task() {
+  local task_name="${1//_/-}"
+  TASKS="$TASKS {$TASK_NAMESPACE${task_name%% *}}"
+}
+
+#
 # Exposes the given parameter in the program usage, register it for autocompletion
 # and returns indicating if the parameter was given. You can access the parameter
 # value through the variable named as the parameter name with upper case and hyphens

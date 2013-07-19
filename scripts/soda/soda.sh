@@ -35,7 +35,7 @@ help_bash_completion () {
   namespaces
 }
 
-task bash_completion_parameter "Show proposals for parameters"
+hidden_task bash_completion_parameter
 bash_completion_parameter () {
   if [[ $# -ge 1 ]]; then
     parse_task "$1" && {
@@ -52,7 +52,7 @@ bash_completion_parameter () {
   echo "$BASH_COMPLETION_PARAMETERS"
 }
 
-task "bash_completion_task [TASK]" "Show proposals for autocomplete tasks"
+hidden_task "bash_completion_task [TASK]"
 bash_completion_task() {
   parse_task "$1" && {
     import "$NAMESPACE"
