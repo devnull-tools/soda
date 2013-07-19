@@ -42,7 +42,8 @@ clear_help_usage() {
 }
 
 #
-# Expose the given function in the program usage and register it for autocompletion.
+# Enables a function to be invoked as a task in SODA. If a description is given, expose the given
+# function in the program usage and register it for autocompletion.
 #
 # Tasks not registered cannot be executed.
 #
@@ -53,17 +54,11 @@ clear_help_usage() {
 #
 task() {
   local task_name="${1//_/-}"
-  TASKS_USAGE="$TASKS_USAGE
+  if [[ -n "$2" ]]; then
+    TASKS_USAGE="$TASKS_USAGE
     $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$TASK_NAMESPACE$task_name") $2"
-  TASKS="$TASKS {$TASK_NAMESPACE${task_name%% *}}"
-  BASH_COMPLETION_TASKS="$BASH_COMPLETION_TASKS $TASK_NAMESPACE${task_name%% *}"
-}
-
-#
-# Register the task without exposing it to the help usage or bash completion
-#
-hidden_task() {
-  local task_name="${1//_/-}"
+    BASH_COMPLETION_TASKS="$BASH_COMPLETION_TASKS $TASK_NAMESPACE${task_name%% *}"
+  fi
   TASKS="$TASKS {$TASK_NAMESPACE${task_name%% *}}"
 }
 
