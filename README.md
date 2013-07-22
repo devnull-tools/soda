@@ -20,9 +20,10 @@ Create a *~/.soda* directory with the following structure:
 
 * _scripts_ - directory to put the scripts organized by namespaces
 * _config_ - directory to put the configuration files organized by namespaces
-* _resources_ - directory to put resources (available through the **$RESOURCES** variable)
+* _resources_ - directory to put resources organized by namespaces
 
-You can also use the same directory you install soda without configure the user directory.
+You can also use the same directory you install soda without configure the user directory. To access
+resource and configuration files, use the functions **has_resource** and **has_config**.
 
 Inside *scripts*, any function in any script present in *scripts/common* and exposed through
 **task** can be invoked:
@@ -226,11 +227,23 @@ underscores.
       additional_parameters="$additional_parameters --extension=$BACKUP_EXTENSION"
     }
 
-### import (namespace)
+### has_resource (resource-path)
 
-Loads all scripts in the scripts/$namespace directory relative to ${SODA_USER_DIR} or ${SODA_DIR}.
+Checks if the given resource exists inside $SODA_USER_DIR/resources/$NAMESPACE using the namespace
+of the invoked task. The file will be stored in the $FILE variable.
 
-If a namespace was already imported, then it will not be imported again.
+    has_resource "my-resource.ext" && {
+      cp $FILE destination
+    }
+
+### has_config (config-path)
+
+Checks if the given config exists inside $SODA_USER_DIR/config/$NAMESPACE using the namespace of the
+invoked task. The file will be stored in the $FILE variable.
+
+    has_config "my-config.conf" && {
+      source $FILE
+    }
 
 ### invoke (description, function_name)
 

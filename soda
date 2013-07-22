@@ -31,10 +31,6 @@ fi
 
 . "$SODA_DIR/scripts/core.sh"
 
-if [[ -z "$RESOURCES" ]]; then
-  RESOURCES="$SODA_USER_DIR/resources"
-fi
-
 function usage {
   local task="TASK"
   if [[ -z "$1" ]]; then

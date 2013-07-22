@@ -277,3 +277,21 @@ namespaces() {
   import_all_namespaces
   echo "$NAMESPACES"
 }
+
+has_resource() {
+  FILE="$SODA_USER_DIR/resource/$NAMESPACE/$1"
+  if [[ -f "$FILE" ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+has_config() {
+  FILE="$SODA_USER_DIR/config/$NAMESPACE/$1"
+  if [[ -f "$FILE" ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
