@@ -160,14 +160,20 @@ import() {
   fi
 }
 
-import_all_namespaces() {
-  import soda
-  if [[ -d "$SODA_USER_DIR/scripts" ]]; then
-    for namespace in $SODA_USER_DIR/scripts/*; do
+_import_all() {
+  if [[ -d "$1/scripts" ]]; then
+    for namespace in $1/scripts/*; do
       if [[ -d "$namespace" ]]; then
         import "$(basename $namespace)"
       fi
     done
+  fi
+}
+
+import_all_namespaces() {
+  _import_all $SODA_DIR
+  if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
+    _import_all $SODA_USER_DIR
   fi
 }
 
@@ -179,9 +185,6 @@ load_scripts() {
     for script in $1/*.sh; do
       . "$script"
     done
-    return 0
-  else
-    return 1
   fi
 }
 
@@ -193,9 +196,6 @@ load_config() {
     for config in $1/*.conf; do
       . "$config"
     done
-    return 0
-  else
-    return 1
   fi
 }
 

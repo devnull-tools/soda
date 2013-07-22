@@ -22,6 +22,8 @@ Create a *~/.soda* directory with the following structure:
 * _config_ - directory to put the configuration files organized by namespaces
 * _resources_ - directory to put resources (available through the **$RESOURCES** variable)
 
+You can also use the same directory you install soda without configure the user directory.
+
 Inside *scripts*, any function in any script present in *scripts/common* and exposed through
 **task** can be invoked:
 
