@@ -148,6 +148,11 @@ import() {
     SODA_IMPORTS="$SODA_IMPORTS:$1:"
     NAMESPACES="$NAMESPACES $1"
 
+    load_config "$SODA_DIR/config/$1"
+    if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
+      load_config "$SODA_USER_DIR/config/$1"
+    fi
+
     load_scripts "$SODA_DIR/scripts/$1"
     if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
       load_scripts "$SODA_USER_DIR/scripts/$1"
@@ -159,7 +164,9 @@ import_all_namespaces() {
   import soda
   if [[ -d "$SODA_USER_DIR/scripts" ]]; then
     for namespace in $SODA_USER_DIR/scripts/*; do
-      import "$(basename $namespace)"
+      if [[ -d "$namespace" ]]; then
+        import "$(basename $namespace)"
+      fi
     done
   fi
 }
@@ -169,8 +176,22 @@ import_all_namespaces() {
 #
 load_scripts() {
   if [[ -d "$1" ]]; then
-    for script in $1/*; do
+    for script in $1/*.sh; do
       . "$script"
+    done
+    return 0
+  else
+    return 1
+  fi
+}
+
+#
+# Loads all config files inside a directory
+#
+load_config() {
+  if [[ -d "$1" ]]; then
+    for config in $1/*.conf; do
+      . "$config"
     done
     return 0
   else

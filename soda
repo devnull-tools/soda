@@ -22,20 +22,17 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-[[ -z "$SODA_DIR" ]] && SODA_DIR=$(pwd)
+[[ -z "$SODA_DIR" ]] && SODA_DIR=$(dirname $0)
 [[ -z "$SODA_USER_DIR" ]] && SODA_USER_DIR=$HOME/.soda
 
-. $SODA_DIR/soda.conf
-. $SODA_DIR/scripts/core.sh
-
-if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
-  if [[ -f "$SODA_USER_DIR/soda.conf" ]]; then
-    . $SODA_USER_DIR/soda.conf
-  fi
+if ! [[ -d "$SODA_USER_DIR" ]]; then
+  SODA_USER_DIR="$SODA_DIR"
 fi
 
+. "$SODA_DIR/scripts/core.sh"
+
 if [[ -z "$RESOURCES" ]]; then
-  RESOURCES=$SODA_USER_DIR/resources
+  RESOURCES="$SODA_USER_DIR/resources"
 fi
 
 function usage {

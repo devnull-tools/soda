@@ -19,11 +19,11 @@ done.
 Create a *~/.soda* directory with the following structure:
 
 * _scripts_ - directory to put the scripts organized by namespaces
-* _resources_ - directory to put resources (available through the
-**$RESOURCES** variable)
+* _config_ - directory to put the configuration files organized by namespaces
+* _resources_ - directory to put resources (available through the **$RESOURCES** variable)
 
-Inside *scripts*, any function in any script present in *scripts/common* (and exposed through
-**task**) will be loaded and can be used:
+Inside *scripts*, any function in any script present in *scripts/common* and exposed through
+**task** can be invoked:
 
     task "git-open" "Creates a new branch off master"
     git_open() {
@@ -155,7 +155,11 @@ completion mode.
 
 ## Configuration
 
-You can configure SODA through a **~/.soda/soda.conf** file. The supported properties are:
+Every namespace has it own configuration dir in $SODA_USER_DIR/config/NAMESPACE. Any configuration
+file will be loaded in that directory at namespace import **before** loading script files.
+
+You can configure **soda** namespace through a **$SODA_USER_DIR/conf/soda/soda.conf** file (or any
+other name but inside that directory). The supported properties are:
 
 * **LOG_FILE** - The log file  (defaults to *$SODA_DIR/log/soda.log*)
 * **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also
