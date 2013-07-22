@@ -149,7 +149,9 @@ import() {
     NAMESPACES="$NAMESPACES $1"
 
     load_scripts "$SODA_DIR/scripts/$1"
-    load_scripts "$SODA_USER_DIR/scripts/$1"
+    if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
+      load_scripts "$SODA_USER_DIR/scripts/$1"
+    fi
   fi
 }
 
