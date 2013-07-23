@@ -20,6 +20,6 @@ broadcast() {
   done
 }
 
-parameter "no-broadcast" "Disable broadcasting events" && {
+parameter "no-broadcast" "$SODA_DESCRIPTION_NO_BROADCAST" && {
   broadcast() { :; }
 }

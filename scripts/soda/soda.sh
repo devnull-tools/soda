@@ -22,11 +22,11 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-parameter "help" "Print the help message." && {
+parameter "help" "$SODA_DESCRIPTION_HELP" && {
   usage
 }
 
-task "help [NAMESPACE]" "Print the help message for the given namespace (leave empty for all)"
+task "help [NAMESPACE]" "$SODA_DESCRIPTION_HELP_NAMESPACE"
 help() {
   usage "$1"
 }

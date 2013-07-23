@@ -86,7 +86,7 @@ console_log() {
   fi
 }
 
-parameter "no-file-log" "Do not log in files" && {
+parameter "no-file-log" "$SODA_DESCRIPTION_NO_FILE_LOG" && {
   file_log() { :; }
 } || {
   if ! [[ -f "$LOG_FILE" ]]; then
@@ -94,11 +94,11 @@ parameter "no-file-log" "Do not log in files" && {
   fi
 }
 
-parameter "no-console-log" "Do not log in console" && {
+parameter "no-console-log" "$SODA_DESCRIPTION_NO_CONSOLE_LOG" && {
   console_log() { :; }
 }
 
-parameter "verbose" "Set the log level to DEBUG" && {
+parameter "verbose" "$SODA_DESCRIPTION_VERBOSE" && {
   LOG_LEVEL=DEBUG
 }
 
@@ -106,7 +106,7 @@ if [[ -z "$LOG_LEVEL" ]]; then
   LOG_LEVEL=INFO
 fi
 
-parameter "LOG_LEVEL" "N" "Set the log level (DEBUG INFO WARN ERROR FATAL NONE)" && {
+parameter "LOG_LEVEL" "N" "$SODA_DESCRIPTION_LOG_LEVEL" && {
   case "$(uppercase ${LOG_LEVEL})" in
     DEBUG)
       ;;
