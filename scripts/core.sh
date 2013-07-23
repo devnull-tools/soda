@@ -194,7 +194,9 @@ load_scripts() {
 load_config() {
   if [[ -d "$1" ]]; then
     for config in $1/*.conf; do
-      . "$config"
+      if [[ -f "$config" ]]; then
+        . "$config"
+      fi
     done
   fi
 }
