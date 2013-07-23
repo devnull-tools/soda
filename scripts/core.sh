@@ -295,3 +295,21 @@ has_config() {
     return 1
   fi
 }
+
+has_script() {
+  FILE="$SODA_USER_DIR/script/$NAMESPACE/$1"
+  if [[ -f "$FILE" ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+exists() {
+  FILE="$SODA_USER_DIR/$1/$NAMESPACE/$2"
+  if [[ -f "$FILE" ]]; then
+    return 0
+  else
+    return 1
+  fi
+}

@@ -23,7 +23,7 @@ Create a *~/.soda* directory with the following structure:
 * _resources_ - directory to put resources organized by namespaces
 
 You can also use the same directory you install soda without configure the user directory. To access
-resource and configuration files, use the functions **has_resource** and **has_config**.
+resource and configuration files, use the **exists** function.
 
 Inside *scripts*, any function in any script present in *scripts/common* and exposed through
 **task** can be invoked:
@@ -227,21 +227,12 @@ underscores.
       additional_parameters="$additional_parameters --extension=$BACKUP_EXTENSION"
     }
 
-### has_resource (resource-path)
+### exists (type path)
 
-Checks if the given resource exists inside $SODA_USER_DIR/resources/$NAMESPACE using the namespace
-of the invoked task. The file will be stored in the $FILE variable.
+Checks if the file $SODA_USER_DIR/$type/$NAMESPACE/$path exists using the namespace of the
+invoked task. The file path will be stored in the $FILE variable.
 
-    has_resource "my-resource.ext" && {
-      cp $FILE destination
-    }
-
-### has_config (config-path)
-
-Checks if the given config exists inside $SODA_USER_DIR/config/$NAMESPACE using the namespace of the
-invoked task. The file will be stored in the $FILE variable.
-
-    has_config "my-config.conf" && {
+    exists config "my-config.conf" && {
       source $FILE
     }
 
