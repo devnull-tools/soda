@@ -147,7 +147,8 @@ import() {
     fi
     SODA_IMPORTS="$SODA_IMPORTS:$1:"
     NAMESPACES="$NAMESPACES $1"
-
+    local OLD_NAMESPACE="$NAMESPACE"
+    NAMESPACE="$1"
     load_config "$SODA_DIR/config/$1"
     if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
       load_config "$SODA_USER_DIR/config/$1"
@@ -157,6 +158,7 @@ import() {
     if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
       load_scripts "$SODA_USER_DIR/scripts/$1"
     fi
+    NAMESPACE="$OLD_NAMESPACE"
   fi
 }
 
