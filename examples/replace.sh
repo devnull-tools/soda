@@ -24,7 +24,7 @@
 
 # Example for replacing strings in files
 
-task "replace PATTERN OLD NEW [PATH]" \
+task replace "PATTERN OLD NEW [PATH]" \
 "Replaces the text in all files that matches the pattern under the given directory"
 replace() {
   SEARCH_PATTERN="$1"

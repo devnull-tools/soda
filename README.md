@@ -207,7 +207,7 @@ If you want to use another log system (a *syslog* or another) just define a **lo
 The builtin functions are present in *scripts/soda* dir and the *scripts/core.sh*, the
 most significant are listed below:
 
-### task (function_name, [description])
+### task (function_name, [function_args], [description])
 
 Register the given function as a task and enables invoking it. You may pass the function
 args in *$function_name*. If a description is given, expose the given function in the program usage

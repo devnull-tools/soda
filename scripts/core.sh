@@ -49,17 +49,26 @@ clear_help_usage() {
 #
 # Arguments:
 #
-#   1- function name (args should go here too)
-#   2- function description
+#   1- function name
+#   2- function args (optional)
+#   3- function description
 #
 task() {
   local task_name="${1//_/-}"
-  if [[ -n "$2" ]]; then
-    TASKS_USAGE="$TASKS_USAGE
-    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$TASK_NAMESPACE$task_name") $2"
-    BASH_COMPLETION_TASKS="$BASH_COMPLETION_TASKS $TASK_NAMESPACE${task_name%% *}"
+  local task_description=""
+  local task_args=""
+  if [[ $# == 2 ]]; then
+    task_description="$2"
+  elif [[ $# == 3 ]]; then
+    task_args=" $2"
+    task_description="$3"
   fi
-  TASKS="$TASKS {$TASK_NAMESPACE${task_name%% *}}"
+  if [[ -n "$task_description" ]]; then
+    TASKS_USAGE="$TASKS_USAGE
+    $(printf "%-${SODA_FUNCTION_NAME_LENGTH}s" "$TASK_NAMESPACE$task_name$task_args") $task_description"
+    BASH_COMPLETION_TASKS="$BASH_COMPLETION_TASKS $TASK_NAMESPACE${task_name}"
+  fi
+  TASKS="$TASKS {$TASK_NAMESPACE${task_name}}"
 }
 
 #

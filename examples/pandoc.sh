@@ -26,7 +26,7 @@
 
 parameter "open-file" "[PROGRAM]" "kde-open" "Open the generated file after compilation"
 
-task "parse FILE OUTPUT_FORMAT" \
+task parse "FILE OUTPUT_FORMAT" \
      'Parses the given file and outputs it in a file $FILE.$OUTPUT_FORMAT'
 parse() {
   local basename="$(basename "$1")"

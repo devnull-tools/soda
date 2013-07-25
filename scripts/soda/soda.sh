@@ -26,7 +26,7 @@ parameter "help" "$SODA_DESCRIPTION_HELP" && {
   usage
 }
 
-task "help [NAMESPACE]" "$SODA_DESCRIPTION_HELP_NAMESPACE"
+task "help" "[NAMESPACE]" "$SODA_DESCRIPTION_HELP_NAMESPACE"
 help() {
   usage "$1"
 }
@@ -52,7 +52,7 @@ bash_completion_parameter () {
   echo "$BASH_COMPLETION_PARAMETERS"
 }
 
-task "bash_completion_task [TASK]"
+task bash_completion_task
 bash_completion_task() {
   parse_task "$1" && {
     import "$NAMESPACE"
