@@ -79,7 +79,7 @@ if [[ -n "$task_name" ]]; then
     import "$NAMESPACE"
   }
   task_exists "${task_name}" || {
-    error "Task \"$task_name\" not found."
+    log_error "Task \"$task_name\" not found."
     exit 1
   }
   broadcast "start"
