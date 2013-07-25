@@ -229,8 +229,8 @@ underscores.
 
 ### exists (type path)
 
-Checks if the file $SODA_USER_DIR/$type/$NAMESPACE/$path exists using the namespace of the
-invoked task. The file path will be stored in the $FILE variable.
+Checks if the file $SODA_USER_DIR/$type/$NAMESPACE/$path exists using the namespace of the invoked
+task or imported namespace. The file path will be stored in the $FILE variable.
 
     exists config "my-config.conf" && {
       source $FILE
