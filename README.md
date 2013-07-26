@@ -61,15 +61,15 @@ also keeps your scripts organized.)
       stash_work
       local branch="$(current_branch)"
       if [[ "$branch" == "master" ]]; then
-        message "Pushing changes from master into server"
+        echo "Pushing changes from master into server"
         git_push
       else
-        message "Pushing changes from $branch into master"
+        echo "Pushing changes from $branch into master"
         git checkout master
         git merge "$branch"
-        message "Pushing changes from master into server"
+        echo "Pushing changes from master into server"
         git_push
-        message "Going back to $branch branch"
+        echo "Going back to $branch branch"
         git checkout "$branch"
         git rebase master
       fi
