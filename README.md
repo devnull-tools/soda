@@ -11,7 +11,7 @@ may be called.
 ## How To Install
 
 Just clone the git repo and place the *soda* file in your path (a symlinks works well to).
-After that, ensure you have a **$SODA_DIR** pointing to the place you clone the repo and you're
+After that, ensure you have a **$SODA_HOME** pointing to the place you clone the repo and you're
 done.
 
 ## How To Use
@@ -20,10 +20,10 @@ Create a *~/.soda* directory with the following structure:
 
 * _scripts_ - directory to put the scripts organized by namespaces
 * _config_ - directory to put the configuration files organized by namespaces
-* _resources_ - directory to put resources organized by namespaces
+* Any other directory you like, still organized by namespaces
 
-You can also use the same directory you install soda without configure the user directory. To access
-resource and configuration files, use the **exists** function.
+You can also use the same directory you install soda without configure the user directory. You can
+access any file in that directories by using the **exists** function.
 
 Inside *scripts*, any function in any script present in *scripts/common* and exposed through
 **task** can be invoked:
@@ -158,13 +158,13 @@ completion mode.
 
 ## Configuration
 
-Every namespace has it own configuration dir in $SODA_USER_DIR/config/NAMESPACE. Any configuration
+Every namespace has it own configuration dir in $SODA_USER_HOME/config/NAMESPACE. Any configuration
 file will be loaded in that directory at namespace import **before** loading script files.
 
-You can configure **soda** namespace through a **$SODA_USER_DIR/conf/soda/soda.conf** file (or any
+You can configure **soda** namespace through a **$SODA_USER_HOME/conf/soda/soda.conf** file (or any
 other name but inside that directory). The supported properties are:
 
-* **LOG_FILE** - The log file  (defaults to *$SODA_DIR/log/soda.log*)
+* **LOG_FILE** - The log file  (defaults to *$SODA_HOME/log/soda.log*)
 * **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also
 affects the bash completion
 * **SODA_TASK_BASH_COMPLETION_SUFFIX** - The suffix to build the function for custom bash completion
@@ -229,7 +229,7 @@ underscores.
 
 ### exists (type path)
 
-Checks if the file $SODA_USER_DIR/$type/$NAMESPACE/$path exists using the namespace of the invoked
+Checks if the file $SODA_USER_HOME/$type/$NAMESPACE/$path exists using the namespace of the invoked
 task or imported namespace. The file path will be stored in the $FILE variable.
 
     exists config "my-config.conf" && {

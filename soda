@@ -22,14 +22,14 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-[[ -z "$SODA_DIR" ]] && SODA_DIR=$(dirname $0)
-[[ -z "$SODA_USER_DIR" ]] && SODA_USER_DIR=$HOME/.soda
+[[ -z "$SODA_HOME" ]] && SODA_HOME=$(dirname $0)
+[[ -z "$SODA_USER_HOME" ]] && SODA_USER_HOME=$HOME/.soda
 
-if ! [[ -d "$SODA_USER_DIR" ]]; then
-  SODA_USER_DIR="$SODA_DIR"
+if ! [[ -d "$SODA_USER_HOME" ]]; then
+  SODA_USER_HOME="$SODA_HOME"
 fi
 
-. "$SODA_DIR/scripts/core.sh"
+. "$SODA_HOME/scripts/core.sh"
 
 function usage {
   local task="TASK"

@@ -139,11 +139,11 @@ clear_imports() {
 
 #
 # Loads all scripts in the *scripts/namespace* directory. The scripts may be in
-# $SODA_USER_DIR or $SODA_DIR.
+# $SODA_USER_HOME or $SODA_HOME.
 #
 # If a namespace was already imported, then it will not be imported again.
 #
-# Example: to import the namespace denoted by $SODA_USER_DIR/scripts/install
+# Example: to import the namespace denoted by $SODA_USER_HOME/scripts/install
 # use `import install`.
 #
 import() {
@@ -158,14 +158,14 @@ import() {
     NAMESPACES="$NAMESPACES $1"
     local OLD_NAMESPACE="$NAMESPACE"
     NAMESPACE="$1"
-    load_config "$SODA_DIR/config/$1"
-    if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
-      load_config "$SODA_USER_DIR/config/$1"
+    load_config "$SODA_HOME/config/$1"
+    if ! [[ "$SODA_HOME" == "$SODA_USER_HOME" ]]; then
+      load_config "$SODA_USER_HOME/config/$1"
     fi
 
-    load_scripts "$SODA_DIR/scripts/$1"
-    if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
-      load_scripts "$SODA_USER_DIR/scripts/$1"
+    load_scripts "$SODA_HOME/scripts/$1"
+    if ! [[ "$SODA_HOME" == "$SODA_USER_HOME" ]]; then
+      load_scripts "$SODA_USER_HOME/scripts/$1"
     fi
     NAMESPACE="$OLD_NAMESPACE"
   fi
@@ -182,9 +182,9 @@ _import_all() {
 }
 
 import_all_namespaces() {
-  _import_all $SODA_DIR
-  if ! [[ "$SODA_DIR" == "$SODA_USER_DIR" ]]; then
-    _import_all $SODA_USER_DIR
+  _import_all $SODA_HOME
+  if ! [[ "$SODA_HOME" == "$SODA_USER_HOME" ]]; then
+    _import_all $SODA_USER_HOME
   fi
 }
 
@@ -292,7 +292,7 @@ namespaces() {
 }
 
 exists() {
-  FILE="$SODA_USER_DIR/$1/$NAMESPACE/$2"
+  FILE="$SODA_USER_HOME/$1/$NAMESPACE/$2"
   if [[ -f "$FILE" ]]; then
     return 0
   else
