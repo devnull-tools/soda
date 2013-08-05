@@ -291,8 +291,20 @@ namespaces() {
   echo "$NAMESPACES"
 }
 
+resource() {
+  local folder="resources"
+  local filename=""
+  if [[ $# == 1 ]]; then
+    filename="$1"
+  elif [[ $# == 2 ]]; then
+    folder="$1"
+    filename="$2"
+  fi
+  echo "$SODA_USER_HOME/$folder/$NAMESPACE/$filename"
+}
+
 exists() {
-  FILE="$SODA_USER_HOME/$1/$NAMESPACE/$2"
+  FILE="$(resource "$@")"
   if [[ -f "$FILE" ]]; then
     return 0
   else
