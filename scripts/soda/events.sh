@@ -3,9 +3,12 @@
 # Subscribe to an event
 when() {
   local event="${1//-/_}"
-  local subscriber="${2//-/_}"
-  log_debug "$subscriber subscribed to $event"
-  append_to_var "SODA_EVENT_${event}" " $subscriber"
+  shift
+  for arg in $@; do
+    local subscriber="${arg//-/_}"
+    log_debug "$subscriber subscribed to $event"
+    append_to_var "SODA_EVENT_${event}" " $subscriber"
+  done
 }
 
 # Broadcast an event
