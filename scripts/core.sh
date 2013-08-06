@@ -284,13 +284,13 @@ append_to_var() {
   set_var "$1" "${content}"
 }
 
-[ -z "$LOG_FILE" ] && LOG_FILE=/dev/null
-
+# Returns all namespaces
 namespaces() {
   import_all_namespaces
   echo "$NAMESPACES"
 }
 
+# Returns a resource based on the current namespace.
 resource() {
   local folder="resources"
   local filename=""
@@ -303,6 +303,7 @@ resource() {
   echo "$SODA_USER_HOME/$folder/$NAMESPACE/$filename"
 }
 
+# Checks if a resource exists based on the current namespace.
 exists() {
   FILE="$(resource "$@")"
   if [[ -f "$FILE" ]]; then
@@ -311,3 +312,5 @@ exists() {
     return 1
   fi
 }
+
+[ -z "$LOG_FILE" ] && LOG_FILE=/dev/null

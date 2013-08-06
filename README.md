@@ -235,14 +235,21 @@ underscores.
       additional_parameters="$additional_parameters --extension=$BACKUP_EXTENSION"
     }
 
-### exists (type path)
+### exists ([type] path)
 
 Checks if the file $SODA_USER_HOME/$type/$NAMESPACE/$path exists using the namespace of the invoked
-task or imported namespace. The file path will be stored in the $FILE variable.
+task or imported namespace. The file path will be stored in the $FILE variable. If the *type* is not
+passed then **resources** will be used.
 
     exists config "my-config.conf" && {
       source $FILE
     }
+
+### resource ([type] path)
+
+Returns the file $SODA_USER_HOME/$type/$NAMESPACE/$path using the namespace of the invoked task or
+imported namespace without checking if the file exists. If the *type* is not passed then
+**resources** will be used.
 
 ### invoke (description, function_name)
 
@@ -290,6 +297,19 @@ is in upper case and is already set, the prompt will be skipped.
     choose "Server Type" "SERVER_TYPE" "Production" "Development"
 
     echo "$SERVER_TYPE: $SERVER_TYPE_label"
+
+### suggest (suggestion_function tasks...)
+
+Maps the given function as the bash completion function to the given tasks.
+
+### when (event_name subscribers...)
+
+Subscribe the given functions to the specified event name. The subscribers should be notified using
+the *broadcast* function.
+
+### broadcast (event_name [args...])
+
+Broadcast the event to the subscribers using the given arguments.
 
 ## Examples
 
