@@ -139,6 +139,14 @@ To customize the options for a given task, use a function named ${TASK}_bash_com
     $ soda my-task f[TAB]
     $ soda my-task foo
 
+Alternatively, you can use the **suggest** function to map the bash completion function:
+
+    suggest suggestions my_task
+    suggestions() {
+      echo "foo"
+      echo "bar"
+    }
+
 If a parameter is passed after the task declaration in command line, the suggestions will be only
 the parameters for the task namespace.
 

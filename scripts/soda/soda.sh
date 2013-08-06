@@ -60,6 +60,9 @@ bash_completion_task() {
   if [[ $(type -t "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}") ]]; then
     shift
     "${TASK}${SODA_TASK_BASH_COMPLETION_SUFFIX}" "$@"
+  elif [[ -n "$(get_var SODA_SUGGESTION_${TASK})" ]]; then
+    shift
+    "$(get_var SODA_SUGGESTION_${TASK})" "$@"
   elif [[ $# == 0 ]]; then
     import_all_namespaces
     echo "$BASH_COMPLETION_TASKS"
@@ -71,4 +74,14 @@ bash_completion_task() {
       echo "$BASH_COMPLETION_TASKS"
     }
   fi
+}
+
+# Maps a function to use for bash completion
+suggest() {
+  local target=$1
+  shift
+  for arg in $@; do
+    local task="${arg//-/_}"
+    set_var SODA_SUGGESTION_${task} $target
+  done
 }
