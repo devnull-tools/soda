@@ -46,12 +46,15 @@ _soda () {
     fi
   done
   local additional_args="--no-broadcast --no-file-log --no-console-log --no-output"
+  if [[ -z "$cur" ]]; then
+    additional_args="$additional_args ''"
+  fi
   case "$cur" in
     -*)
-      COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter $additional_args ${args[@]})' -- $cur ) )
+      COMPREPLY=( $( compgen -W '$(soda bash-completion-parameter ${args[@]} $additional_args)' -- $cur ) )
     ;;
     *)
-      suggestions="$(soda bash-completion-task $additional_args ${args[@]})"
+      suggestions="$(soda bash-completion-task ${args[@]} $additional_args)"
       if [[ $? == 0 ]]; then
         COMPREPLY=( $( compgen -W '$suggestions' -- $cur ) )
       else
