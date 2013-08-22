@@ -168,6 +168,10 @@ import() {
       load_scripts "$SODA_USER_HOME/scripts/$1"
     fi
     NAMESPACE="$OLD_NAMESPACE"
+
+    return 0
+  else
+    return 1
   fi
 }
 
