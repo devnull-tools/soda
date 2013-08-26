@@ -310,7 +310,7 @@ resource() {
 # Checks if a resource exists based on the current namespace.
 exists() {
   FILE="$(resource "$@")"
-  if [[ -f "$FILE" ]]; then
+  if [[ -e "$FILE" ]]; then
     return 0
   else
     return 1
