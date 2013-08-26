@@ -183,6 +183,8 @@ affects the bash completion
 * **SODA_PARAMETER_NAME_LENGTH** - The max length to format the parameter names in the help usage
 * **SODA_PARAMETER_NAMESPACE_LENGTH** - The max length to format the parameter namespace in the help
 usage
+* **SODA_DEFAULT_RESOURCE_DIR** - the default directory to search for resources (defaults to 
+*resources*)
 
 Remember that parameters are converted to upper case, so you can call `soda --log-file=path/to/file`
 and the *$LOG_FILE* variable will be set to that value.

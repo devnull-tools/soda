@@ -296,7 +296,7 @@ namespaces() {
 
 # Returns a resource based on the current namespace.
 resource() {
-  local folder="resources"
+  local folder="$SODA_DEFAULT_RESOURCE_DIR"
   local filename=""
   if [[ $# == 1 ]]; then
     filename="$1"
