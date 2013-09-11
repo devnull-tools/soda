@@ -42,7 +42,7 @@ invoke() {
       local close="$(bold_white ')')"
       local sep="$(bold_white '/')"
       local yes="[$(green "y")]es"
-      local no="[$(red "N")]o"
+      local no="[$(red "n")]o"
       local always="[$(bold_green "a")]lways"
       local never="n[$(bold_red "e")]ver"
       prompt="$prompt ${open}${yes}${sep}${no}${sep}${always}${sep}${never}${close}"
