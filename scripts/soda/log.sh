@@ -78,7 +78,7 @@ file_log() {
 
 # Put a log message in console
 console_log() {
-  local message="$(printf "$SODA_CONSOLE_LOG_PATTERN" "$1" "$2")"
+  local message="$(printf "$SODA_CONSOLE_LOG_PATTERN" "$(date +"${SODA_DATE_LOG_PATTERN}")" "$1" "$2")"
   if [[ -n "$3" ]]; then
     echo "$($3 "$message")"
   else
