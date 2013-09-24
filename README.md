@@ -81,7 +81,8 @@ You can call any task in *git* namespace using a **"."**:
     $ soda git.push
 
 The **"."** indicates that namespace is the first part and task is the second part. To see a help
-message for only one namespace, use `soda help NAMESPACE`.
+message for only one namespace, use `soda help NAMESPACE` (additionally, you can place a `info` file
+in the scripts folder for a namespace to make its contents appear in the help message).
 
 ## Task Parameters
 
