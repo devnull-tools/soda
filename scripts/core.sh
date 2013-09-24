@@ -167,7 +167,9 @@ import() {
     if ! [[ "$SODA_HOME" == "$SODA_USER_HOME" ]]; then
       load_scripts "$SODA_USER_HOME/scripts/$1"
     fi
-    NAMESPACE="$OLD_NAMESPACE"
+    if [[ -n $OLD_NAMESPACE ]]; then
+      NAMESPACE="$OLD_NAMESPACE"
+    fi
 
     return 0
   else
