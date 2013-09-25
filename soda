@@ -90,6 +90,6 @@ if [[ -n "$task_name" ]]; then
     exit 1
   }
   broadcast "start"
-  "$TASK" "${SODA_TASK_PARAMETERS[@]:1}"
+  call "$TASK" "${SODA_TASK_PARAMETERS[@]:1}"
   broadcast "finish"
 fi
