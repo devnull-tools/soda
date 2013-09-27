@@ -130,13 +130,12 @@ execute() {
 #
 # Calls the given function. Using this method will broadcast events around the call:
 #
-# ${TASK_NAME}-start: after task call
-# ${TASK_NAME}-finish: before task call
+# ${FUNCTION_NAME}-start: after call
+# ${FUNCTION_NAME}-finish: before call
 #
 call() {
-  local task="$1"
-  shift
-  broadcast "${task}-start"
-  $task $@
-  broadcast "${task}-finish"
+  local function_name="$1"
+  broadcast "${function_name}-start"
+  "$@"
+  broadcast "${function_name}-finish"
 }
