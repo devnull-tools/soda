@@ -44,7 +44,7 @@ function usage {
       description="$(cat `resource scripts info`)"
     }
     TASKS_USAGE="${TASKS_USAGE//$1${SODA_NAMESPACE_DELIMITER}/}"
-    PARAMETERS_USAGE="${PARAMETERS_USAGE//\[$1\]/}"
+    PARAMETERS_USAGE="${PARAMETERS_USAGE//\[$1\]/ }"
   fi
 
   echo "Usage: $(basename $0) [*PARAMETERS] $task [*ARGS] [*PARAMETERS]"
