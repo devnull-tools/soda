@@ -133,9 +133,12 @@ execute() {
 # ${FUNCTION_NAME}-start: after call
 # ${FUNCTION_NAME}-finish: before call
 #
+# This method is intented to use for task call
+#
 call() {
-  local function_name="$1"
+  local function_name="$(build_name $1)"
+  shift
   broadcast "${function_name}-start"
-  "$@"
+  $function_name "$@"
   broadcast "${function_name}-finish"
 }
