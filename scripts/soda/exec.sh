@@ -128,17 +128,21 @@ execute() {
 }
 
 #
-# Calls the given function. Using this method will broadcast events around the call:
+# Calls the given task. Using this method will broadcast events around the call:
 #
-# ${FUNCTION_NAME}-start: after call
-# ${FUNCTION_NAME}-finish: before call
+# ${TASK_NAME}-start: after call
+# ${TASK_NAME}-finish: before call
 #
-# This method is intented to use for task call
+# ** This method is intented to use for task call **
 #
 call() {
   local function_name="$(build_name $1)"
+  local task_name="$1"
   shift
-  broadcast "${function_name}-start"
+  broadcast "${task_name}-start"
+  if [[ $(type -t ${SODA_TASK_OPTIONAL_PREFIX}${function_name}) ]]; then
+    function_name="${SODA_TASK_OPTIONAL_PREFIX}${function_name}"
+  fi
   $function_name "$@"
-  broadcast "${function_name}-finish"
+  broadcast "${task_name}-finish"
 }

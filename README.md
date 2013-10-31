@@ -186,9 +186,14 @@ affects the bash completion
 usage
 * **SODA_DEFAULT_RESOURCE_DIR** - the default directory to search for resources (defaults to 
 *resources*)
+* **SODA_TASK_OPTIONAL_PREFIX** - the optional prefix to map a task function (defaults to *do_*)
 
 Remember that parameters are converted to upper case, so you can call `soda --log-file=path/to/file`
 and the *$LOG_FILE* variable will be set to that value.
+
+The parameter **SODA_TASK_OPTIONAL_PREFIX** is very usefull in case of tasks with a name already
+defined by another function or name (*kill* or *status*, for example). To avoid conflicts, prefix
+the function with the SODA_TASK_OPTIONAL_PREFIX value (*do_kill*, *do_status*, ...).
 
 ## Logging
 
