@@ -199,6 +199,7 @@ import_all_namespaces() {
 #
 load_scripts() {
   if [[ -d "$1" ]]; then
+    DIRNAME=$1
     for script in $1/*.sh; do
       . "$script"
     done
