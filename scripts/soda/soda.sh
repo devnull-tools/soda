@@ -22,15 +22,6 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-parameter "help" "$SODA_DESCRIPTION_HELP" && {
-  usage
-}
-
-task "help" "[NAMESPACE]" "$SODA_DESCRIPTION_HELP_NAMESPACE"
-help() {
-  usage "$1"
-}
-
 help_bash_completion () {
   namespaces
 }
@@ -84,4 +75,19 @@ suggest() {
     local task="${arg//-/_}"
     set_var SODA_SUGGESTION_${task} $target
   done
+}
+
+parameter "help" "$SODA_DESCRIPTION_HELP" && {
+  usage
+  exit 0
+}
+
+parameter version "${SODA_DESCRIPTION_VERSION}" && {
+  echo "$SODA_VERSION"
+  exit 0
+}
+
+task "help" "[NAMESPACE]" "$SODA_DESCRIPTION_HELP_NAMESPACE"
+help() {
+  usage "$1"
 }
