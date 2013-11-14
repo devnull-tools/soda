@@ -57,15 +57,15 @@ rename() {
   if [[ -d "$1" ]]; then
     dir=$1
     [ -z "$dir" ] && dir=.
-    find $dir -type f -name "*.apk" -exec apk-rename {} \;
+    find $dir -type f -name "*.apk" -exec soda $NAMESPACE.rename {} \;
   else
     whitespace_replace=_
     for apk in "$@";
     do
       apk_dir=$(dirname "$apk")
-      label=$(apk-name "$apk")
+      label=$(name "$apk")
       [ -n "$label" ] && {
-        version=$(apk-version "$apk")
+        version=$(version "$apk")
         [ -z "$version" ] && {
           name=$label
         } || {
