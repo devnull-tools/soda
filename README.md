@@ -120,6 +120,17 @@ The builtin events are:
 * **fail** *(exit code)* - when a command fails to execute (broadcasted by *execute* and *check*
 functions)
 
+## Quick Tasks
+
+Quick Tasks are tasks defined in a directory and will work only in that directory only. To use them, create a file `.soda-tasks` in any directory and call the tasks without using namespaces:
+
+    task my-task
+    my_task() {
+      echo "My Task"
+    }
+
+    $ soda my-task
+
 ## Bash Completion
 
 SODA supports bash completion by importing all namespaces and searching for defined parameters

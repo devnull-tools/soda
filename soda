@@ -77,6 +77,11 @@ done
 import soda
 import common
 
+# loading quick tasks file
+if [[ -f "${SODA_QUICK_TASKS_FILE}" ]]; then
+  . "$(pwd)/${SODA_QUICK_TASKS_FILE}"
+fi
+
 [[ "${#SODA_TASK_PARAMETERS}" = "0" ]] && usage
 
 task_name=${SODA_TASK_PARAMETERS[0]}
