@@ -131,6 +131,10 @@ Quick Tasks are tasks defined in a directory and will work only in that director
 
     $ soda my-task
 
+## Custom PATH
+
+Any directory in the form `bin/$NAMESPACE` in both `$SODA_HOME` or `$SODA_USER_HOME` will be included in the `$PATH` variable.
+
 ## Bash Completion
 
 SODA supports bash completion by importing all namespaces and searching for defined parameters

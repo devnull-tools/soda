@@ -168,11 +168,12 @@ import() {
     load_scripts "$SODA_HOME/scripts/$1"
     if ! [[ "$SODA_HOME" == "$SODA_USER_HOME" ]]; then
       load_scripts "$SODA_USER_HOME/scripts/$1"
+      load_binaries "$SODA_USER_HOME/bin/$1"
     fi
+    load_binaries "$SODA_HOME/bin/$1"
     if [[ -n $OLD_NAMESPACE ]]; then
       NAMESPACE="$OLD_NAMESPACE"
     fi
-
     return 0
   else
     return 1
@@ -205,6 +206,15 @@ load_scripts() {
     for script in $1/*.sh; do
       . "$script"
     done
+  fi
+}
+
+#
+# Put the directory in PATH
+#
+load_binaries() {
+  if [[ -d "$1" ]]; then
+    export PATH="$PATH:$1"
   fi
 }
 
