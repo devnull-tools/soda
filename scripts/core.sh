@@ -22,7 +22,7 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-SODA_VERSION="1.2.0"
+SODA_VERSION="1.2.1"
 
 # Stores the usage for exposed commands
 TASKS_USAGE="  TASKS:"
@@ -266,7 +266,7 @@ parse_task() {
   TASK="$1"
   NAMESPACE="${TASK%%$SODA_NAMESPACE_DELIMITER*}"
   TASK="${TASK#*${SODA_NAMESPACE_DELIMITER}}"
-  if [[ $(expr length "$1") == $(expr length "$NAMESPACE") ]]; then
+  if [[ "${NAMESPACE}" == "$1" ]]; then
     NAMESPACE=""
   fi
   TASK=$(build_name "$TASK")
