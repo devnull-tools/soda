@@ -23,7 +23,7 @@
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
 _color_escape() {
-  echo -e "\e[$1;3$2m$3\e[0;0m"
+  echo "\033[$1;3$2m$3\033[0;0m"
 }
 
 red() {
