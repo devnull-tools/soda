@@ -272,7 +272,7 @@ passed then **resources** will be used.
 
 Returns the file $SODA_USER_HOME/$type/$NAMESPACE/$path using the namespace of the invoked task or
 imported namespace without checking if the file exists. If the *type* is not passed then
-**resources** will be used.
+**resources** will be used. For use with the **config** type, use the `config` builtin function.
 
 ### invoke (description, function_name)
 

@@ -22,7 +22,7 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-SODA_VERSION="1.2.2"
+SODA_VERSION="1.3.0"
 
 # Stores the usage for exposed commands
 TASKS_USAGE="  TASKS:"
@@ -320,6 +320,11 @@ resource() {
     filename="$2"
   fi
   echo "$SODA_USER_HOME/$folder/$NAMESPACE/$filename"
+}
+
+# Returns a resource in "config" folder based on the current namespace.
+config() {
+  resource config $1
 }
 
 # Checks if a resource exists based on the current namespace.
