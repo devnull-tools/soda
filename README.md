@@ -165,7 +165,6 @@ Every namespace has it own configuration dir in $SODA_USER_HOME/config/NAMESPACE
 
 You can configure **soda** namespace through a **$SODA_USER_HOME/conf/soda/soda.conf** file (or any other name but inside that directory). The supported properties are:
 
-* **LOG_FILE** - The log file  (defaults to *$SODA_HOME/log/soda.log*)
 * **SODA_NAMESPACE_DELIMITER** - The namespace delimiter (defaults to **.**). Changing this also affects the bash completion
 * **SODA_TASK_BASH_COMPLETION_SUFFIX** - The suffix to build the function for custom bash completion (defaults to *_bash_completion*)
 * **SODA_FILE_LOG_PATTERN** - The pattern to format logs that goes in *LOG_FILE*
@@ -190,6 +189,8 @@ To log something, just call the **log** function passing the category and messag
 * **log_warn** - uses the WARN category
 * **log_error** - uses the ERROR category
 * **log_fatal** - uses the FATAL category
+
+Log messages are shown in console, if you need to persist them, pass the parameter `--log-file=/path/to/the/file`. To disable the console log, pass the parameter `--no-console-log`.
 
 ### Custom logging
 

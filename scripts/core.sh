@@ -336,5 +336,3 @@ exists() {
     return 1
   fi
 }
-
-[ -z "$LOG_FILE" ] && LOG_FILE=/dev/null

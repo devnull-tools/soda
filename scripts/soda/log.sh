@@ -71,9 +71,8 @@ log() {
   console_log "$category" "$message" "$color"
 }
 
-# Put a log message in $LOG_FILE
 file_log() {
-  printf "$SODA_FILE_LOG_PATTERN" "$(date +"${SODA_DATE_LOG_PATTERN}")" "$1" "$2" >> $LOG_FILE
+  :;
 }
 
 # Put a log message in console
@@ -86,12 +85,15 @@ console_log() {
   fi
 }
 
-parameter "no-file-log" "$SODA_DESCRIPTION_NO_FILE_LOG" && {
-  file_log() { :; }
-} || {
+parameter "log-file" "$SODA_DESCRIPTION_FILE_LOG" && {
   if ! [[ -f "$LOG_FILE" ]]; then
     touch "$LOG_FILE"
   fi
+  
+  # Put a log message in $LOG_FILE
+  file_log() {
+    printf "$SODA_FILE_LOG_PATTERN" "$(date +"${SODA_DATE_LOG_PATTERN}")" "$1" "$2" >> $LOG_FILE
+  }
 }
 
 parameter "no-console-log" "$SODA_DESCRIPTION_NO_CONSOLE_LOG" && {
