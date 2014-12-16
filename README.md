@@ -230,6 +230,10 @@ Checks if the file $SODA_USER_HOME/$type/$NAMESPACE/$path exists using the names
       source $FILE
     }
 
+### load ([type] path)
+
+Call `#exists` and, if the file exists, `source` it.
+
 ### resource ([type] path)
 
 Returns the file $SODA_USER_HOME/$type/$NAMESPACE/$path using the namespace of the invoked task or imported namespace without checking if the file exists. If the *type* is not passed then **resources** will be used. For use with the **config** type, use the `config` builtin function. The `config` function redirects to the resource function using *config* as the first parameter and the given parameter as the second parameter.

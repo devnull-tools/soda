@@ -327,6 +327,11 @@ config() {
   resource config $1
 }
 
+# Loads the given file (if exists). The file is checked using #exists function
+load() {
+  exists "$@" && source "$FILE"
+}
+
 # Checks if a resource exists based on the current namespace.
 exists() {
   FILE="$(resource "$@")"
