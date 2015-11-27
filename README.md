@@ -102,7 +102,7 @@ The builtin events are:
 
 * **start** - before the task execution
 * **finish** - after the task execution
-* **fail** *(exit code)* - when a command fails to execute (broadcasted by *execute* and *check* functions)
+* **fail** *(output)* - when a command fails to execute (broadcasted by *execute* and *check* functions)
 
 ## Quick Tasks
 
@@ -256,7 +256,7 @@ Checks if the previous command returned successfully and logs the result using t
 
 ### execute (description, command, [*args])
 
-Executes a command and checks if it was sucessfull. The output will be stored in the variable *$LAST_EXECUTION_OUTPUT* and the result will be .
+Executes a command and checks if it was sucessfull. The output will be stored in the variable *$LAST_EXECUTION_OUTPUT* and the code in *${LAST_EXECUTION_CODE}*.
 
     execute "Pushing commits" git push
     # outputs according to exit code:

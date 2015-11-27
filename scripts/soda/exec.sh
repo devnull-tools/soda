@@ -114,6 +114,7 @@ execute() {
   shift
   printf "%-60s " "$description"
   LAST_EXECUTION_OUTPUT="$("$@" 2>&1)"
+  LAST_EXECUTION_CODE="${code}"
   code="$?"
   if [[ $code == 0 ]]; then
     printf "[  %s  ]\n" "$(green "OK")"
@@ -122,7 +123,7 @@ execute() {
   else
     printf "[ %s ]\n" "$(red "FAIL")"
     file_log "FAIL" "$description"
-    broadcast "fail" "$code"
+    broadcast "fail" "$LAST_EXECUTION_OUTPUT"
     return 1
   fi
 }
