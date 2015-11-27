@@ -114,8 +114,8 @@ execute() {
   shift
   printf "%-60s " "$description"
   LAST_EXECUTION_OUTPUT="$("$@" 2>&1)"
-  LAST_EXECUTION_CODE="${code}"
   code="$?"
+  LAST_EXECUTION_CODE="${code}"
   if [[ $code == 0 ]]; then
     printf "[  %s  ]\n" "$(green "OK")"
     file_log "OK" "$description"
