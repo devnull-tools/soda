@@ -22,7 +22,7 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-SODA_VERSION="1.4.1"
+SODA_VERSION="1.5.0"
 
 # Stores the usage for exposed commands
 TASKS_USAGE="  TASKS:"
@@ -84,16 +84,50 @@ task() {
 # parameter name, [parameter value, [default value]], description
 #
 parameter() {
-  local parameter_name="$(lowercase ${1//_/-})"
-  local parameter_value=""
-  local default=""
+  extract_parameter "$@"
+  if [[ $parameter_value ]]; then
+    if [[ "$parameter_value" == true ]]; then
+      if [[ -n "$default_value" ]]; then
+        log_debug "Setting default value for $parameter_name: $default_value"
+        set_var "$parameter_name" "$default_value"
+      fi
+    fi
+    return 0
+  else
+    return 1
+  fi
+}
+
+#
+# Exposes the given parameter in the program usage as a convention. If it's not
+# given through the command line, the default value will be assumed
+#
+# Arguments:
+#
+# parameter name, parameter value, default value, description
+#
+convention() {
+  extract_parameter "$@"
+  if [[ $parameter_value ]]; then
+    return 0
+  else
+    log_debug "Setting default value for $parameter_name: $default_value"
+    set_var "$parameter_name" "$default_value"
+    return 1
+  fi
+}
+
+extract_parameter() {
+  parameter_name="$(lowercase ${1//_/-})"
+  parameter_value=""
+  default_value=""
   local description=""
   if [[ $# == 3 ]]; then
     parameter_value="$2"
     description="$3"
   elif [[ $# == 4 ]]; then
     parameter_value="$2"
-    default="$3"
+    default_value="$3"
     description="$4 (defaults to '$3')"
   else
     description="$2"
@@ -115,18 +149,7 @@ parameter() {
     fi
   fi
   parameter_name="$(uppercase ${parameter_name//-/_})"
-  local value="$(get_var "$parameter_name")"
-  if [[ $value ]]; then
-    if [[ "$value" == true ]]; then
-      if [[ -n "$default" ]]; then
-        log_debug "Setting default value for $parameter_name: $default"
-        set_var "$parameter_name" "$default"
-      fi
-    fi
-    return 0
-  else
-    return 1
-  fi
+  parameter_value="$(get_var "$parameter_name")"
 }
 
 SODA_IMPORTS=""

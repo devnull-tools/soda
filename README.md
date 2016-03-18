@@ -222,6 +222,15 @@ Register the given parameter and returns indicating if the parameter was given. 
       additional_parameters="$additional_parameters --extension=$BACKUP_EXTENSION"
     }
 
+### convention (parameter_name, parameter_value, convention_value, description)
+
+Same as `#parameter` but applies to values that have a convention and, so, will have always a value assigned (even
+if the user didn't specify one).
+
+    convention "output-format" "pdf" "Sets the output format"
+
+    echo "$OUTPUT_FORMAT" # will print 'pdf' if user didn't use the `--output-format` parameter.
+
 ### exists ([type] path)
 
 Checks if the file $SODA_USER_HOME/$type/$NAMESPACE/$path exists using the namespace of the invoked task or imported namespace. The file path will be stored in the $FILE variable. If the *type* is not passed then **resources** will be used.
