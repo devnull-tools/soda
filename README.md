@@ -8,7 +8,7 @@ SODA works by loading any scripts in a specific directory and calling a function
 
 ## How To Install
 
-Just clone the git repo and place the *soda* file in your path (a symlinks works well to). After that, ensure you have a **$SODA_HOME** pointing to the place you clone the repo and you're done.
+Just clone the git repo and place the *soda* file in your path (a symlinks works well to) and you're done.
 
 ## How To Use
 
