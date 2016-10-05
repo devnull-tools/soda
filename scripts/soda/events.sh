@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Subscribe to an event
 when() {

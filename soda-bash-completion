@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #                            The MIT License
 #
 #        Copyright (c) 2013 Marcelo Guimaraes <ataxexe@gmail.com>
