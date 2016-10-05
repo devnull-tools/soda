@@ -22,7 +22,20 @@
 # TORT  OR  OTHERWISE,  ARISING  FROM,  OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
-[[ -z "$SODA_HOME" ]] && SODA_HOME=$(dirname $0)
+if [[ -z "$SODA_HOME" ]]; then
+  PRG="$0"
+  while [ -h "$PRG" ] ; do
+    ls=$(ls -ld "$PRG")
+    link=$(expr "$ls" : '.*-> \(.*\)$')
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="$(dirname "$PRG")/$link"
+    fi
+  done
+  SODA_HOME=$(dirname "$PRG")
+  SODA_HOME=$(cd "$SODA_HOME" && pwd -P)
+fi
 [[ -z "$SODA_USER_HOME" ]] && SODA_USER_HOME=$HOME/.soda
 
 if ! [[ -d "$SODA_USER_HOME" ]]; then
