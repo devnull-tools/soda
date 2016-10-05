@@ -23,17 +23,17 @@
 # SOFTWARE   OR   THE   USE   OR   OTHER   DEALINGS  IN  THE  SOFTWARE.
 
 if [[ -z "$SODA_HOME" ]]; then
-  PRG="$0"
-  while [ -h "$PRG" ] ; do
-    ls=$(ls -ld "$PRG")
+  local script="$0"
+  while [ -h "$script" ] ; do
+    ls=$(ls -ld "$script")
     link=$(expr "$ls" : '.*-> \(.*\)$')
     if expr "$link" : '/.*' > /dev/null; then
-      PRG="$link"
+      script="$link"
     else
-      PRG="$(dirname "$PRG")/$link"
+      script="$(dirname "$script")/$link"
     fi
   done
-  SODA_HOME=$(dirname "$PRG")
+  SODA_HOME=$(dirname "$script")
   SODA_HOME=$(cd "$SODA_HOME" && pwd -P)
 fi
 [[ -z "$SODA_USER_HOME" ]] && SODA_USER_HOME=$HOME/.soda
